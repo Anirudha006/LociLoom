@@ -18,7 +18,8 @@ from core.ui import (
     info_banner,
     footer,
     CSS_PATH,
-    t
+    t,
+    sign_out_user
 )
 
 __all__ = [
@@ -37,5 +38,6 @@ __all__ = [
     "info_banner",
     "footer",
     "CSS_PATH",
-    "t"
+    "t",
+    "sign_out_user"
 ]

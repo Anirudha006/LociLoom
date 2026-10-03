@@ -92,3 +92,24 @@ def test_icon_font_protection_rules():
     # Ensure blanket span selector with !important is NOT present
     assert "p, span, label," not in content
 
+
+def test_sign_out_user(monkeypatch):
+    """Verify that sign_out_user clears authentication, active state, and redirects to app.py."""
+    import streamlit as st
+    from core.ui import sign_out_user
+
+    st.session_state["auth_user"] = {"user_id": "LL-USER-1", "username": "Tester"}
+    st.session_state["current_palace"] = {"title": "Active Palace"}
+    st.session_state["quiz_palace"] = {"title": "Quiz Palace"}
+
+    redirected = []
+    monkeypatch.setattr(st, "switch_page", lambda page: redirected.append(page))
+
+    sign_out_user()
+
+    assert "auth_user" not in st.session_state
+    assert "current_palace" not in st.session_state
+    assert "quiz_palace" not in st.session_state
+    assert st.session_state["anon_id"].startswith("LL-GUEST-")
+    assert redirected == ["app.py"]
+

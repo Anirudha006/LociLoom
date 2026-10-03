@@ -164,15 +164,36 @@ def setup_page(title: str, icon: str = "🏛️", hide_sidebar: bool = False):
         st.markdown(sb_hide_css, unsafe_allow_html=True)
 
 
+def sign_out_user():
+    """
+    Completely logs out the current user:
+    - Clears authenticated session state
+    - Generates a fresh anonymous guest ID
+    - Clears active in-progress memory palaces and quizzes
+    - Switches page directly to app.py (the Login / Onboarding portal)
+    """
+    if "auth_user" in st.session_state:
+        del st.session_state["auth_user"]
+    st.session_state["anon_id"] = f"LL-GUEST-{uuid.uuid4().hex[:4].upper()}"
+    for k in ["current_palace", "quiz_palace", "quiz_deck", "quiz_idx", "answered_current"]:
+        if k in st.session_state:
+            del st.session_state[k]
+    try:
+        st.switch_page("app.py")
+    except Exception:
+        st.rerun()
+
+
 def render_sidebar():
     """
     Renders custom sidebar matching assets/website_home.html:
     - Logo + 'Adaptive Memory Palace Generator' subtitle
     - Green-tinted STUDENT PORTAL card with clean ID (no '-0:00' suffix)
+    - Prominent Sign out button directly visible without scrolling
     - Navigation list using st.page_link with icons (active highlighted in light indigo)
     - Language selector with i18n
     - Concept extraction hint
-    - Sign out button
+    - Secondary Sign out button at bottom
     """
     with st.sidebar:
         # 1. Header Brand & Subtitle
@@ -207,15 +228,22 @@ def render_sidebar():
         clean_id = format_loci_id(raw_id)
 
         st.markdown(f"""
-        <div style="background: #ECFDF9; border: 1.5px solid #99E6D8; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 16px;">
-            <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #0B5F57;">{portal_label}</span>
+        <div style="background: #ECFDF9; border: 1.5px solid #99E6D8; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px;">
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #0B5F57;">{portal_label}</span>
+                <span style="font-size: 11px; color: #0D9488; font-weight: 600;">Active</span>
+            </div>
             <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.04em; color: #1F2937;">{display_user}</span>
             <span style="font-size: 12px; color: #4B5563;">ID: {clean_id}</span>
         </div>
         """, unsafe_allow_html=True)
 
+        # Prominent Top Sign Out Button (always visible without scrolling)
+        if st.button("🚪 Sign out", key="sb_top_signout_btn", use_container_width=True):
+            sign_out_user()
+
         # 3. Navigation List using st.page_link
-        st.markdown("<nav aria-label='Main navigation'>", unsafe_allow_html=True)
+        st.markdown("<nav aria-label='Main navigation' style='margin-top: 10px;'>", unsafe_allow_html=True)
         nav_items = [
             ("app.py", "Home", "🏠"),
             ("pages/1_Create_Palace.py", "Create Palace", "✨"),
@@ -234,8 +262,8 @@ def render_sidebar():
             st.page_link(page_path, label=label, icon=icon)
         st.markdown("</nav>", unsafe_allow_html=True)
 
-        # 4. Bottom Controls: Language selector + Info note + Sign out
-        st.markdown("<div style='margin-top: 20px;'></div>", unsafe_allow_html=True)
+        # 4. Bottom Controls: Language selector + Info note + Bottom Sign out
+        st.markdown("<div style='margin-top: 16px;'></div>", unsafe_allow_html=True)
         st.markdown("<label style='font-size: 13px; font-weight: 600; color: #1F2937; margin-bottom: 4px;'>Interface language</label>", unsafe_allow_html=True)
         lang_options = {"en": "English", "hi": "हिन्दी (Hindi)", "kn": "ಕನ್ನಡ (Kannada)"}
         curr_lang = st.session_state.get("language", "en")
@@ -254,10 +282,7 @@ def render_sidebar():
         st.markdown("<p style='margin: 6px 0 12px 0; font-size: 12px; line-height: 1.5; color: #4B5563;'>Concept extraction works best for English input.</p>", unsafe_allow_html=True)
 
         if st.button("🚪 Sign out", key="sb_signout_btn", use_container_width=True):
-            if "auth_user" in st.session_state:
-                del st.session_state["auth_user"]
-            st.session_state["anon_id"] = f"LL-GUEST-{uuid.uuid4().hex[:4].upper()}"
-            st.rerun()
+            sign_out_user()
 
 
 def get_animated_sample_map_html(reduced_motion: bool = False) -> str:

@@ -12,7 +12,7 @@ Provides comprehensive accessibility accommodations and personalization:
 - Complete local database reset with confirmation
 """
 import streamlit as st
-from core.ui_helper import setup_page, render_disclaimer
+from core.ui_helper import setup_page, render_disclaimer, sign_out_user
 from core.db import reset_all_data, update_user_settings
 from core.i18n import t
 
@@ -162,11 +162,17 @@ Your anonymous identifier is **`{anon_id}`**. All generated memory palaces, quiz
 are strictly contained in your local SQLite file (`data/lociloom.db`). No cloud databases or tracking analytics are used.
 """)
 
-with st.popover("🗑️ Reset All Local Data"):
-    st.markdown("⚠️ **Are you sure?** This will permanently delete all saved palaces, quiz logs, and spaced repetition schedules.")
-    if st.button("Confirm: Reset Everything", type="primary"):
-        reset_all_data()
-        st.success("All local database records have been wiped clean.")
-        st.rerun()
+col_act1, col_act2 = st.columns([1, 1])
+with col_act1:
+    if st.button("🚪 Sign Out of Account", type="secondary", use_container_width=True, key="settings_signout_btn"):
+        sign_out_user()
+
+with col_act2:
+    with st.popover("🗑️ Reset All Local Data"):
+        st.markdown("⚠️ **Are you sure?** This will permanently delete all saved palaces, quiz logs, and spaced repetition schedules.")
+        if st.button("Confirm: Reset Everything", type="primary"):
+            reset_all_data()
+            st.success("All local database records have been wiped clean.")
+            st.rerun()
 
 render_disclaimer()

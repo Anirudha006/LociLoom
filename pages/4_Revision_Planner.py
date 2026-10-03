@@ -90,39 +90,38 @@ def render_concept_revision_card(item: dict, show_quiz_btn: bool = True):
 
     risk_badge = "badge-easy" if cur_p < 35 else "badge-medium" if cur_p < 65 else "badge-hard"
 
-    st.markdown(f"""
-    <div class="lociloom-card" style="margin-bottom: 12px;">
-        <div style="display: flex; justify-content: space-between; align-items: flex-start;">
-            <div>
-                <span class="badge badge-primary">{item['topic']}</span>
-                <span style="font-size: 0.8rem; color: #6B7280; margin-left: 8px;">
-                    Palace: <strong>{item['palace_title']}</strong> &nbsp;|&nbsp; Station: <strong>{item['location_name']}</strong>
-                </span>
-                <h3 style="margin: 6px 0 2px 0; color: #1F2937;">{item['concept_text']}</h3>
-                <div style="font-size: 0.9rem; color: #14B8A6; font-weight: 600;">{item['visual_object']}</div>
-            </div>
-            <div style="text-align: right;">
-                <span class="badge {risk_badge}">{risk['risk_category']}</span>
-                <div style="font-size: 0.78rem; color: #6B7280; margin-top: 4px;">Forgetting Risk: <strong>{cur_p}%</strong></div>
-            </div>
-        </div>
-        
-        <div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; background: #F8FAFC; padding: 10px; border-radius: 8px; font-size: 0.82rem;">
-            <div>📈 <strong>SM-2 Interval:</strong> {item.get('interval_days', 1)} day(s)</div>
-            <div>⚡ <strong>Ease Factor:</strong> {item.get('ease_factor', 2.5):.2f}</div>
-            <div>🔄 <strong>Repetitions:</strong> {item.get('repetitions', 0)}</div>
-        </div>
-
-        <div style="margin-top: 10px; font-size: 0.82rem; color: #4B5563;">
-            <strong>Forgetting Probability Horizon:</strong><br>
-            <div style="display: flex; gap: 15px; margin-top: 4px;">
-                <span>24 Hours: <strong>{p_24h}%</strong></span>
-                <span>3 Days: <strong>{p_3d}%</strong></span>
-                <span>7 Days: <strong>{p_7d}%</strong></span>
-            </div>
-        </div>
-    </div>
-    """, unsafe_allow_html=True)
+    card_html = (
+        f'<div class="lociloom-card" style="margin-bottom: 12px;">'
+        f'<div style="display: flex; justify-content: space-between; align-items: flex-start;">'
+        f'<div>'
+        f'<span class="badge badge-primary">{item["topic"]}</span>'
+        f'<span style="font-size: 0.8rem; color: #6B7280; margin-left: 8px;">'
+        f'Palace: <strong>{item["palace_title"]}</strong> &nbsp;|&nbsp; Station: <strong>{item["location_name"]}</strong>'
+        f'</span>'
+        f'<h3 style="margin: 6px 0 2px 0; color: #1F2937;">{item["concept_text"]}</h3>'
+        f'<div style="font-size: 0.9rem; color: #14B8A6; font-weight: 600;">{item["visual_object"]}</div>'
+        f'</div>'
+        f'<div style="text-align: right;">'
+        f'<span class="badge {risk_badge}">{risk["risk_category"]}</span>'
+        f'<div style="font-size: 0.78rem; color: #6B7280; margin-top: 4px;">Forgetting Risk: <strong>{cur_p}%</strong></div>'
+        f'</div>'
+        f'</div>'
+        f'<div style="display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin-top: 12px; background: #F8FAFC; padding: 10px; border-radius: 8px; font-size: 0.82rem;">'
+        f'<div>📈 <strong>SM-2 Interval:</strong> {item.get("interval_days", 1)} day(s)</div>'
+        f'<div>⚡ <strong>Ease Factor:</strong> {item.get("ease_factor", 2.5):.2f}</div>'
+        f'<div>🔄 <strong>Repetitions:</strong> {item.get("repetitions", 0)}</div>'
+        f'</div>'
+        f'<div style="margin-top: 10px; font-size: 0.82rem; color: #4B5563;">'
+        f'<strong>Forgetting Probability Horizon:</strong><br>'
+        f'<div style="display: flex; gap: 15px; margin-top: 4px;">'
+        f'<span>24 Hours: <strong>{p_24h}%</strong></span>'
+        f'<span>3 Days: <strong>{p_3d}%</strong></span>'
+        f'<span>7 Days: <strong>{p_7d}%</strong></span>'
+        f'</div>'
+        f'</div>'
+        f'</div>'
+    )
+    st.markdown(card_html, unsafe_allow_html=True)
 
 with tab1:
     if not revise_today:
