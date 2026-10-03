@@ -80,3 +80,15 @@ def test_get_palaces_returns_expected_fields():
     assert p["concept_count"] == 1
     assert "last_practised" in p
     assert "next_revision_due" in p
+
+
+def test_icon_font_protection_rules():
+    """Verify that style.css protects Streamlit icons from ligature-breaking font overrides."""
+    with open(CSS_PATH, "r", encoding="utf-8") as f:
+        content = f.read()
+    assert "Material Symbols Rounded" in content
+    assert "stExpanderIcon" in content
+    assert "stIconMaterial" in content
+    # Ensure blanket span selector with !important is NOT present
+    assert "p, span, label," not in content
+

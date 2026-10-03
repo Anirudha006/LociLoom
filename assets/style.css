@@ -35,8 +35,55 @@ h1, h2, h3, h4, .login-title, [data-testid="stHeadingWithActionElements"] h1, [d
     letter-spacing: -0.025em;
 }
 
-p, span, label, input, textarea, select, button, .login-subtitle, .field, [data-testid="stMarkdownContainer"] p, [data-testid="stTab"] {
+p, label, input, textarea, select, button, .login-subtitle, .field, [data-testid="stMarkdownContainer"] p, [data-testid="stTab"] {
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+}
+
+span:not([data-testid*="Icon"]):not([data-testid*="icon"]):not([class*="material"]):not([class*="symbol"]):not([data-testid="stExpanderIcon"]):not([data-testid="stIconMaterial"]):not([data-testid="stExpanderToggleIcon"]) {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+}
+
+/* Explicitly restore and enforce Streamlit Material Symbols / ligature icons */
+[data-testid="stExpanderIcon"],
+[data-testid="stIconMaterial"],
+[data-testid*="Icon"],
+[data-testid*="icon"],
+[data-testid="stExpanderToggleIcon"],
+.material-symbols-rounded,
+.material-symbols-outlined,
+.material-icons,
+span.material-symbols-rounded,
+span.material-symbols-outlined,
+span.material-icons,
+details summary span[data-testid*="Icon"],
+details summary svg + span,
+[data-testid="stFileUploader"] [data-testid*="Icon"],
+[data-testid="stFileUploaderDropzone"] [data-testid*="Icon"],
+[data-testid="stStatusWidget"] [data-testid*="Icon"],
+[data-testid="stNotification"] [data-testid*="Icon"],
+[data-testid="stExpander"] summary [data-testid*="Icon"],
+[data-testid="stExpander"] summary span:first-child,
+[data-testid="stExpander"] [data-testid="stExpanderIcon"] {
+    font-family: 'Material Symbols Rounded', 'Material Symbols Outlined', 'Material Icons', sans-serif !important;
+    font-weight: normal !important;
+    font-style: normal !important;
+    line-height: 1 !important;
+    letter-spacing: normal !important;
+    text-transform: none !important;
+    display: inline-block !important;
+    white-space: nowrap !important;
+    word-wrap: normal !important;
+    direction: ltr !important;
+    -webkit-font-feature-settings: 'liga' 1 !important;
+    font-feature-settings: 'liga' 1 !important;
+    -webkit-font-smoothing: antialiased !important;
+}
+
+/* Ensure expander summary has clear separation and proper flex layout */
+[data-testid="stExpander"] summary {
+    display: flex !important;
+    align-items: center !important;
+    gap: 8px !important;
 }
 
 [data-testid="stSidebar"] {
@@ -124,9 +171,9 @@ button[data-testid="baseButton-secondary"] {
 }
 
 .stButton > button p,
-.stButton > button span,
+.stButton > button span:not([data-testid*="Icon"]):not([class*="material"]),
 button[data-testid="baseButton-secondary"] p,
-button[data-testid="baseButton-secondary"] span {
+button[data-testid="baseButton-secondary"] span:not([data-testid*="Icon"]):not([class*="material"]) {
     color: #1F2937 !important;
     font-weight: 600 !important;
 }
@@ -139,7 +186,7 @@ button[data-testid="baseButton-secondary"]:hover {
 }
 
 .stButton > button:hover p,
-.stButton > button:hover span {
+.stButton > button:hover span:not([data-testid*="Icon"]):not([class*="material"]) {
     color: var(--primary) !important;
 }
 
@@ -156,11 +203,11 @@ div[data-testid="stButton"] > button[data-testid="baseButton-primary"] {
 }
 
 .stButton > button[kind="primary"] p,
-.stButton > button[kind="primary"] span,
+.stButton > button[kind="primary"] span:not([data-testid*="Icon"]):not([class*="material"]),
 .stButton > button[data-testid="baseButton-primary"] p,
-.stButton > button[data-testid="baseButton-primary"] span,
+.stButton > button[data-testid="baseButton-primary"] span:not([data-testid*="Icon"]):not([class*="material"]),
 button[data-testid="baseButton-primary"] p,
-button[data-testid="baseButton-primary"] span,
+button[data-testid="baseButton-primary"] span:not([data-testid*="Icon"]):not([class*="material"]),
 button[data-testid="baseButton-primary"] div {
     color: #FFFFFF !important;
     font-weight: 700 !important;
@@ -186,7 +233,7 @@ div[data-testid="stDownloadButton"] > button {
 }
 
 div[data-testid="stDownloadButton"] > button p,
-div[data-testid="stDownloadButton"] > button span {
+div[data-testid="stDownloadButton"] > button span:not([data-testid*="Icon"]):not([class*="material"]) {
     color: #5B6CFF !important;
     font-weight: 600 !important;
 }
@@ -202,7 +249,7 @@ div[data-testid="stDownloadButton"] > button[data-testid="baseButton-primary"] {
 }
 
 div[data-testid="stDownloadButton"] > button[data-testid="baseButton-primary"] p,
-div[data-testid="stDownloadButton"] > button[data-testid="baseButton-primary"] span {
+div[data-testid="stDownloadButton"] > button[data-testid="baseButton-primary"] span:not([data-testid*="Icon"]):not([class*="material"]) {
     color: #FFFFFF !important;
 }
 

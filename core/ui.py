@@ -72,7 +72,8 @@ def load_css():
         "<link rel='preconnect' href='https://fonts.gstatic.com' crossorigin>"
         "<link href='https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&"
         "family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&"
-        "family=Noto+Sans+Kannada:wght@500;600;700&display=swap' rel='stylesheet'>"
+        "family=Noto+Sans+Kannada:wght@500;600;700&family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&"
+        "family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&display=swap' rel='stylesheet'>"
     )
     st.markdown(font_link, unsafe_allow_html=True)
 
@@ -86,10 +87,12 @@ def load_css():
     contrast = st.session_state.get("high_contrast", False)
     motion = st.session_state.get("reduced_motion", False)
 
-    dynamic_rules = [f"html, body, p, span {{ font-size: {font_size}px !important; }}"]
+    dynamic_rules = [f"html, body, p, span:not([data-testid*='Icon']):not([class*='material']) {{ font-size: {font_size}px !important; }}"]
     if dyslexia:
         dynamic_rules.append(
-            "* { font-family: 'OpenDyslexic', 'Comic Sans MS', Verdana, sans-serif !important; "
+            "body, p, h1, h2, h3, h4, label, input, textarea, select, button, "
+            "[data-testid='stMarkdownContainer'] p, span:not([data-testid*='Icon']):not([class*='material']) "
+            "{ font-family: 'OpenDyslexic', 'Comic Sans MS', Verdana, sans-serif !important; "
             "letter-spacing: 0.04em !important; word-spacing: 0.08em !important; }"
         )
     if contrast:
@@ -104,6 +107,18 @@ def load_css():
             ".hm-walker, .ll-walker { display: none !important; } "
             ".hm-pill { opacity: 1 !important; transform: none !important; }"
         )
+
+    dynamic_rules.append(
+        "[data-testid='stExpanderIcon'], [data-testid='stIconMaterial'], [data-testid*='Icon'], "
+        "[data-testid*='icon'], [data-testid='stExpanderToggleIcon'], .material-symbols-rounded, "
+        ".material-symbols-outlined, .material-icons, span.material-symbols-rounded, "
+        "span.material-symbols-outlined, details summary span[data-testid*='Icon'], "
+        "[data-testid='stFileUploader'] [data-testid*='Icon'], [data-testid='stStatusWidget'] [data-testid*='Icon'] { "
+        "font-family: 'Material Symbols Rounded', 'Material Symbols Outlined', 'Material Icons', sans-serif !important; "
+        "font-weight: normal !important; font-style: normal !important; display: inline-block !important; "
+        "white-space: nowrap !important; line-height: 1 !important; letter-spacing: normal !important; "
+        "-webkit-font-feature-settings: 'liga' 1 !important; font-feature-settings: 'liga' 1 !important; }"
+    )
 
     full_css = f"<style>{css_content} {' '.join(dynamic_rules)}</style>"
     safe_css = " ".join([line.strip() for line in full_css.splitlines() if line.strip()])
