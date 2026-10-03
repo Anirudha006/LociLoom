@@ -1,0 +1,74 @@
+﻿{
+  "house": {
+    "name": "Cozy Modern House",
+    "description": "A familiar residential layout walking from entry to attic.",
+    "locations": [
+      {"name": "Front Porch", "x": 1, "y": 1, "zone": "Exterior"},
+      {"name": "Main Entrance", "x": 2, "y": 1, "zone": "Hallway"},
+      {"name": "Living Room Sofa", "x": 3, "y": 2, "zone": "Living Area"},
+      {"name": "Coffee Table", "x": 4, "y": 2, "zone": "Living Area"},
+      {"name": "Kitchen Counter", "x": 4, "y": 4, "zone": "Kitchen"},
+      {"name": "Refrigerator Door", "x": 3, "y": 4, "zone": "Kitchen"},
+      {"name": "Dining Table", "x": 2, "y": 3, "zone": "Dining Area"},
+      {"name": "Staircase Landing", "x": 2, "y": 5, "zone": "Transition"},
+      {"name": "Study Desk", "x": 3, "y": 6, "zone": "Upper Floor"},
+      {"name": "Bedroom Bookshelf", "x": 4, "y": 6, "zone": "Upper Floor"},
+      {"name": "Sunny Balcony", "x": 5, "y": 5, "zone": "Upper Floor"},
+      {"name": "Attic Treasure Chest", "x": 3, "y": 7, "zone": "Attic"}
+    ]
+  },
+  "classroom": {
+    "name": "Interactive Classroom",
+    "description": "An organized academic space moving from podium to back benches.",
+    "locations": [
+      {"name": "Classroom Door", "x": 1, "y": 1, "zone": "Entrance"},
+      {"name": "Teacher's Podium", "x": 3, "y": 1, "zone": "Front Stage"},
+      {"name": "Chalkboard Center", "x": 4, "y": 1, "zone": "Front Stage"},
+      {"name": "Smart Projector Screen", "x": 5, "y": 1, "zone": "Front Stage"},
+      {"name": "Lab Equipment Cart", "x": 5, "y": 3, "zone": "Side Station"},
+      {"name": "First Row Center Desk", "x": 3, "y": 3, "zone": "Student Desks"},
+      {"name": "Window Sill Terrarium", "x": 1, "y": 3, "zone": "Window Row"},
+      {"name": "Middle Row Desk", "x": 3, "y": 4, "zone": "Student Desks"},
+      {"name": "Reference Bookshelf", "x": 1, "y": 5, "zone": "Library Corner"},
+      {"name": "Notice Bulletin Board", "x": 2, "y": 6, "zone": "Back Wall"},
+      {"name": "Back Row Computer", "x": 4, "y": 5, "zone": "Tech Station"},
+      {"name": "Exit Archway", "x": 5, "y": 6, "zone": "Back Exit"}
+    ]
+  },
+  "garden": {
+    "name": "Botanical Zen Garden",
+    "description": "A tranquil nature path winding past floral and stone landmarks.",
+    "locations": [
+      {"name": "Wooden Garden Gate", "x": 1, "y": 1, "zone": "Entryway"},
+      {"name": "Cobblestone Path", "x": 2, "y": 2, "zone": "Trail"},
+      {"name": "Marble Water Fountain", "x": 3, "y": 2, "zone": "Water Feature"},
+      {"name": "Red Rose Trellis", "x": 4, "y": 2, "zone": "Floral Bed"},
+      {"name": "Ancient Oak Tree", "x": 5, "y": 3, "zone": "Canopy"},
+      {"name": "Carved Stone Bench", "x": 4, "y": 4, "zone": "Rest Area"},
+      {"name": "Glass Greenhouse Door", "x": 3, "y": 4, "zone": "Greenhouse"},
+      {"name": "Hanging Orchid Wall", "x": 2, "y": 4, "zone": "Greenhouse"},
+      {"name": "Koi Fish Pond", "x": 2, "y": 6, "zone": "Pond"},
+      {"name": "Arched Wooden Bridge", "x": 3, "y": 6, "zone": "Crossing"},
+      {"name": "Bonsai Pedestal", "x": 4, "y": 6, "zone": "Zen Corner"},
+      {"name": "Sunrise Gazebo", "x": 5, "y": 7, "zone": "Overlook"}
+    ]
+  },
+  "campus": {
+    "name": "University Campus Quad",
+    "description": "A bustling college route connecting key collegiate landmarks.",
+    "locations": [
+      {"name": "Campus Main Arch", "x": 1, "y": 1, "zone": "Gates"},
+      {"name": "Clock Tower Square", "x": 2, "y": 2, "zone": "Plaza"},
+      {"name": "Central Library Steps", "x": 3, "y": 2, "zone": "Library"},
+      {"name": "Circulation Desk", "x": 4, "y": 2, "zone": "Library"},
+      {"name": "Quiet Reading Hall", "x": 4, "y": 3, "zone": "Library"},
+      {"name": "Engineering Lab Atrium", "x": 5, "y": 4, "zone": "Sciences"},
+      {"name": "Robotics Display Case", "x": 4, "y": 5, "zone": "Sciences"},
+      {"name": "Campus Cafeteria Counter", "x": 3, "y": 5, "zone": "Student Center"},
+      {"name": "Open-Air Amphitheatre", "x": 2, "y": 5, "zone": "Arts"},
+      {"name": "Sports Pavilion Bleachers", "x": 1, "y": 5, "zone": "Athletics"},
+      {"name": "Dean's Heritage Hallway", "x": 2, "y": 7, "zone": "Administration"},
+      {"name": "Graduation Plaza Monument", "x": 4, "y": 7, "zone": "Concourse"}
+    ]
+  }
+}

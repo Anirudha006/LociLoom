@@ -1,0 +1,355 @@
+concept,topic,difficulty,context_sentence,word_count,char_length
+photosynthesis,Biology,Medium,Photosynthesis is a fundamental concept in Biology explaining plants absorbing radiant sunlight to make nourishment.,1,14
+sunlight,Biology,Easy,Sunlight is a fundamental concept in Biology explaining direct radiant light driving the solar reaction.,1,8
+water,Biology,Easy,Water is a fundamental concept in Biology explaining essential fluid absorbed by root xylem.,1,5
+carbon dioxide,Biology,Medium,Carbon dioxide is a fundamental concept in Biology explaining floating ambient gas taken in through open stomata.,2,14
+glucose,Biology,Easy,Glucose is a fundamental concept in Biology explaining sweet energy-rich hexose fuel created by the plant.,1,7
+oxygen,Biology,Easy,Oxygen is a fundamental concept in Biology explaining fresh revitalizing byproduct released into the atmosphere.,1,6
+chloroplast,Biology,Medium,Chloroplast is a fundamental concept in Biology explaining organelle kitchen where photosynthetic food is cooked.,1,11
+chlorophyll,Biology,Medium,Chlorophyll is a fundamental concept in Biology explaining pigment dyeing the leaves green and capturing photon energy.,1,11
+mitochondria,Biology,Medium,Mitochondria is a fundamental concept in Biology explaining the quintessential powerhouse producing cellular atp.,1,12
+atp,Biology,Easy,Atp is a fundamental concept in Biology explaining universal biochemical energy currency for cellular work.,1,3
+dna,Biology,Easy,Dna is a fundamental concept in Biology explaining double helix blueprint coding biological life.,1,3
+rna,Biology,Easy,Rna is a fundamental concept in Biology explaining single-stranded messenger delivering genetic blueprints.,1,3
+ribosome,Biology,Easy,Ribosome is a fundamental concept in Biology explaining cellular machinery translating mrna into peptide chains.,1,8
+nucleus,Biology,Easy,Nucleus is a fundamental concept in Biology explaining command center enclosing and safeguarding chromatin.,1,7
+membrane,Biology,Easy,Membrane is a fundamental concept in Biology explaining selective lipid barrier controlling transport in and out.,1,8
+enzyme,Biology,Easy,Enzyme is a fundamental concept in Biology explaining biological catalysts speeding up metabolic reactions.,1,6
+osmosis,Biology,Easy,Osmosis is a fundamental concept in Biology explaining passive solvent diffusion across semipermeable membranes.,1,7
+mitosis,Biology,Easy,Mitosis is a fundamental concept in Biology explaining cell replication producing two diploid clones.,1,7
+meiosis,Biology,Easy,Meiosis is a fundamental concept in Biology explaining gamete division creating four unique haploid daughter cells.,1,7
+neuron,Biology,Easy,Neuron is a fundamental concept in Biology explaining electrically excitable cells transmitting signal pulses.,1,6
+synapse,Biology,Easy,Synapse is a fundamental concept in Biology explaining microscopic junction where neurotransmitters leap.,1,7
+hemoglobin,Biology,Medium,Hemoglobin is a fundamental concept in Biology explaining iron-rich carrier protein transporting oxygen in blood.,1,10
+ecosystem,Biology,Medium,Ecosystem is a fundamental concept in Biology explaining interconnected community of organisms and environment.,1,9
+mutation,Biology,Easy,Mutation is a fundamental concept in Biology explaining unscheduled nucleotide alteration in genetic sequence.,1,8
+homeostasis,Biology,Medium,Homeostasis is a fundamental concept in Biology explaining dynamic physiological equilibrium keeping systems steady.,1,11
+antibody,Biology,Easy,Antibody is a fundamental concept in Biology explaining immune proteins tagging foreign antigen invaders.,1,8
+antigen,Biology,Easy,Antigen is a fundamental concept in Biology explaining molecular surface marker triggering immune detection.,1,7
+xylem,Biology,Easy,Xylem is a fundamental concept in Biology explaining vascular tissue pulling water upward from roots.,1,5
+phloem,Biology,Easy,Phloem is a fundamental concept in Biology explaining vascular tissue transporting sugars downward and throughout.,1,6
+stomata,Biology,Easy,Stomata is a fundamental concept in Biology explaining microscopic pores regulating leaf gas exchange.,1,7
+transpiration,Biology,Medium,Transpiration is a fundamental concept in Biology explaining water evaporation pulling xylem column skyward.,1,13
+fermentation,Biology,Medium,Fermentation is a fundamental concept in Biology explaining anaerobic sugar breakdown producing ethanol or lactate.,1,12
+glycolysis,Biology,Medium,Glycolysis is a fundamental concept in Biology explaining ten-step enzymatic cleavage of hexose into pyruvate.,1,10
+krebs cycle,Biology,Medium,Krebs cycle is a fundamental concept in Biology explaining cyclic mitochondrial cascade generating nadh and fadh2.,2,11
+endoplasmic reticulum,Biology,Hard,Endoplasmic reticulum is a fundamental concept in Biology explaining folded network synthesizing lipids and modifying proteins.,2,21
+golgi apparatus,Biology,Medium,Golgi apparatus is a fundamental concept in Biology explaining packaging and addressing vesicles for secretion.,2,15
+lysosome,Biology,Easy,Lysosome is a fundamental concept in Biology explaining enzyme-filled sac digesting cellular waste and debris.,1,8
+vacuole,Biology,Easy,Vacuole is a fundamental concept in Biology explaining central plant storage chamber maintaining turgor.,1,7
+hormone,Biology,Easy,Hormone is a fundamental concept in Biology explaining circulating chemical messenger signaling distant tissues.,1,7
+cytoplasm,Biology,Medium,Cytoplasm is a fundamental concept in Biology explaining gelatinous fluid suspending cellular organelles.,1,9
+chromosome,Biology,Medium,Chromosome is a fundamental concept in Biology explaining condensed chromatin packaging genetic dna.,1,10
+allele,Biology,Easy,Allele is a fundamental concept in Biology explaining different variant forms of the same gene locus.,1,6
+phenotype,Biology,Medium,Phenotype is a fundamental concept in Biology explaining observable physical trait expressed by genetic code.,1,9
+genotype,Biology,Easy,Genotype is a fundamental concept in Biology explaining internal genetic makeup underlying physical traits.,1,8
+natural selection,Biology,Hard,Natural selection is a fundamental concept in Biology explaining evolutionary survival of best-adapted phenotypic variants.,2,17
+gravity,Physics,Easy,Gravity is a fundamental concept in Physics explaining newtonian universal attraction pulling mass toward center.,1,7
+friction,Physics,Easy,Friction is a fundamental concept in Physics explaining resistive force opposing relative sliding motion.,1,8
+inertia,Physics,Easy,Inertia is a fundamental concept in Physics explaining property of mass resisting any change in velocity.,1,7
+acceleration,Physics,Medium,Acceleration is a fundamental concept in Physics explaining rate of change of velocity over elapsed time.,1,12
+velocity,Physics,Easy,Velocity is a fundamental concept in Physics explaining vector speed combined with precise direction of travel.,1,8
+momentum,Physics,Easy,Momentum is a fundamental concept in Physics explaining product of mass and velocity driving through impacts.,1,8
+kinetic energy,Physics,Medium,Kinetic energy is a fundamental concept in Physics explaining mechanical energy possessed due to motion.,2,14
+potential energy,Physics,Medium,Potential energy is a fundamental concept in Physics explaining stored energy due to elevated position or strain.,2,16
+thermodynamics,Physics,Hard,"Thermodynamics is a fundamental concept in Physics explaining laws governing heat, work, and entropy conversion.",1,14
+entropy,Physics,Easy,Entropy is a fundamental concept in Physics explaining tendency toward cosmic disorder and unavailable energy.,1,7
+quantum,Physics,Easy,Quantum is a fundamental concept in Physics explaining discrete packet of energy governed by wave mechanics.,1,7
+photon,Physics,Easy,Photon is a fundamental concept in Physics explaining massless elementary quantum particle of light.,1,6
+electromagnetism,Physics,Medium,Electromagnetism is a fundamental concept in Physics explaining coupled fundamental force of electricity and magnetism.,1,16
+refraction,Physics,Medium,Refraction is a fundamental concept in Physics explaining bending of wave velocity across differing media.,1,10
+reflection,Physics,Medium,Reflection is a fundamental concept in Physics explaining wavefront bouncing back from an interface boundary.,1,10
+diffraction,Physics,Medium,Diffraction is a fundamental concept in Physics explaining wave bending and spreading around obstacles or slits.,1,11
+resonance,Physics,Medium,Resonance is a fundamental concept in Physics explaining dramatic amplitude surge at natural harmonic frequency.,1,9
+superconductivity,Physics,Hard,Superconductivity is a fundamental concept in Physics explaining zero electrical resistance at cryogenic temperatures.,1,17
+relativity,Physics,Medium,Relativity is a fundamental concept in Physics explaining einsteinian spacetime dilation relative to observer speed.,1,10
+black hole,Physics,Medium,Black hole is a fundamental concept in Physics explaining singularity whose gravitational escape velocity exceeds light.,2,10
+centripetal force,Physics,Hard,Centripetal force is a fundamental concept in Physics explaining center-directed force keeping an object in curved orbit.,2,17
+torque,Physics,Easy,Torque is a fundamental concept in Physics explaining rotational mechanical force producing angular acceleration.,1,6
+buoyancy,Physics,Easy,Buoyancy is a fundamental concept in Physics explaining upward hydrostatic force exerted by displaced fluid.,1,8
+archimedes principle,Physics,Hard,Archimedes principle is a fundamental concept in Physics explaining displaced liquid volume equaling immersed body weight.,2,20
+bernoulli principle,Physics,Hard,Bernoulli principle is a fundamental concept in Physics explaining higher fluid velocity corresponding to lower pressure.,2,19
+doppler effect,Physics,Medium,Doppler effect is a fundamental concept in Physics explaining frequency shift caused by relative motion of source.,2,14
+coulombs law,Physics,Medium,Coulombs law is a fundamental concept in Physics explaining electrostatic attraction and repulsion between charges.,2,12
+magnetic field,Physics,Medium,Magnetic field is a fundamental concept in Physics explaining vector field exerting force on moving magnetic poles.,2,14
+capacitance,Physics,Medium,Capacitance is a fundamental concept in Physics explaining ability of a system to store electrostatic charge.,1,11
+inductance,Physics,Medium,Inductance is a fundamental concept in Physics explaining tendency of electrical conductor to oppose current shifts.,1,10
+newtons first law,Physics,Hard,Newtons first law is a fundamental concept in Physics explaining law of inertia: velocity remains constant unless acted upon.,3,17
+newtons second law,Physics,Hard,Newtons second law is a fundamental concept in Physics explaining force equals mass multiplied by acceleration.,3,18
+newtons third law,Physics,Hard,Newtons third law is a fundamental concept in Physics explaining for every action there is an equal and opposite reaction.,3,17
+wave-particle duality,Physics,Hard,Wave-particle duality is a fundamental concept in Physics explaining quantum entities exhibiting both wave and particle nature.,2,21
+special relativity,Physics,Hard,Special relativity is a fundamental concept in Physics explaining constancy of light speed causing time dilation and length contraction.,2,18
+general relativity,Physics,Hard,General relativity is a fundamental concept in Physics explaining gravity explained as curvature of spacetime continuum.,2,18
+radiation,Physics,Medium,Radiation is a fundamental concept in Physics explaining emission of energetic particles or electromagnetic waves.,1,9
+half-life,Physics,Medium,Half-life is a fundamental concept in Physics explaining time required for half of radioactive nuclei to decay.,1,9
+nuclear fission,Physics,Medium,Nuclear fission is a fundamental concept in Physics explaining heavy atomic nucleus dividing and releasing massive energy.,2,15
+nuclear fusion,Physics,Medium,Nuclear fusion is a fundamental concept in Physics explaining light hydrogen nuclei fusing under pressure into helium.,2,14
+atom,Chemistry,Easy,Atom is a fundamental concept in Chemistry explaining fundamental building block of matter with nucleus and electrons.,1,4
+electron,Chemistry,Easy,Electron is a fundamental concept in Chemistry explaining negatively charged subatomic particle in electron cloud.,1,8
+proton,Chemistry,Easy,Proton is a fundamental concept in Chemistry explaining positively charged nucleon defining atomic number.,1,6
+neutron,Chemistry,Easy,Neutron is a fundamental concept in Chemistry explaining uncharged subatomic particle stabilizing atomic nucleus.,1,7
+covalent bond,Chemistry,Medium,Covalent bond is a fundamental concept in Chemistry explaining chemical bond formed by mutual sharing of electron pairs.,2,13
+ionic bond,Chemistry,Medium,Ionic bond is a fundamental concept in Chemistry explaining electrostatic bond formed by complete electron transfer.,2,10
+hydrogen bond,Chemistry,Medium,Hydrogen bond is a fundamental concept in Chemistry explaining weak dipole-dipole attraction between electronegative atoms.,2,13
+ph,Chemistry,Easy,Ph is a fundamental concept in Chemistry explaining logarithmic measure of hydrogen ion concentration.,1,2
+acid,Chemistry,Easy,Acid is a fundamental concept in Chemistry explaining proton donor substance with ph less than 7.,1,4
+base,Chemistry,Easy,Base is a fundamental concept in Chemistry explaining proton acceptor alkaline substance with ph greater than 7.,1,4
+catalyst,Chemistry,Easy,Catalyst is a fundamental concept in Chemistry explaining agent lowering activation energy without being consumed.,1,8
+activation energy,Chemistry,Hard,Activation energy is a fundamental concept in Chemistry explaining minimum threshold energy required to initiate a reaction.,2,17
+exothermic,Chemistry,Medium,Exothermic is a fundamental concept in Chemistry explaining chemical reaction releasing net thermal energy to surroundings.,1,10
+endothermic,Chemistry,Medium,Endothermic is a fundamental concept in Chemistry explaining chemical reaction absorbing thermal energy from surroundings.,1,11
+solution,Chemistry,Easy,Solution is a fundamental concept in Chemistry explaining homogeneous mixture of solute completely dissolved in solvent.,1,8
+solute,Chemistry,Easy,Solute is a fundamental concept in Chemistry explaining substance being dissolved into a larger liquid medium.,1,6
+solvent,Chemistry,Easy,Solvent is a fundamental concept in Chemistry explaining dissolving medium holding solute particles in suspension.,1,7
+periodic table,Chemistry,Medium,Periodic table is a fundamental concept in Chemistry explaining systematic tabular arrangement of elements by atomic number.,2,14
+oxidation,Chemistry,Medium,Oxidation is a fundamental concept in Chemistry explaining loss of electrons or increase in oxidation state.,1,9
+reduction,Chemistry,Medium,Reduction is a fundamental concept in Chemistry explaining gain of electrons or decrease in oxidation state.,1,9
+redox,Chemistry,Easy,Redox is a fundamental concept in Chemistry explaining coupled reduction-oxidation electron transfer reaction.,1,5
+isotope,Chemistry,Easy,Isotope is a fundamental concept in Chemistry explaining nuclides of same element with different neutron numbers.,1,7
+avogadros number,Chemistry,Medium,Avogadros number is a fundamental concept in Chemistry explaining number of constituent particles in exactly one mole.,2,16
+mole,Chemistry,Easy,Mole is a fundamental concept in Chemistry explaining standard si unit measuring amount of substance.,1,4
+titration,Chemistry,Medium,Titration is a fundamental concept in Chemistry explaining volumetric analytical method using indicator endpoint.,1,9
+equilibrium,Chemistry,Medium,Equilibrium is a fundamental concept in Chemistry explaining forward and reverse reaction rates balancing dynamically.,1,11
+le chateliers principle,Chemistry,Hard,Le chateliers principle is a fundamental concept in Chemistry explaining system counteracting external stresses to restore balance.,3,23
+electronegativity,Chemistry,Hard,Electronegativity is a fundamental concept in Chemistry explaining tendency of an atom to attract shared electron pairs.,1,17
+malleability,Chemistry,Medium,Malleability is a fundamental concept in Chemistry explaining ability of metal to deform under compressive stress.,1,12
+ductility,Chemistry,Medium,Ductility is a fundamental concept in Chemistry explaining ability of metal to stretch into elongated wire strands.,1,9
+polymer,Chemistry,Easy,Polymer is a fundamental concept in Chemistry explaining macromolecule composed of repeating monomer subunits.,1,7
+monomer,Chemistry,Easy,Monomer is a fundamental concept in Chemistry explaining small individual unit that polymerizes into chains.,1,7
+distillation,Chemistry,Medium,Distillation is a fundamental concept in Chemistry explaining thermal separation technique based on boiling points.,1,12
+crystallization,Chemistry,Medium,Crystallization is a fundamental concept in Chemistry explaining solute precipitating into orderly crystalline lattice.,1,15
+colloid,Chemistry,Easy,Colloid is a fundamental concept in Chemistry explaining microscopic insoluble particles suspended through medium.,1,7
+tcp/ip model,Computer Science,Medium,Tcp/ip model is a fundamental concept in Computer Science explaining foundational suite of layered protocols connecting the internet.,2,12
+application layer,Computer Science,Hard,Application layer is a fundamental concept in Computer Science explaining top layer interfacing directly with user software like http.,2,17
+transport layer,Computer Science,Medium,Transport layer is a fundamental concept in Computer Science explaining ensures end-to-end data delivery and sequencing via tcp/udp.,2,15
+internet layer,Computer Science,Medium,Internet layer is a fundamental concept in Computer Science explaining routes data packets across multiple networks using ip.,2,14
+network-access layer,Computer Science,Hard,Network-access layer is a fundamental concept in Computer Science explaining physical and data link handling bits over copper or air.,2,20
+algorithm,Computer Science,Medium,Algorithm is a fundamental concept in Computer Science explaining well-defined sequential procedure for solving a computational problem.,1,9
+binary,Computer Science,Easy,Binary is a fundamental concept in Computer Science explaining base-2 numeral system powering modern digital electronics.,1,6
+cpu,Computer Science,Easy,Cpu is a fundamental concept in Computer Science explaining central processing unit executing instruction cycles.,1,3
+ram,Computer Science,Easy,Ram is a fundamental concept in Computer Science explaining volatile high-speed temporary memory for active tasks.,1,3
+cache,Computer Science,Easy,Cache is a fundamental concept in Computer Science explaining ultra-fast tiny memory holding frequently needed data.,1,5
+database,Computer Science,Easy,Database is a fundamental concept in Computer Science explaining structured collection of indexed and queryable information.,1,8
+sql,Computer Science,Easy,Sql is a fundamental concept in Computer Science explaining standard declarative query language for relational data.,1,3
+stack,Computer Science,Easy,Stack is a fundamental concept in Computer Science explaining last-in first-out linear data structure.,1,5
+queue,Computer Science,Easy,Queue is a fundamental concept in Computer Science explaining first-in first-out sequential waiting line.,1,5
+linked list,Computer Science,Medium,Linked list is a fundamental concept in Computer Science explaining chain of independent data nodes each pointing to the next.,2,11
+binary tree,Computer Science,Medium,Binary tree is a fundamental concept in Computer Science explaining hierarchical data structure branching into left and right subtrees.,2,11
+graph,Computer Science,Easy,Graph is a fundamental concept in Computer Science explaining collection of vertices connected by directional or weighted edges.,1,5
+hash table,Computer Science,Medium,Hash table is a fundamental concept in Computer Science explaining associative array mapping hashed keys to bucket values in o(1).,2,10
+recursion,Computer Science,Medium,Recursion is a fundamental concept in Computer Science explaining function repeatedly calling itself until reaching base case.,1,9
+sorting,Computer Science,Easy,Sorting is a fundamental concept in Computer Science explaining algorithmic ordering of elements into ascending order.,1,7
+compiler,Computer Science,Easy,Compiler is a fundamental concept in Computer Science explaining translates high-level source code into executable machine code.,1,8
+operating system,Computer Science,Medium,Operating system is a fundamental concept in Computer Science explaining core software managing system hardware and resource allocation.,2,16
+deadlock,Computer Science,Easy,Deadlock is a fundamental concept in Computer Science explaining circular wait state where processes freeze awaiting resources.,1,8
+encryption,Computer Science,Medium,Encryption is a fundamental concept in Computer Science explaining cryptographic transformation scrambling plaintext into ciphertext.,1,10
+firewall,Computer Science,Easy,Firewall is a fundamental concept in Computer Science explaining security barrier inspecting packets against firewall rules.,1,8
+object-oriented programming,Computer Science,Hard,Object-oriented programming is a fundamental concept in Computer Science explaining paradigm modeling software as classes with encapsulated state.,2,27
+inheritance,Computer Science,Medium,Inheritance is a fundamental concept in Computer Science explaining subclass deriving properties and methods from parent class.,1,11
+polymorphism,Computer Science,Hard,Polymorphism is a fundamental concept in Computer Science explaining single interface representing differing underlying forms.,1,12
+concurrency,Computer Science,Medium,Concurrency is a fundamental concept in Computer Science explaining executing multiple tasks in overlapping time periods.,1,11
+thread,Computer Science,Easy,Thread is a fundamental concept in Computer Science explaining smallest sequence of programmed instructions managed by os.,1,6
+api,Computer Science,Easy,Api is a fundamental concept in Computer Science explaining application programming interface mediating software exchanges.,1,3
+git,Computer Science,Easy,Git is a fundamental concept in Computer Science explaining distributed version control tracking revisions over time.,1,3
+cloud computing,Computer Science,Medium,Cloud computing is a fundamental concept in Computer Science explaining on-demand availability of remote computer system resources.,2,15
+machine learning,Computer Science,Medium,Machine learning is a fundamental concept in Computer Science explaining algorithms improving performance through empirical data experience.,2,16
+neural network,Computer Science,Medium,Neural network is a fundamental concept in Computer Science explaining layered computational model inspired by biological nervous systems.,2,14
+big o notation,Computer Science,Hard,Big o notation is a fundamental concept in Computer Science explaining mathematical notation describing asymptotic growth rate.,3,14
+pointer,Computer Science,Easy,Pointer is a fundamental concept in Computer Science explaining variable holding direct memory address of another value.,1,7
+garbage collection,Computer Science,Hard,Garbage collection is a fundamental concept in Computer Science explaining automatic memory management freeing unreferenced memory.,2,18
+virtual machine,Computer Science,Medium,Virtual machine is a fundamental concept in Computer Science explaining software emulation of complete physical computer architecture.,2,15
+dns,Computer Science,Easy,Dns is a fundamental concept in Computer Science explaining domain name system resolving human urls to numerical ip addresses.,1,3
+calculus,Maths,Easy,Calculus is a fundamental concept in Maths explaining mathematical study of continuous change and accumulation.,1,8
+derivative,Maths,Medium,Derivative is a fundamental concept in Maths explaining instantaneous rate of change of a mathematical function.,1,10
+integral,Maths,Easy,Integral is a fundamental concept in Maths explaining accumulated continuous area under a curve boundary.,1,8
+matrix,Maths,Easy,Matrix is a fundamental concept in Maths explaining rectangular numerical array subjected to linear algebra.,1,6
+vector,Maths,Easy,Vector is a fundamental concept in Maths explaining geometric entity having both magnitude and direction.,1,6
+probability,Maths,Medium,Probability is a fundamental concept in Maths explaining numerical measure of likelihood that an event will occur.,1,11
+statistics,Maths,Medium,"Statistics is a fundamental concept in Maths explaining science of collecting, analyzing, and interpreting sample data.",1,10
+prime number,Maths,Medium,Prime number is a fundamental concept in Maths explaining integer greater than 1 divisible only by 1 and itself.,2,12
+fibonacci sequence,Maths,Hard,Fibonacci sequence is a fundamental concept in Maths explaining numerical sequence where each term sums the previous two.,2,18
+pythagorean theorem,Maths,Hard,Pythagorean theorem is a fundamental concept in Maths explaining geometric relation stating a^2 + b^2 = c^2 for right triangles.,2,19
+pi,Maths,Easy,Pi is a fundamental concept in Maths explaining irrational ratio of circle circumference to its diameter.,1,2
+euler number,Maths,Medium,Euler number is a fundamental concept in Maths explaining base of natural logarithm representing continuous compound growth.,2,12
+logarithm,Maths,Medium,Logarithm is a fundamental concept in Maths explaining inverse power function answering what exponent reaches target.,1,9
+standard deviation,Maths,Hard,Standard deviation is a fundamental concept in Maths explaining measure of dispersion of a dataset relative to its mean.,2,18
+mean,Maths,Easy,Mean is a fundamental concept in Maths explaining arithmetic average summing elements divided by count.,1,4
+median,Maths,Easy,Median is a fundamental concept in Maths explaining middle value separating top half of sorted sample from bottom.,1,6
+variance,Maths,Easy,Variance is a fundamental concept in Maths explaining average squared deviation of data points from the sample mean.,1,8
+normal distribution,Maths,Hard,Normal distribution is a fundamental concept in Maths explaining classic bell curve where values cluster near mean symmetrically.,2,19
+eigenvalue,Maths,Hard,Eigenvalue is a fundamental concept in Maths explaining scalar factor by which an eigenvector is stretched in transform.,1,10
+determinant,Maths,Medium,Determinant is a fundamental concept in Maths explaining scalar scaling factor of the linear transformation of a matrix.,1,11
+set theory,Maths,Medium,Set theory is a fundamental concept in Maths explaining branch of logic studying collections of distinct objects.,2,10
+polynomial,Maths,Medium,Polynomial is a fundamental concept in Maths explaining algebraic expression composed of variables and coefficients.,1,10
+factorial,Maths,Medium,Factorial is a fundamental concept in Maths explaining product of an integer and all positive integers below it.,1,9
+limit,Maths,Easy,Limit is a fundamental concept in Maths explaining value a function approaches as input nears a specific point.,1,5
+asymptote,Maths,Hard,Asymptote is a fundamental concept in Maths explaining line that a curve approaches indefinitely without intersecting.,1,9
+hypothesis testing,Maths,Hard,Hypothesis testing is a fundamental concept in Maths explaining formal procedure for assessing whether data supports a claim.,2,18
+p-value,Maths,Easy,P-value is a fundamental concept in Maths explaining probability of observing results as extreme under null hypothesis.,1,7
+correlation,Maths,Medium,Correlation is a fundamental concept in Maths explaining statistical association measuring mutual co-movement.,1,11
+regression,Maths,Medium,Regression is a fundamental concept in Maths explaining statistical modeling of relationships between dependent and predictor vars.,1,10
+topology,Maths,Easy,Topology is a fundamental concept in Maths explaining study of geometric properties preserved under continuous deformation.,1,8
+trigonometry,Maths,Medium,Trigonometry is a fundamental concept in Maths explaining branch relating angles and side lengths of geometric triangles.,1,12
+imaginary number,Maths,Medium,Imaginary number is a fundamental concept in Maths explaining complex number unit i defined such that i squared equals -1.,2,16
+infinity,Maths,Easy,Infinity is a fundamental concept in Maths explaining concept describing something without bound or end.,1,8
+permutation,Maths,Medium,Permutation is a fundamental concept in Maths explaining ordered arrangement of a set of items where sequence matters.,1,11
+combination,Maths,Medium,Combination is a fundamental concept in Maths explaining selection of items from a collection where order does not matter.,1,11
+industrial revolution,History,Hard,Industrial revolution is a fundamental concept in History explaining transition to powered machinery and factory manufacturing.,2,21
+french revolution,History,Hard,French revolution is a fundamental concept in History explaining epochal uprising overthrowing the bourbon monarchy in 1789.,2,17
+world war i,History,Hard,World war i is a fundamental concept in History explaining global conflict characterized by trench warfare from 1914-1918.,3,11
+world war ii,History,Hard,World war ii is a fundamental concept in History explaining global war spanning 1939-1945 ending with atomic age.,3,12
+cold war,History,Medium,Cold war is a fundamental concept in History explaining decades of geopolitical tension between us and soviet blocs.,2,8
+renaissance,History,Medium,"Renaissance is a fundamental concept in History explaining cultural rebirth of art, science, and classical humanism.",1,11
+enlightenment,History,Medium,"Enlightenment is a fundamental concept in History explaining intellectual movement emphasizing reason, liberty, and science.",1,13
+magna carta,History,Medium,Magna carta is a fundamental concept in History explaining 1215 english charter establishing rule of law over monarchy.,2,11
+roman empire,History,Medium,Roman empire is a fundamental concept in History explaining imperial civilization dominating mediterranean world for centuries.,2,12
+ancient egypt,History,Medium,"Ancient egypt is a fundamental concept in History explaining nile civilization renowned for pharaohs, mummification, and hieroglyphs.",2,13
+silk road,History,Medium,Silk road is a fundamental concept in History explaining ancient overland trade routes linking east asia and europe.,2,9
+colonialism,History,Medium,Colonialism is a fundamental concept in History explaining practice of acquiring political and territorial control over peoples.,1,11
+democracy,History,Medium,Democracy is a fundamental concept in History explaining system of governance where authority derives from citizens.,1,9
+monarchy,History,Easy,Monarchy is a fundamental concept in History explaining form of government with a monarch or royal dynasty at head.,1,8
+feudalism,History,Medium,Feudalism is a fundamental concept in History explaining medieval social hierarchy based on landholding and vassal allegiance.,1,9
+treaty of versailles,History,Hard,Treaty of versailles is a fundamental concept in History explaining peace treaty concluding wwi and imposing terms on germany.,3,20
+great depression,History,Medium,Great depression is a fundamental concept in History explaining severe global economic downturn throughout 1930s decade.,2,16
+united nations,History,Medium,United nations is a fundamental concept in History explaining international organization founded in 1945 for peace and security.,2,14
+apartheid,History,Medium,Apartheid is a fundamental concept in History explaining system of institutional racial segregation in south africa.,1,9
+space race,History,Medium,Space race is a fundamental concept in History explaining cold war technological rivalry culminating in lunar landing.,2,10
+glorious revolution,History,Hard,Glorious revolution is a fundamental concept in History explaining 1688 british transition establishing constitutional monarchy.,2,19
+american revolution,History,Hard,American revolution is a fundamental concept in History explaining thirteen colonies winning sovereignty from british crown.,2,19
+printing press,History,Medium,Printing press is a fundamental concept in History explaining invention democratizing literacy and distribution of ideas.,2,14
+black death,History,Medium,Black death is a fundamental concept in History explaining devastating 14th-century bubonic plague pandemic in eurasia.,2,11
+crusades,History,Easy,Crusades is a fundamental concept in History explaining medieval religious military campaigns into the holy land.,1,8
+reformation,History,Medium,Reformation is a fundamental concept in History explaining 16th-century religious challenge splintering western christianity.,1,11
+columbian exchange,History,Hard,"Columbian exchange is a fundamental concept in History explaining widespread transfer of crops, animals, and pathogens after 1492.",2,18
+scramble for africa,History,Hard,Scramble for africa is a fundamental concept in History explaining late 19th-century european invasion and colonization of africa.,3,19
+berlin wall,History,Medium,Berlin wall is a fundamental concept in History explaining physical divide falling in 1989 marking the end of cold war division.,2,11
+decolonization,History,Medium,Decolonization is a fundamental concept in History explaining post-wwii undoing of colonialism across asia and africa.,1,14
+memory palace,General,Medium,Memory palace is a fundamental concept in General explaining method of loci spatial framework for anchoring mental associations.,2,13
+spaced repetition,General,Hard,Spaced repetition is a fundamental concept in General explaining learning technique spacing reviews across increasing time windows.,2,17
+active recall,General,Medium,Active recall is a fundamental concept in General explaining testing retrieval from memory rather than passively reviewing notes.,2,13
+forgetting curve,General,Medium,Forgetting curve is a fundamental concept in General explaining hypothesized exponential decay of memory retention over time.,2,16
+retrieval practice,General,Hard,Retrieval practice is a fundamental concept in General explaining deliberate effort to recall stored knowledge strengthening neural pathways.,2,18
+cognitive load,General,Medium,Cognitive load is a fundamental concept in General explaining total amount of working memory resources used in learning.,2,14
+working memory,General,Medium,Working memory is a fundamental concept in General explaining system holding temporary information for immediate reasoning.,2,14
+long term memory,General,Hard,Long term memory is a fundamental concept in General explaining permanent brain repository storing knowledge indefinitely.,3,16
+neuroplasticity,General,Medium,Neuroplasticity is a fundamental concept in General explaining brain capacity to adapt and reorganize neural connections.,1,15
+mnemonic,General,Easy,Mnemonic is a fundamental concept in General explaining cognitive tool assisting memory retention and quick retrieval.,1,8
+water cycle,General,Medium,Water cycle is a fundamental concept in General explaining continuous planetary movement of water through atmosphere and land.,2,11
+evaporation,General,Medium,Evaporation is a fundamental concept in General explaining phase transition of liquid turning into atmospheric vapor.,1,11
+condensation,General,Medium,Condensation is a fundamental concept in General explaining phase change from atmospheric gas into liquid water droplets.,1,12
+precipitation,General,Medium,Precipitation is a fundamental concept in General explaining condensed water vapor falling under gravity as rain or snow.,1,13
+collection,General,Medium,"Collection is a fundamental concept in General explaining precipitation accumulating in reservoirs, oceans, and groundwater.",1,10
+metacognition,General,Medium,Metacognition is a fundamental concept in General explaining higher-order awareness and understanding of one's own learning.,1,13
+consolidation,General,Medium,Consolidation is a fundamental concept in General explaining post-learning stabilization converting labile memories into long-term traces.,1,13
+priming,General,Easy,Priming is a fundamental concept in General explaining implicit effect where exposure to a stimulus influences response to a later one.,1,7
+interference,General,Medium,Interference is a fundamental concept in General explaining disruption of memory storage or retrieval caused by competing information.,1,12
+chunking,General,Easy,"Chunking is a fundamental concept in General explaining grouping individual bits of information into meaningful, manageable units.",1,8
+cellular respiration,Biology,Medium,Cellular respiration produces ATP by oxidizing organic fuel.,2,20
+photosystem ii,Biology,Hard,Photosystem II splits water molecules using absorbed photon energy.,2,14
+thylakoid,Biology,Medium,Thylakoid membranes contain the pigment complexes of photosynthesis.,1,9
+calvin cycle,Biology,Medium,The Calvin cycle fixes inorganic carbon into glyceraldehyde phosphate.,2,12
+atp synthase,Biology,Hard,ATP synthase harnesses the proton gradient to synthesize ATP.,2,12
+action potential,Biology,Medium,Action potential transmits rapid electrical depolarization along the axon.,2,16
+neurotransmitter,Biology,Medium,Neurotransmitter chemicals bridge synaptic clefts to stimulate receptors.,1,16
+phagocytosis,Biology,Medium,Phagocytosis allows immune cells to engulf and destroy pathogenic invaders.,1,12
+apoptosis,Biology,Hard,Apoptosis is programmed cellular death regulating tissue development.,1,9
+translation,Biology,Easy,Translation synthesizes polypeptide chains from mRNA sequences.,1,11
+transcription,Biology,Easy,Transcription copies DNA templates into complementary RNA transcripts.,1,13
+polymerase,Biology,Medium,DNA polymerase synthesizes daughter strands during DNA replication.,1,10
+telomere,Biology,Hard,Telomeres protect linear chromosome ends from progressive degradation.,1,8
+epigenetics,Biology,Hard,Epigenetics alters gene expression without modifying nucleotide sequence.,1,11
+symbiosis,Biology,Easy,Symbiosis denotes close long-term biological interaction between species.,1,9
+predation,Biology,Easy,Predation is an ecological interaction where predator hunts prey.,1,9
+parasitism,Biology,Easy,Parasitism involves one organism benefiting at host expense.,1,10
+angular momentum,Physics,Medium,Angular momentum is conserved in systems with zero external torque.,2,16
+special relativity,Physics,Hard,Special relativity predicts Lorentz contraction and relativistic time dilation.,2,18
+lorentz force,Physics,Hard,Lorentz force acts on charged particles moving in magnetic fields.,2,13
+faradays law,Physics,Medium,Faradays law relates changing magnetic flux to induced electromotive force.,2,12
+lenzs law,Physics,Medium,Lenzs law states induced current opposes flux changes that created it.,2,9
+snells law,Physics,Easy,Snells law describes wave refraction angles across distinct media boundaries.,2,10
+blackbody radiation,Physics,Hard,Blackbody radiation sparked Planck's quantum hypothesis.,2,19
+photoelectric effect,Physics,Medium,Photoelectric effect demonstrates light quantization into photons.,2,20
+heisenberg uncertainty,Physics,Hard,Uncertainty principle limits simultaneous precision of position and momentum.,2,22
+schrodinger equation,Physics,Hard,Schrodinger equation models quantum wave function temporal evolution.,2,20
+hookes law,Physics,Easy,Hookes law states spring restoring force is proportional to displacement.,2,10
+simple harmonic motion,Physics,Medium,Simple harmonic motion features sinusoidal restorative acceleration.,3,22
+gravitational lensing,Physics,Hard,Gravitational lensing bends starlight around massive astronomical bodies.,2,21
+coulomb barrier,Physics,Hard,Coulomb barrier prevents positive nuclei from fusing without sufficient energy.,2,15
+superposition,Physics,Medium,Superposition allows overlapping linear waves to add constructively.,1,13
+gibbs free energy,Chemistry,Hard,Gibbs free energy determines thermodynamic spontaneity of chemical reactions.,3,17
+enthalpy,Chemistry,Medium,Enthalpy measures the total internal energy plus pressure-volume work.,1,8
+van der waals forces,Chemistry,Medium,Van der Waals forces are transient intermolecular attractions between neutral dipoles.,4,20
+hybridization,Chemistry,Hard,Orbital hybridization mixes atomic orbitals into equivalent hybrid geometries.,1,13
+resonance structure,Chemistry,Medium,Resonance structures describe delocalized bonding across conjugated pi systems.,2,19
+electrolysis,Chemistry,Easy,Electrolysis drives non-spontaneous reactions via electrical current.,1,12
+galvanic cell,Chemistry,Medium,Galvanic cells generate electrical voltage through spontaneous redox reactions.,2,13
+buffer solution,Chemistry,Medium,Buffer solutions resist drastic pH shifts when small acid or base is added.,2,15
+stoichiometry,Chemistry,Medium,Stoichiometry calculates quantitative mass proportions of reacting chemical species.,1,13
+ideal gas law,Chemistry,Easy,"Ideal gas law relates pressure, volume, moles, and temperature via PV=nRT.",3,13
+boiling point elevation,Chemistry,Medium,Colligative property where non-volatile solute raises solvent boiling point.,3,23
+electrophile,Chemistry,Hard,Electrophiles are electron-deficient species accepting electron pairs in reactions.,1,12
+nucleophile,Chemistry,Hard,Nucleophiles donate electron pairs to form covalent bonds with electrophiles.,1,11
+isomer,Chemistry,Easy,Isomers share molecular formulas but differ in structural atomic arrangement.,1,6
+chirality,Chemistry,Hard,Chiral molecules possess non-superimposable mirror images known as enantiomers.,1,9
+turing machine,Computer Science,Hard,Turing machines are theoretical abstract mathematical models of general computation.,2,14
+np-completeness,Computer Science,Hard,NP-complete problems have polynomial verification but intractable known solutions.,1,15
+dijkstras algorithm,Computer Science,Medium,Dijkstras algorithm computes shortest paths in non-negative weighted graphs.,2,19
+breadth-first search,Computer Science,Easy,Breadth-first search traverses graphs layer by layer using a FIFO queue.,2,20
+depth-first search,Computer Science,Easy,Depth-first search traverses branches deeply using recursion or a LIFO stack.,2,18
+dynamic programming,Computer Science,Hard,Dynamic programming solves optimization tasks by caching overlapping subproblem solutions.,2,19
+merge sort,Computer Science,Medium,Merge sort recursively divides arrays and merges sorted halves in O(n log n).,2,10
+quick sort,Computer Science,Medium,Quick sort partitions elements around a pivot value for efficient sorting.,2,10
+b-tree,Computer Science,Hard,B-trees maintain balanced multiway disk-optimized indexing in production databases.,1,6
+asymmetric encryption,Computer Science,Hard,Asymmetric cryptography utilizes public-private keypairs for secure communication.,2,21
+jwt token,Computer Science,Medium,JSON Web Tokens represent claims securely transmitted between client and server.,2,9
+rest api,Computer Science,Easy,REST architectural style structures web communication around stateless resource URLs.,2,8
+graphql,Computer Science,Medium,GraphQL allows clients to request exact declarative data schemas in single requests.,1,7
+docker container,Computer Science,Medium,Docker containers package code with isolated OS-level dependencies.,2,16
+kubernetes,Computer Science,Hard,"Kubernetes automates container deployment, scaling, and operational management.",1,10
+mapreduce,Computer Science,Hard,MapReduce processes massive distributed datasets across commodity computing clusters.,1,9
+semantic web,Computer Science,Medium,Semantic web enriches internet documents with structured machine-readable metadata.,2,12
+fourier transform,Maths,Hard,Fourier transform decomposes time-domain functions into constituent frequency components.,2,17
+laplace transform,Maths,Hard,Laplace transform maps differential equations into algebraic s-domain equations.,2,17
+taylor series,Maths,Medium,Taylor series approximates differentiable functions using infinite polynomial sums.,2,13
+central limit theorem,Maths,Medium,Central limit theorem proves sample means converge to normal distributions.,3,21
+bayes theorem,Maths,Medium,Bayes theorem updates prior conditional probabilities given fresh observed evidence.,2,13
+markov chain,Maths,Hard,Markov chains model stochastic state transitions governed only by the current state.,2,12
+differential equation,Maths,Medium,Differential equations relate functions to rates of change of their variables.,2,21
+complex conjugate,Maths,Easy,Complex conjugate reflects complex numbers across the real Cartesian axis.,2,17
+dot product,Maths,Easy,Dot product multiplies directional magnitudes to return scalar algebraic projection.,2,11
+cross product,Maths,Medium,Cross product computes orthogonal vectors whose magnitude equals parallelogram area.,2,13
+gradient descent,Maths,Medium,Gradient descent iteratively adjusts parameters along the negative loss surface slope.,2,16
+convex optimization,Maths,Hard,Convex optimization guarantees any local minimum corresponds to global minimum.,2,19
+linear independence,Maths,Medium,Linear independence ensures no vector in a set is a linear combination of others.,2,19
+orthogonal matrix,Maths,Hard,Orthogonal matrices preserve vector lengths and Euclidean angles under transformation.,2,17
+jacobian matrix,Maths,Hard,Jacobian matrix collects all first-order partial derivatives of vector-valued functions.,2,15
+pax romana,History,Medium,Pax Romana was an era of imperial peace and stability across the Roman Empire.,2,10
+byzantine empire,History,Medium,The Byzantine Empire preserved Roman administrative law and Greco-Christian culture.,2,16
+ottoman empire,History,Medium,The Ottoman Empire controlled strategic Eurasian trade crossroads from Constantinople.,2,14
+meiji restoration,History,Hard,The Meiji Restoration accelerated modern industrialization and centralization in Japan.,2,17
+opium wars,History,Medium,The Opium Wars forced trade concessions and territorial treaties on Qing China.,2,10
+bolshevik revolution,History,Medium,The 1917 Bolshevik Revolution established Soviet socialist governance in Russia.,2,20
+marshall plan,History,Easy,The Marshall Plan financed European economic reconstruction after World War II.,2,13
+cuban missile crisis,History,Medium,The 1962 Cuban Missile Crisis brought the superpowers to the brink of nuclear war.,3,20
+watergate scandal,History,Easy,The Watergate scandal prompted the unprecedented resignation of President Nixon.,2,17
+fall of constantinople,History,Medium,The 1453 Fall of Constantinople closed classical European land routes to Asia.,3,22
+habeas corpus,History,Medium,Habeas corpus protects individuals against unlawful and arbitrary state detention.,2,13
+suffrage movement,History,Easy,The suffrage movement fought for universal voting rights across modern democracies.,2,17
+enclosure acts,History,Hard,"Enclosure acts privatized common lands, driving agricultural labor to industrial cities.",2,14
+congress of vienna,History,Hard,The 1815 Congress of Vienna restored European balance of power after Napoleon.,3,18
+vietnam war,History,Easy,The Vietnam War was a Cold War proxy conflict in Southeast Asia from 1955-1975.,2,11
+spaced learning,General,Easy,Spaced learning distributes study sessions over time for better memory retention.,2,15
+dual coding theory,General,Medium,Dual coding theory posits that verbal and visual information are processed distinctly.,3,18
+elaboration,General,Easy,Elaboration connects new knowledge to existing cognitive frameworks.,1,11
+metamemory,General,Medium,Metamemory denotes self-awareness of one's own memory abilities and strategies.,1,10
+serial position effect,General,Medium,Serial position effect causes best recall for items at the start and end of lists.,3,22
+primacy effect,General,Easy,Primacy effect grants superior memory recall to the initial items in a list.,2,14
+recency effect,General,Easy,Recency effect boosts recall for the most recently presented study items.,2,14
+state-dependent memory,General,Medium,Recall is boosted when psychological state during retrieval matches encoding.,2,22
+context-dependent memory,General,Medium,Environmental cues present during encoding facilitate downstream retrieval.,2,24
+semantic encoding,General,Easy,Semantic encoding translates sensory information into meaningful conceptual schemas.,2,17
+declarative memory,General,Easy,Declarative memory stores conscious facts and knowledge that can be explicitly verbalized.,2,18
+procedural memory,General,Easy,Procedural memory stores motor skills and habits that execute automatically.,2,17
+episodic memory,General,Easy,Episodic memory preserves personally experienced events tied to time and place.,2,15
+flashbulb memory,General,Medium,"Flashbulb memories are vivid, highly detailed recollections of emotionally shocking events.",2,16
+source amnesia,General,Hard,Source amnesia allows remembering factual information while forgetting where it was learned.,2,14

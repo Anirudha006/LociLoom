@@ -1,0 +1,299 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LociLoom</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500&family=Noto+Sans+Kannada:wght@500&display=swap" rel="stylesheet">
+<style>
+body{margin:0}
+a{color:inherit;text-decoration:none}
+a:hover{color:inherit}
+a:focus-visible,button:focus-visible,select:focus-visible{outline:3px solid #14B8A6;outline-offset:3px}
+.hm-nav{display:flex;align-items:center;gap:12px;min-height:44px;padding:0 12px;border-radius:12px;font-size:15px;font-weight:600;color:#374151;transition:background .15s}
+.hm-nav:hover{background:#F1F3FA}
+.hm-nav-on{background:#EEF0FF;color:#3441CF}
+.hm-nav-on:hover{background:#EEF0FF}
+.hm-tile{box-sizing:border-box;border-radius:24px;padding:22px;display:flex;flex-direction:column;gap:10px;box-shadow:0 1px 2px rgba(31,41,55,.05);transition:transform .18s ease, box-shadow .18s ease}
+.hm-tile:hover{transform:translateY(-5px);box-shadow:0 18px 36px rgba(69,83,232,.16)}
+.hm-tile:hover .hm-arrow{transform:translateX(5px)}
+.hm-arrow{transition:transform .18s ease}
+.hm-top{display:flex;align-items:center;justify-content:space-between}
+.hm-ic{display:flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:14px;background:#FFFFFF}
+.hm-no{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:20px}
+.hm-txt{display:flex;flex-direction:column;gap:4px;margin-top:auto}
+.hm-lab{font-size:11px;font-weight:700;letter-spacing:.1em}
+.hm-ti{font-family:'Bricolage Grotesque',sans-serif;font-weight:700;font-size:21px;letter-spacing:-.01em}
+.hm-de{font-size:14px;line-height:1.45;color:#4B5563}
+.hm-cta:hover{background:#3441CF !important}
+.hm-ghost:hover{background:#F1F3FA !important}
+@keyframes hm-march{to{stroke-dashoffset:-22}}
+@keyframes hm-pop{0%,100%{transform:scale(1)}50%{transform:scale(1.18)}}
+@keyframes hm-ring1{0%{r:17;opacity:.55}12%{r:34;opacity:0}13%,100%{r:17;opacity:0}}
+@keyframes hm-ring2{0%,30%{r:17;opacity:0}31%{opacity:.55}43%{r:34;opacity:0}44%,100%{r:17;opacity:0}}
+@keyframes hm-ring3{0%,57%{r:17;opacity:0}58%{opacity:.55}70%{r:34;opacity:0}71%,100%{r:17;opacity:0}}
+@keyframes hm-ring4{0%,89%{r:17;opacity:0}90%{opacity:.55}100%{r:36;opacity:0}}
+@keyframes hm-pill2{0%,29%{opacity:.18;transform:translateY(6px)}35%,96%{opacity:1;transform:translateY(0)}100%{opacity:.18;transform:translateY(6px)}}
+@keyframes hm-pill3{0%,56%{opacity:.18;transform:translateY(6px)}62%,96%{opacity:1;transform:translateY(0)}100%{opacity:.18;transform:translateY(6px)}}
+@keyframes hm-pill4{0%,88%{opacity:.18;transform:translateY(6px)}94%,97%{opacity:1;transform:translateY(0)}100%{opacity:.18;transform:translateY(6px)}}
+.hm-march{stroke-dasharray:2 9;animation:hm-march 1.2s linear infinite}
+.hm-stop{transform-box:fill-box;transform-origin:center;animation:hm-pop 3s ease-in-out infinite}
+.hm-ring{fill:#4553E8;opacity:0;animation-duration:9s;animation-iteration-count:infinite;animation-timing-function:ease-out}
+.hm-ring1{animation-name:hm-ring1}.hm-ring2{animation-name:hm-ring2}.hm-ring3{animation-name:hm-ring3}
+.hm-ring4{fill:#D97706;animation-name:hm-ring4}
+.hm-pill{animation-duration:9s;animation-iteration-count:infinite;animation-timing-function:ease-out}
+.hm-pill2{animation-name:hm-pill2}.hm-pill3{animation-name:hm-pill3}.hm-pill4{animation-name:hm-pill4}
+@media (prefers-reduced-motion: reduce){
+.hm-march,.hm-stop,.hm-ring,.hm-pill{animation:none !important}
+.hm-pill{opacity:1 !important;transform:none !important}
+.hm-walker{display:none}
+.hm-tile,.hm-arrow{transition:none}
+}
+@media (max-width:900px){
+.hm-side{flex:1 1 100% !important;border-right:0 !important;border-bottom:1px solid #E8EBF4}
+.hm-main{padding:20px 16px 28px !important}
+.hm-bento{grid-template-columns:minmax(0,1fr) !important}
+.hm-tile{grid-column:1 / -1 !important;grid-row:auto !important;min-height:0 !important}
+.hm-h1{font-size:30px !important}
+}
+</style>
+</head>
+<body>
+<div style="min-height: 100vh; box-sizing: border-box; display: flex; flex-wrap: wrap; align-items: stretch; background: #F7F8FC; font-family: 'Plus Jakarta Sans', system-ui, sans-serif; color: #1F2937">
+
+<!-- Sidebar -->
+<aside class="hm-side" style="flex: 0 0 280px; max-width: 100%; box-sizing: border-box; background: #FFFFFF; border-right: 1px solid #E8EBF4; padding: 28px 20px; display: flex; flex-direction: column; gap: 22px">
+<div style="display: flex; align-items: center; gap: 12px; padding: 0 4px">
+<svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="LociLoom logo">
+<rect width="40" height="40" rx="12" fill="#4553E8"/>
+<path d="M11 28 C11 20 18 22 20 17 C22 12 29 14 29 12" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 5"/>
+<circle cx="11" cy="28" r="3.5" fill="#FFFFFF"/>
+<circle cx="29" cy="12" r="3.5" fill="#FBBF24"/>
+</svg>
+<div style="display: flex; flex-direction: column">
+<span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1">LociLoom</span>
+<span style="font-size: 12px; color: #4B5563">Adaptive Memory Palace Generator</span>
+</div>
+</div>
+
+<div style="background: #ECFDF9; border: 1.5px solid #99E6D8; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px">
+<span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #0B5F57">STUDENT PORTAL</span>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.04em">loci-6c25-d9</span>
+<span style="font-size: 12px; color: #4B5563">ID: LL-LOCI-6C25-D9</span>
+</div>
+
+<nav aria-label="Main navigation">
+<ul style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 4px">
+<li><a href="#" class="hm-nav hm-nav-on" aria-current="page"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11l8-7 8 7"/><path d="M6 10v10h12V10"/></svg>Home</a></li>
+<li><a href="#" class="hm-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5L12 8z"/></svg>Create Palace</a></li>
+<li><a href="#" class="hm-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-5 9 5"/><path d="M5 10v8M9 10v8M15 10v8M19 10v8"/><path d="M3 20h18"/></svg>My Palaces</a></li>
+<li><a href="#" class="hm-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg>Practice Quiz</a></li>
+<li><a href="#" class="hm-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg>Revision Planner</a></li>
+<li><a href="#" class="hm-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-7"/></svg>Dashboard</a></li>
+<li><a href="#" class="hm-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/></svg>Experiment Mode</a></li>
+<li><a href="#" class="hm-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg>Settings &amp; Accessibility</a></li>
+<li><a href="#" class="hm-nav"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7M12 17h.01"/></svg>About &amp; Help</a></li>
+</ul>
+</nav>
+
+<div style="display: flex; flex-direction: column; gap: 8px; margin-top: auto">
+<label for="ui-lang" style="font-size: 13px; font-weight: 600">Interface language</label>
+<select id="ui-lang" style="min-height: 48px; box-sizing: border-box; padding: 0 12px; border: 1.5px solid #D5D9E6; border-radius: 12px; background: #FFFFFF; color: #1F2937; font: 500 15px 'Plus Jakarta Sans', sans-serif">
+<option selected>English</option>
+<option>हिन्दी</option>
+<option>ಕನ್ನಡ</option>
+</select>
+<p style="margin: 0; font-size: 12px; line-height: 1.5; color: #4B5563">Concept extraction works best for English input.</p>
+<a href="#" class="hm-ghost" style="display: flex; align-items: center; justify-content: center; gap: 8px; min-height: 48px; margin-top: 8px; border: 1.5px solid #D5D9E6; border-radius: 12px; background: #FFFFFF; font-size: 15px; font-weight: 600; color: #1F2937">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 4H6a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h4M15 8l4 4-4 4M19 12H9"/></svg>
+Sign out
+</a>
+</div>
+</aside>
+
+<!-- Main content -->
+<main class="hm-main" style="flex: 1 1 600px; min-width: 0; box-sizing: border-box; padding: 32px 40px 40px; display: flex; flex-direction: column; gap: 28px">
+
+<div style="width: 100%; max-width: 1080px; display: flex; flex-direction: column; gap: 28px">
+
+<!-- Welcome card -->
+<section style="background: #FFFFFF; border: 1px solid #E8EBF4; border-radius: 28px; padding: 32px; box-shadow: 0 1px 2px rgba(31,41,55,.04), 0 12px 32px rgba(69,83,232,.07); display: flex; flex-wrap: wrap; gap: 20px; align-items: center; justify-content: space-between">
+<div style="display: flex; flex-direction: column; gap: 10px; flex: 1 1 380px; min-width: 0">
+<span style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: #EEF0FF; color: #3441CF; font-size: 13px; font-weight: 700">Active session · Student learning portal</span>
+<h1 class="hm-h1" style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 40px; line-height: 1.08; letter-spacing: -0.03em">Welcome back into your palace, loci-6c25-d9!</h1>
+<p style="margin: 0; font-size: 16px; line-height: 1.55; color: #4B5563">Your notes are waiting along the route. Pick a room below to step inside.</p>
+</div>
+<div style="display: flex; align-items: center; gap: 10px; padding: 12px 16px; background: #ECFDF9; border-radius: 16px; font-size: 14px; color: #0B5F57; font-weight: 600">
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0B8F84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+Private local storage active
+</div>
+</section>
+
+<!-- Palace map navigation -->
+<section style="display: flex; flex-direction: column; gap: 14px">
+<div style="display: flex; flex-direction: column; gap: 4px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 28px; letter-spacing: -0.02em">Where shall we walk today?</h2>
+<p style="margin: 0; font-size: 15px; color: #4B5563">Every part of LociLoom is a room on your study route.</p>
+</div>
+<nav aria-label="Palace map">
+<div class="hm-bento" style="display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); gap: 16px">
+
+<a href="#" class="hm-tile" style="grid-column: span 6; grid-row: span 2; min-height: 330px; background: #4553E8; color: #FFFFFF; border-radius: 28px; padding: 26px; box-shadow: 0 10px 28px rgba(69,83,232,.28)">
+<div class="hm-top">
+<span class="hm-ic" style="width: 48px; height: 48px; border-radius: 16px; background: rgba(255,255,255,.18)"><svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M3 12h3M18 12h3"/><path d="M12 8l1.5 3.5L17 13l-3.5 1.5L12 18l-1.5-3.5L7 13l3.5-1.5L12 8z"/></svg></span>
+<span style="padding: 6px 12px; border-radius: 999px; background: #FBBF24; color: #3B2A00; font-size: 13px; font-weight: 700">Start here</span>
+</div>
+<svg viewBox="0 0 360 100" width="100%" role="img" aria-label="A route of four stops being walked" style="display: block; max-width: 100%; height: auto; margin: 4px 0">
+<path class="hm-march" d="M24 78 C84 78 84 24 160 24 C236 24 236 78 296 78 C320 78 330 56 338 36" fill="none" stroke="rgba(255,255,255,.9)" stroke-width="3" stroke-linecap="round"/>
+<g font-family="Bricolage Grotesque, sans-serif" font-size="13" font-weight="700" fill="#4553E8" text-anchor="middle">
+<circle class="hm-stop" cx="24" cy="78" r="14" fill="#FFFFFF"/><text x="24" y="83">1</text>
+<circle class="hm-stop" cx="160" cy="24" r="14" fill="#FFFFFF" style="animation-delay: .7s"/><text x="160" y="29">2</text>
+<circle class="hm-stop" cx="296" cy="78" r="14" fill="#FFFFFF" style="animation-delay: 1.4s"/><text x="296" y="83">3</text>
+<circle class="hm-stop" cx="338" cy="36" r="14" fill="#FBBF24" style="animation-delay: 2.1s"/><text x="338" y="41" fill="#3B2A00">4</text>
+</g>
+<g class="hm-walker">
+<circle r="7" fill="#FBBF24" stroke="#FFFFFF" stroke-width="2.5"/>
+<animateMotion dur="7s" repeatCount="indefinite" path="M24 78 C84 78 84 24 160 24 C236 24 236 78 296 78 C320 78 330 56 338 36"/>
+</g>
+</svg>
+<div class="hm-txt">
+<span class="hm-lab" style="opacity: .9">STOP 1 · THE WORKSHOP</span>
+<span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 32px; line-height: 1.05; letter-spacing: -0.02em">Weave a new palace</span>
+<span style="font-size: 15px; line-height: 1.5; max-width: 400px; opacity: .95">Paste your notes, choose a place, and watch them turn into a route with a story.</span>
+</div>
+<span style="display: flex; align-items: center; gap: 8px; font-size: 15px; font-weight: 700">Begin
+<svg class="hm-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+</span>
+</a>
+
+<a href="#" class="hm-tile" style="grid-column: span 3; min-height: 157px; background: #FEF3C7">
+<div class="hm-top"><span class="hm-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-5 9 5"/><path d="M5 10v8M9 10v8M15 10v8M19 10v8"/><path d="M3 20h18"/></svg></span><span class="hm-no" style="color: #92400E">2</span></div>
+<div class="hm-txt"><span class="hm-lab" style="color: #92400E">THE LIBRARY</span><span class="hm-ti">My Palaces</span><span class="hm-de">Reopen, rename and duplicate your palaces.</span></div>
+</a>
+
+<a href="#" class="hm-tile" style="grid-column: span 3; min-height: 157px; background: #CCFBEF">
+<div class="hm-top"><span class="hm-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#0B5F57" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><circle cx="12" cy="12" r="5"/><circle cx="12" cy="12" r="1.5"/></svg></span><span class="hm-no" style="color: #0B5F57">3</span></div>
+<div class="hm-txt"><span class="hm-lab" style="color: #0B5F57">THE TRAINING ROOM</span><span class="hm-ti">Practice Quiz</span><span class="hm-de">Walk the route and answer by location.</span></div>
+</a>
+
+<a href="#" class="hm-tile" style="grid-column: span 3; min-height: 157px; background: #E0E7FF">
+<div class="hm-top"><span class="hm-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#3441CF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3.5" y="5" width="17" height="15" rx="3"/><path d="M3.5 10h17M8 3v4M16 3v4"/></svg></span><span class="hm-no" style="color: #3441CF">4</span></div>
+<div class="hm-txt"><span class="hm-lab" style="color: #3441CF">THE CALENDAR TOWER</span><span class="hm-ti">Revision Planner</span><span class="hm-de">See what to revise today.</span></div>
+</a>
+
+<a href="#" class="hm-tile" style="grid-column: span 3; min-height: 157px; background: #DBEAFE">
+<div class="hm-top"><span class="hm-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#1D4ED8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 20V11M12 20V5M19 20v-7"/></svg></span><span class="hm-no" style="color: #1D4ED8">5</span></div>
+<div class="hm-txt"><span class="hm-lab" style="color: #1D4ED8">THE OBSERVATORY</span><span class="hm-ti">Dashboard</span><span class="hm-de">Scores, streaks and most-missed concepts.</span></div>
+</a>
+
+<a href="#" class="hm-tile" style="grid-column: span 4; min-height: 140px; background: #FFEFD9">
+<div class="hm-top"><span class="hm-ic"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#B45309" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 3h6M10 3v6l-5.5 9.5A1.5 1.5 0 0 0 5.8 21h12.4a1.5 1.5 0 0 0 1.3-2.5L14 9V3"/></svg></span><span class="hm-no" style="color: #92400E">6</span></div>
+<div class="hm-txt"><span class="hm-lab" style="color: #92400E">THE LAB</span><span class="hm-ti">Experiment Mode</span><span class="hm-de">Compare notes with a palace.</span></div>
+</a>
+
+<a href="#" class="hm-tile" style="grid-column: span 4; min-height: 140px; background: #FFFFFF; border: 1px solid #E3E6F0">
+<div class="hm-top"><span class="hm-ic" style="background: #F1F3FA"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 7h10M18 7h2M4 17h2M10 17h10"/><circle cx="16" cy="7" r="2"/><circle cx="8" cy="17" r="2"/></svg></span><span class="hm-no" style="color: #4B5563">7</span></div>
+<div class="hm-txt"><span class="hm-lab" style="color: #4B5563">THE CONTROL ROOM</span><span class="hm-ti">Settings &amp; Accessibility</span><span class="hm-de">Font, contrast, text-only mode, audio.</span></div>
+</a>
+
+<a href="#" class="hm-tile" style="grid-column: span 4; min-height: 140px; background: #FFFFFF; border: 1px solid #E3E6F0">
+<div class="hm-top"><span class="hm-ic" style="background: #F1F3FA"><svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#374151" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M9.5 9.5a2.5 2.5 0 1 1 3.5 2.3c-.7.4-1 1-1 1.7M12 17h.01"/></svg></span><span class="hm-no" style="color: #4B5563">8</span></div>
+<div class="hm-txt"><span class="hm-lab" style="color: #4B5563">THE INFO DESK</span><span class="hm-ti">About &amp; Help</span><span class="hm-de">How the method and the ML parts work.</span></div>
+</a>
+</div>
+</nav>
+</section>
+
+<!-- Palaces + principle + sample map -->
+<section style="display: flex; flex-wrap: wrap; gap: 24px; align-items: stretch">
+
+<div style="flex: 1 1 400px; min-width: 0; display: flex; flex-direction: column; gap: 24px">
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em">Your study palaces</h2>
+<div style="background: #FFFFFF; border: 1.5px dashed #C7CDF5; border-radius: 22px; padding: 24px; display: flex; flex-direction: column; gap: 14px; align-items: flex-start">
+<div style="display: flex; align-items: center; gap: 14px">
+<span style="flex: none; display: flex; align-items: center; justify-content: center; width: 46px; height: 46px; border-radius: 14px; background: #EEF0FF">
+<svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#4553E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-5 9 5"/><path d="M5 10v8M9 10v8M15 10v8M19 10v8"/><path d="M3 20h18"/></svg>
+</span>
+<p style="margin: 0; font-size: 15px; line-height: 1.55; color: #374151">You haven't woven a memory palace yet. Your first one takes only a minute.</p>
+</div>
+<a href="#" class="hm-cta" style="display: flex; align-items: center; gap: 8px; min-height: 48px; padding: 0 20px; border-radius: 14px; background: #4553E8; color: #FFFFFF; font-size: 15px; font-weight: 700">Weave your first palace
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+</a>
+</div>
+</div>
+
+<div style="display: flex; flex-direction: column; gap: 14px">
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 26px; letter-spacing: -0.02em">The Method of Loci</h2>
+<ol style="list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 12px">
+<li style="display: flex; gap: 14px; align-items: flex-start; background: #FFFFFF; border: 1px solid #E8EBF4; border-radius: 18px; padding: 16px 18px">
+<span style="flex: none; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #4553E8; color: #FFFFFF; font: 700 15px 'Bricolage Grotesque', sans-serif">1</span>
+<span style="font-size: 15px; line-height: 1.55; color: #374151"><strong style="color: #1F2937">Abstract notes become concrete objects.</strong> Hard concepts turn into things you can picture.</span>
+</li>
+<li style="display: flex; gap: 14px; align-items: flex-start; background: #FFFFFF; border: 1px solid #E8EBF4; border-radius: 18px; padding: 16px 18px">
+<span style="flex: none; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #4553E8; color: #FFFFFF; font: 700 15px 'Bricolage Grotesque', sans-serif">2</span>
+<span style="font-size: 15px; line-height: 1.55; color: #374151"><strong style="color: #1F2937">Objects are anchored in space.</strong> Each one sits at a stop along an ordered journey through a familiar place.</span>
+</li>
+<li style="display: flex; gap: 14px; align-items: flex-start; background: #FFFFFF; border: 1px solid #E8EBF4; border-radius: 18px; padding: 16px 18px">
+<span style="flex: none; display: flex; align-items: center; justify-content: center; width: 32px; height: 32px; border-radius: 50%; background: #D97706; color: #FFFFFF; font: 700 15px 'Bricolage Grotesque', sans-serif">3</span>
+<span style="font-size: 15px; line-height: 1.55; color: #374151"><strong style="color: #1F2937">Recall and spaced repetition.</strong> Test the route with quizzes and SM-2 scheduling to slow forgetting.</span>
+</li>
+</ol>
+</div>
+</div>
+
+<!-- Sample palace card -->
+<aside style="flex: 1.1 1 420px; min-width: 0; box-sizing: border-box; background: #EEF0FF; border-radius: 28px; padding: 28px; display: flex; flex-direction: column; gap: 18px; justify-content: center">
+<div style="display: flex; flex-direction: column; gap: 8px">
+<span style="align-self: flex-start; padding: 6px 12px; border-radius: 999px; background: #FFFFFF; color: #3441CF; font-size: 13px; font-weight: 700">Sample palace · Photosynthesis</span>
+<h2 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 24px; line-height: 1.15; letter-spacing: -0.02em">Notes become a route you can walk in your mind.</h2>
+</div>
+<div style="background: #FFFFFF; border-radius: 22px; padding: 14px; box-shadow: 0 8px 24px rgba(69,83,232,.10)">
+<svg viewBox="0 0 520 400" width="100%" role="img" aria-label="Floor plan of a memory palace with four numbered stops: front gate, living room, kitchen and garden" style="display: block; max-width: 100%; height: auto">
+<rect x="0" y="0" width="520" height="400" rx="14" fill="#FBFCFF"/>
+<rect x="28" y="236" width="146" height="140" rx="14" fill="#FEF3C7"/>
+<rect x="180" y="236" width="172" height="140" rx="14" fill="#E0E7FF"/>
+<rect x="180" y="92" width="172" height="138" rx="14" fill="#DBEAFE"/>
+<rect x="358" y="92" width="134" height="284" rx="14" fill="#CCFBEF"/>
+<g font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#374151" letter-spacing="0.08em">
+<text x="42" y="260">FRONT GATE</text>
+<text x="194" y="260">LIVING ROOM</text>
+<text x="194" y="116">KITCHEN</text>
+<text x="372" y="116">GARDEN</text>
+</g>
+<path class="hm-march" d="M100 304 L266 304 L266 164 L425 230" fill="none" stroke="#4553E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="hm-ring hm-ring1" cx="100" cy="304" r="17"/>
+<circle class="hm-ring hm-ring2" cx="266" cy="304" r="17"/>
+<circle class="hm-ring hm-ring3" cx="266" cy="164" r="17"/>
+<circle class="hm-ring hm-ring4" cx="425" cy="230" r="17"/>
+<g font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">
+<g><rect x="34" y="332" width="132" height="28" rx="14" fill="#FFFFFF"/><text x="100" y="351">Sunlight · sunglasses</text></g>
+<g class="hm-pill hm-pill2"><rect x="196" y="332" width="140" height="28" rx="14" fill="#FFFFFF"/><text x="266" y="351">Water · bottle</text></g>
+<g class="hm-pill hm-pill3"><rect x="196" y="186" width="140" height="28" rx="14" fill="#FFFFFF"/><text x="266" y="205">CO₂ · balloon</text></g>
+<g class="hm-pill hm-pill4"><rect x="364" y="256" width="122" height="28" rx="14" fill="#FFFFFF"/><text x="425" y="275">Glucose · sugar</text></g>
+</g>
+<g font-family="Bricolage Grotesque, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+<circle cx="100" cy="304" r="17" fill="#4553E8"/><text x="100" y="310">1</text>
+<circle cx="266" cy="304" r="17" fill="#4553E8"/><text x="266" y="310">2</text>
+<circle cx="266" cy="164" r="17" fill="#4553E8"/><text x="266" y="170">3</text>
+<circle cx="425" cy="230" r="17" fill="#D97706"/><text x="425" y="236">4</text>
+</g>
+<g class="hm-walker">
+<circle r="11" fill="#FBBF24" stroke="#FFFFFF" stroke-width="3"/>
+<circle r="3.5" fill="#92400E"/>
+<animateMotion dur="9s" repeatCount="indefinite" path="M100 304 L266 304 L266 164 L425 230" keyPoints="0;1;1" keyTimes="0;0.9;1" calcMode="linear"/>
+</g>
+</svg>
+</div>
+<p style="margin: 0; font-size: 15px; line-height: 1.6; color: #374151"><strong style="color: #1F2937">The story:</strong> At the front gate, a plant in sunglasses waves at a water bottle. In the kitchen, a balloon floats in, and the garden fills with sugar cubes.</p>
+</aside>
+</section>
+
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #4B5563; text-align: center">LociLoom is a study aid, not a guaranteed memory treatment. It works best alongside retrieval practice and spaced repetition.</p>
+</div>
+</main>
+</div>
+</body>
+</html>

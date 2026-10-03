@@ -1,0 +1,708 @@
+/* LociLoom Global Light Theme Stylesheet */
+@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&family=Noto+Sans+Kannada:wght@500;600;700&display=swap');
+
+:root {
+    --primary: #4553E8;
+    --primary-hover: #3441CF;
+    --primary-light: #EEF0FF;
+    --accent: #14B8A6;
+    --accent-light: #CCFBF1;
+    --amber: #F59E0B;
+    --amber-light: #FEF3C7;
+    --green: #22C55E;
+    --green-light: #DCFCE7;
+    --red: #EF4444;
+    --red-light: #FEE2E2;
+    --bg-white: #FFFFFF;
+    --bg-subtle: #F7F8FC;
+    --text-main: #1F2937;
+    --text-muted: #4B5563;
+    --border-color: #E3E6F0;
+    --line: #D5D9E6;
+    --card-shadow: 0 1px 2px rgba(31, 41, 55, 0.04), 0 12px 32px rgba(69, 83, 232, 0.07);
+    --card-shadow-hover: 0 8px 24px rgba(69, 83, 232, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
+}
+
+/* Force light background and clean body typography */
+html, body, [data-testid="stAppViewContainer"], .main {
+    background-color: var(--bg-white) !important;
+    color: var(--text-main) !important;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+}
+
+h1, h2, h3, h4, .login-title, [data-testid="stHeadingWithActionElements"] h1, [data-testid="stHeadingWithActionElements"] h2 {
+    font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif !important;
+    letter-spacing: -0.025em;
+}
+
+p, span, label, input, textarea, select, button, .login-subtitle, .field, [data-testid="stMarkdownContainer"] p, [data-testid="stTab"] {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+}
+
+[data-testid="stSidebar"] {
+    background-color: var(--bg-subtle) !important;
+    border-right: 1px solid var(--border-color) !important;
+}
+
+/* Card Components */
+.lociloom-card {
+    background: var(--bg-white);
+    border: 1px solid var(--border-color);
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+    box-shadow: var(--card-shadow);
+    transition: all 0.25s ease-in-out;
+}
+
+.lociloom-card:hover {
+    box-shadow: var(--card-shadow-hover);
+    transform: translateY(-2px);
+    border-color: #D1D5DB;
+}
+
+.lociloom-card-highlight {
+    background: var(--primary-light);
+    border: 1px solid #C7D2FE;
+    border-radius: 14px;
+    padding: 20px;
+    margin-bottom: 16px;
+}
+
+/* Location Palace Card */
+.location-card {
+    background: var(--bg-white);
+    border-left: 5px solid var(--primary);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 14px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+}
+
+/* Badges */
+.badge {
+    display: inline-block;
+    padding: 4px 10px;
+    border-radius: 9999px;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+}
+
+.badge-easy {
+    background-color: var(--green-light);
+    color: #15803D;
+}
+
+.badge-medium {
+    background-color: var(--amber-light);
+    color: #B45309;
+}
+
+.badge-hard {
+    background-color: var(--red-light);
+    color: #B91C1C;
+}
+
+.badge-primary {
+    background-color: var(--primary-light);
+    color: var(--primary);
+}
+
+/* Big Tap Buttons - Default / Secondary */
+.stButton > button,
+button[data-testid="baseButton-secondary"] {
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    padding: 0.55rem 1.25rem !important;
+    border: 1px solid var(--border-color) !important;
+    background-color: #FFFFFF !important;
+    color: #1F2937 !important;
+    transition: all 0.2s ease !important;
+    min-height: 44px !important;
+}
+
+.stButton > button p,
+.stButton > button span,
+button[data-testid="baseButton-secondary"] p,
+button[data-testid="baseButton-secondary"] span {
+    color: #1F2937 !important;
+    font-weight: 600 !important;
+}
+
+.stButton > button:hover,
+button[data-testid="baseButton-secondary"]:hover {
+    border-color: var(--primary) !important;
+    color: var(--primary) !important;
+    background-color: var(--primary-light) !important;
+}
+
+.stButton > button:hover p,
+.stButton > button:hover span {
+    color: var(--primary) !important;
+}
+
+/* Primary Buttons (Always prominent Indigo background with crisp White text) */
+.stButton > button[kind="primary"],
+.stButton > button[data-testid="baseButton-primary"],
+button[data-testid="baseButton-primary"],
+div[data-testid="stButton"] > button[kind="primary"],
+div[data-testid="stButton"] > button[data-testid="baseButton-primary"] {
+    background-color: #5B6CFF !important;
+    color: #FFFFFF !important;
+    border: 1px solid #5B6CFF !important;
+    box-shadow: 0 3px 10px rgba(91, 108, 255, 0.35) !important;
+}
+
+.stButton > button[kind="primary"] p,
+.stButton > button[kind="primary"] span,
+.stButton > button[data-testid="baseButton-primary"] p,
+.stButton > button[data-testid="baseButton-primary"] span,
+button[data-testid="baseButton-primary"] p,
+button[data-testid="baseButton-primary"] span,
+button[data-testid="baseButton-primary"] div {
+    color: #FFFFFF !important;
+    font-weight: 700 !important;
+}
+
+.stButton > button[kind="primary"]:hover,
+.stButton > button[data-testid="baseButton-primary"]:hover,
+button[data-testid="baseButton-primary"]:hover {
+    background-color: #4856E0 !important;
+    border-color: #4856E0 !important;
+    color: #FFFFFF !important;
+    box-shadow: 0 4px 14px rgba(91, 108, 255, 0.45) !important;
+}
+
+/* Download buttons (st.download_button) */
+div[data-testid="stDownloadButton"] > button {
+    border-radius: 10px !important;
+    font-weight: 600 !important;
+    min-height: 44px !important;
+    border: 1px solid #5B6CFF !important;
+    background-color: #FFFFFF !important;
+    color: #5B6CFF !important;
+}
+
+div[data-testid="stDownloadButton"] > button p,
+div[data-testid="stDownloadButton"] > button span {
+    color: #5B6CFF !important;
+    font-weight: 600 !important;
+}
+
+div[data-testid="stDownloadButton"] > button:hover {
+    background-color: #EEF0FF !important;
+    color: #4856E0 !important;
+}
+
+div[data-testid="stDownloadButton"] > button[data-testid="baseButton-primary"] {
+    background-color: #5B6CFF !important;
+    color: #FFFFFF !important;
+}
+
+div[data-testid="stDownloadButton"] > button[data-testid="baseButton-primary"] p,
+div[data-testid="stDownloadButton"] > button[data-testid="baseButton-primary"] span {
+    color: #FFFFFF !important;
+}
+
+/* Accessibility classes */
+.dyslexia-font {
+    font-family: 'OpenDyslexic', 'Comic Sans MS', Verdana, sans-serif !important;
+    letter-spacing: 0.05em !important;
+    word-spacing: 0.1em !important;
+    line-height: 1.7 !important;
+}
+
+.high-contrast {
+    filter: contrast(125%);
+    --text-main: #000000 !important;
+    --border-color: #000000 !important;
+}
+
+.reduced-motion * {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* Hero Section */
+.hero-box {
+    background: linear-gradient(135deg, #F4F6FB 0%, #EEF0FF 100%);
+    border: 1px solid #DCE3FA;
+    border-radius: 16px;
+    padding: 36px 30px;
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.hero-title {
+    font-size: 2.2rem;
+    font-weight: 800;
+    color: var(--primary);
+    margin-bottom: 8px;
+}
+
+.hero-tagline {
+    font-size: 1.15rem;
+    color: var(--text-muted);
+    font-weight: 500;
+    margin-bottom: 18px;
+}
+
+/* Steps Grid */
+.step-number {
+    width: 32px;
+    height: 32px;
+    background-color: var(--primary);
+    color: white;
+    font-weight: 700;
+    border-radius: 50%;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+
+/* Disclaimer Footer */
+.disclaimer-box {
+    margin-top: 40px;
+    padding: 16px 20px;
+    background-color: #F8FAFC;
+    border: 1px solid #E2E8F0;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    color: #64748B;
+    text-align: center;
+    line-height: 1.5;
+}
+
+/* --- Login Reference Components --- */
+.login-card-container {
+    background: #FFFFFF;
+    border: 1px solid #E8EBF4;
+    border-radius: 20px;
+    padding: 24px 26px;
+    box-shadow: 0 1px 2px rgba(31, 41, 55, 0.04), 0 12px 32px rgba(69, 83, 232, 0.07);
+    margin-bottom: 16px;
+}
+
+.login-title {
+    font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 26px !important;
+    line-height: 1.15 !important;
+    letter-spacing: -0.025em !important;
+    color: #1F2937 !important;
+    margin: 0 0 6px 0 !important;
+}
+
+.login-subtitle {
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+    font-size: 13.5px !important;
+    line-height: 1.45 !important;
+    color: #4B5563 !important;
+    margin-bottom: 14px !important;
+}
+
+.loci-idbox {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    padding: 10px 14px;
+    background: #ECFDF9;
+    border: 1.5px dashed #14B8A6;
+    border-radius: 10px;
+    margin: 8px 0;
+}
+
+.loci-idbox b {
+    font-family: 'Bricolage Grotesque', monospace, sans-serif;
+    font-size: 17px;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    color: #0B5F57;
+}
+
+.or-divider {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    color: #6B7280;
+    font-size: 12px;
+    margin: 10px 0;
+}
+
+.or-divider::before,
+.or-divider::after {
+    content: '';
+    flex: 1;
+    border-bottom: 1px solid #E3E6F0;
+}
+
+.or-divider:not(:empty)::before {
+    margin-right: 12px;
+}
+
+.or-divider:not(:empty)::after {
+    margin-left: 12px;
+}
+
+.privacy-note {
+    display: flex;
+    gap: 8px;
+    align-items: flex-start;
+    font-size: 12px;
+    line-height: 1.45;
+    color: #4B5563;
+    margin-top: 10px;
+    padding-top: 10px;
+    border-top: 1px solid #F1F3FA;
+}
+
+/* --- Streamlit Form & Widget Overrides Matching login_reference.html --- */
+div[data-baseweb="tab-list"] {
+    background: #F1F3FA !important;
+    border-radius: 10px !important;
+    padding: 3px !important;
+    gap: 3px !important;
+    border: none !important;
+}
+
+button[data-baseweb="tab"] {
+    flex: 1 !important;
+    min-height: 36px !important;
+    border-radius: 8px !important;
+    background: transparent !important;
+    border: none !important;
+    color: #4B5563 !important;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    padding: 4px 12px !important;
+    box-shadow: none !important;
+}
+
+button[data-baseweb="tab"][aria-selected="true"] {
+    background: #FFFFFF !important;
+    color: #1F2937 !important;
+    font-weight: 700 !important;
+    box-shadow: 0 1px 3px rgba(31, 41, 55, 0.12) !important;
+}
+
+div[data-baseweb="tab-highlight"],
+div[data-baseweb="tab-border"] {
+    display: none !important;
+}
+
+div[data-baseweb="input"] {
+    border: 1.5px solid #D5D9E6 !important;
+    border-radius: 10px !important;
+    min-height: 40px !important;
+    background: #FFFFFF !important;
+}
+
+div[data-baseweb="input"]:focus-within {
+    border-color: #4553E8 !important;
+    box-shadow: 0 0 0 3px rgba(91, 108, 255, 0.18) !important;
+}
+
+div[data-baseweb="input"] input {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-size: 14px !important;
+    color: #1F2937 !important;
+    font-weight: 500 !important;
+    padding: 7px 12px !important;
+}
+
+label[data-testid="stWidgetLabel"] p,
+label[data-testid="stWidgetLabel"] {
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-size: 13px !important;
+    font-weight: 600 !important;
+    color: #1F2937 !important;
+    margin-bottom: 2px !important;
+}
+
+button[data-testid="baseButton-primary"],
+button[kind="primary"] {
+    min-height: 42px !important;
+    border-radius: 10px !important;
+    background: #4553E8 !important;
+    color: #FFFFFF !important;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-size: 14px !important;
+    font-weight: 700 !important;
+    border: none !important;
+    box-shadow: 0 2px 6px rgba(69, 83, 232, 0.25) !important;
+    transition: background 0.15s ease, transform 0.15s ease !important;
+    padding: 6px 16px !important;
+}
+
+button[data-testid="baseButton-primary"]:hover,
+button[kind="primary"]:hover {
+    background: #3441CF !important;
+}
+
+button[data-testid="baseButton-primary"]:active,
+button[kind="primary"]:active {
+    transform: translateY(1px) !important;
+}
+
+button[data-testid="baseButton-primary"] p,
+button[kind="primary"] p {
+    color: #FFFFFF !important;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 14px !important;
+}
+
+button[data-testid="baseButton-secondary"],
+button[kind="secondary"] {
+    min-height: 38px !important;
+    border-radius: 10px !important;
+    border: 1.5px solid #D5D9E6 !important;
+    background: #FFFFFF !important;
+    color: #1F2937 !important;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-size: 13.5px !important;
+    font-weight: 600 !important;
+    padding: 6px 14px !important;
+}
+
+button[data-testid="baseButton-secondary"] p,
+button[kind="secondary"] p {
+    color: #1F2937 !important;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 13.5px !important;
+}
+
+/* ==========================================================================
+   Website Home & Custom Sidebar Styles (from assets/website_home.html)
+   ========================================================================== */
+
+/* Hide default Streamlit sidebar page list */
+[data-testid="stSidebarNav"] {
+    display: none !important;
+}
+
+/* Sidebar surface styling */
+[data-testid="stSidebar"] {
+    background-color: #FFFFFF !important;
+    border-right: 1px solid #E8EBF4 !important;
+}
+
+[data-testid="stSidebar"] > div:first-child {
+    padding-top: 1rem !important;
+    padding-left: 1.25rem !important;
+    padding-right: 1.25rem !important;
+}
+
+/* Sidebar navigation links matching .hm-nav */
+[data-testid="stSidebar"] [data-testid="stPageLink"] a {
+    display: flex !important;
+    align-items: center !important;
+    gap: 12px !important;
+    min-height: 44px !important;
+    padding: 0 14px !important;
+    border-radius: 12px !important;
+    font-family: 'Plus Jakarta Sans', system-ui, sans-serif !important;
+    font-size: 15px !important;
+    font-weight: 600 !important;
+    color: #374151 !important;
+    text-decoration: none !important;
+    background: transparent !important;
+    border: none !important;
+    transition: background 0.15s ease !important;
+    margin-bottom: 3px !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stPageLink"] a:hover {
+    background: #F1F3FA !important;
+    color: #1F2937 !important;
+}
+
+[data-testid="stSidebar"] [data-testid="stPageLink"] a[aria-current="page"],
+[data-testid="stSidebar"] [data-testid="stPageLink"] a.active {
+    background: #EEF0FF !important;
+    color: #3441CF !important;
+    font-weight: 700 !important;
+}
+
+/* Accessible focus outlines */
+a:focus-visible, button:focus-visible, select:focus-visible,
+[data-testid="stSidebar"] [data-testid="stPageLink"] a:focus-visible,
+[data-testid="stPageLink"] a:focus-visible {
+    outline: 3px solid #14B8A6 !important;
+    outline-offset: 3px !important;
+}
+
+/* Sidebar Language selectbox & controls */
+[data-testid="stSidebar"] div[data-baseweb="select"] {
+    border: 1.5px solid #D5D9E6 !important;
+    border-radius: 12px !important;
+    min-height: 44px !important;
+    background: #FFFFFF !important;
+}
+
+[data-testid="stSidebar"] button[key="sb_signout_btn"] {
+    border: 1.5px solid #D5D9E6 !important;
+    border-radius: 12px !important;
+    background: #FFFFFF !important;
+    color: #1F2937 !important;
+    font-size: 14.5px !important;
+    font-weight: 600 !important;
+    min-height: 44px !important;
+    transition: background 0.15s ease !important;
+}
+
+[data-testid="stSidebar"] button[key="sb_signout_btn"]:hover {
+    background: #F1F3FA !important;
+    border-color: #C7CDF5 !important;
+}
+
+/* Palace Navigation Bento Grid & Tiles */
+.hm-bento {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 16px;
+}
+
+.hm-tile {
+    box-sizing: border-box;
+    border-radius: 24px;
+    padding: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    box-shadow: 0 1px 2px rgba(31, 41, 55, 0.05);
+    transition: transform 0.18s ease, box-shadow 0.18s ease;
+    text-decoration: none !important;
+    color: inherit;
+    position: relative;
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.hm-tile:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 18px 36px rgba(69, 83, 232, 0.16);
+}
+
+.hm-tile:hover .hm-arrow {
+    transform: translateX(5px);
+}
+
+.hm-arrow {
+    transition: transform 0.18s ease;
+}
+
+.hm-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.hm-ic {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    background: #FFFFFF;
+}
+
+.hm-no {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 20px;
+}
+
+.hm-txt {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    margin-top: auto;
+}
+
+.hm-lab {
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+}
+
+.hm-ti {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: 700;
+    font-size: 21px;
+    letter-spacing: -0.01em;
+}
+
+.hm-de {
+    font-size: 13.5px;
+    line-height: 1.45;
+    color: #4B5563;
+}
+
+.hm-cta:hover {
+    background: #3441CF !important;
+}
+
+.hm-ghost:hover {
+    background: #F1F3FA !important;
+}
+
+/* Interactive SVG route animations */
+@keyframes hm-march { to { stroke-dashoffset: -22; } }
+@keyframes hm-pop { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.18); } }
+@keyframes hm-ring1 { 0% { r: 17; opacity: .55; } 12% { r: 34; opacity: 0; } 13%, 100% { r: 17; opacity: 0; } }
+@keyframes hm-ring2 { 0%, 30% { r: 17; opacity: 0; } 31% { opacity: .55; } 43% { r: 34; opacity: 0; } 44%, 100% { r: 17; opacity: 0; } }
+@keyframes hm-ring3 { 0%, 57% { r: 17; opacity: 0; } 58% { opacity: .55; } 70% { r: 34; opacity: 0; } 71%, 100% { r: 17; opacity: 0; } }
+@keyframes hm-ring4 { 0%, 89% { r: 17; opacity: 0; } 90% { opacity: .55; } 100% { r: 36; opacity: 0; } }
+@keyframes hm-pill2 { 0%, 29% { opacity: .18; transform: translateY(6px); } 35%, 96% { opacity: 1; transform: translateY(0); } 100% { opacity: .18; transform: translateY(6px); } }
+@keyframes hm-pill3 { 0%, 56% { opacity: .18; transform: translateY(6px); } 62%, 96% { opacity: 1; transform: translateY(0); } 100% { opacity: .18; transform: translateY(6px); } }
+@keyframes hm-pill4 { 0%, 88% { opacity: .18; transform: translateY(6px); } 94%, 97% { opacity: 1; transform: translateY(0); } 100% { opacity: .18; transform: translateY(6px); } }
+
+.hm-march { stroke-dasharray: 2 9; animation: hm-march 1.2s linear infinite; }
+.hm-stop { transform-box: fill-box; transform-origin: center; animation: hm-pop 3s ease-in-out infinite; }
+.hm-ring { fill: #4553E8; opacity: 0; animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: ease-out; }
+.hm-ring1 { animation-name: hm-ring1; }
+.hm-ring2 { animation-name: hm-ring2; }
+.hm-ring3 { animation-name: hm-ring3; }
+.hm-ring4 { fill: #D97706; animation-name: hm-ring4; }
+.hm-pill { animation-duration: 9s; animation-iteration-count: infinite; animation-timing-function: ease-out; }
+.hm-pill2 { animation-name: hm-pill2; }
+.hm-pill3 { animation-name: hm-pill3; }
+.hm-pill4 { animation-name: hm-pill4; }
+
+/* Reduced motion media query */
+@media (prefers-reduced-motion: reduce) {
+    .hm-march, .hm-stop, .hm-ring, .hm-pill { animation: none !important; }
+    .hm-pill { opacity: 1 !important; transform: none !important; }
+    .hm-walker { display: none !important; }
+    .hm-tile, .hm-arrow { transition: none !important; }
+}
+
+/* Whole-tile click support in Streamlit container */
+div[class*="st-key-tile_"] {
+    position: relative !important;
+    transition: transform 0.18s ease, box-shadow 0.18s ease !important;
+    border-radius: 24px !important;
+}
+
+div[class*="st-key-tile_"]:hover {
+    transform: translateY(-5px) !important;
+    box-shadow: 0 18px 36px rgba(69, 83, 232, 0.16) !important;
+}
+
+div[class*="st-key-tile_"] [data-testid="stPageLink"] a::after {
+    content: "" !important;
+    position: absolute !important;
+    inset: 0 !important;
+    width: 100% !important;
+    height: 100% !important;
+    z-index: 10 !important;
+    cursor: pointer !important;
+}

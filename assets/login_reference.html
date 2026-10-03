@@ -1,0 +1,264 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>LociLoom Login</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500&family=Noto+Sans+Kannada:wght@500&display=swap" rel="stylesheet">
+<style>
+:root{--primary:#4553E8;--primary-dark:#3441CF;--ink:#1F2937;--muted:#4B5563;--line:#D5D9E6;--bg:#F7F8FC}
+*{box-sizing:border-box}
+[hidden]{display:none !important}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:'Plus Jakarta Sans',system-ui,sans-serif}
+.page{min-height:100vh;padding:28px 40px 32px;display:flex;flex-direction:column;gap:28px}
+.wrap{width:100%;max-width:1280px;margin:0 auto}
+header.wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:16px}
+.brand{display:flex;align-items:center;gap:12px}
+.brand span{font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:24px;letter-spacing:-.02em}
+.lang{display:flex;gap:4px;padding:4px;background:#fff;border:1px solid #E3E6F0;border-radius:999px}
+.lang button{min-height:44px;padding:0 18px;border:0;border-radius:999px;background:transparent;color:var(--muted);font:500 15px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.lang button[aria-pressed="true"]{background:var(--primary);color:#fff;font-weight:600}
+main.wrap{display:flex;flex-wrap:wrap;gap:32px;align-items:stretch;flex:1}
+.card{flex:1 1 440px;min-width:0;background:#fff;border:1px solid #E8EBF4;border-radius:28px;padding:48px;box-shadow:0 1px 2px rgba(31,41,55,.04),0 12px 32px rgba(69,83,232,.07);display:flex;flex-direction:column;gap:28px;justify-content:center}
+h1{margin:0;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:44px;line-height:1.05;letter-spacing:-.03em}
+.sub{margin:10px 0 0;font-size:17px;line-height:1.55;color:var(--muted)}
+.tabs{display:flex;gap:4px;padding:4px;background:#F1F3FA;border-radius:14px}
+.tabs button{flex:1;min-height:44px;border:0;border-radius:11px;background:transparent;color:var(--muted);font:600 15px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.tabs button[aria-pressed="true"]{background:#fff;color:var(--ink);font-weight:700;box-shadow:0 1px 3px rgba(31,41,55,.12)}
+form{display:flex;flex-direction:column;gap:20px}
+.f{display:flex;flex-direction:column;gap:8px}
+label.t{font-size:14px;font-weight:600}
+label.t small{font-weight:500;color:#5B6472;font-size:14px}
+.field{min-height:52px;width:100%;padding:0 16px;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font:500 16px 'Plus Jakarta Sans',sans-serif;outline:none}
+.field:focus{border-color:var(--primary);box-shadow:0 0 0 4px rgba(91,108,255,.18)}
+.pinbox{position:relative;display:flex}
+.pinbox .field{padding-right:84px;letter-spacing:.12em}
+.pinbox button{position:absolute;right:6px;top:6px;min-height:40px;min-width:64px;border:0;border-radius:10px;background:#F1F3FA;color:#374151;font:600 13px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.check{display:flex;align-items:center;gap:10px;font-size:14px;color:#374151;min-height:44px;cursor:pointer}
+.check input{width:20px;height:20px;accent-color:var(--primary);margin:0}
+.btn-primary{min-height:56px;border:0;border-radius:14px;background:var(--primary);color:#fff;font:700 17px 'Plus Jakarta Sans',sans-serif;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:10px;transition:background .15s,transform .15s}
+.btn-primary:hover{background:var(--primary-dark)}
+.btn-primary:active{transform:translateY(1px)}
+.btn-ghost{min-height:52px;width:100%;border:1.5px solid var(--line);border-radius:14px;background:#fff;color:var(--ink);font:600 16px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.btn-ghost:hover{background:#F1F3FA}
+.or{display:flex;align-items:center;gap:14px;color:#5B6472;font-size:13px;margin-bottom:16px}
+.or i{flex:1;height:1px;background:#E3E6F0}
+.idbox{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:14px 16px;background:#ECFDF9;border:1.5px dashed #14B8A6;border-radius:14px}
+.idbox b{font:700 20px 'Bricolage Grotesque',sans-serif;letter-spacing:.08em;color:#0B5F57}
+.idbox button{min-height:40px;padding:0 14px;border:0;border-radius:10px;background:#fff;color:#0B5F57;font:600 13px 'Plus Jakarta Sans',sans-serif;cursor:pointer}
+.note{margin:0;font-size:13px;line-height:1.5;color:var(--muted)}
+.privacy{margin:0;display:flex;gap:10px;align-items:flex-start;font-size:13px;line-height:1.55;color:var(--muted)}
+.privacy svg{flex:none;margin-top:1px}
+aside{flex:1.15 1 480px;min-width:0;background:#EEF0FF;border-radius:28px;padding:40px;display:flex;flex-direction:column;gap:24px;justify-content:center}
+.chip{align-self:flex-start;padding:6px 12px;border-radius:999px;background:#fff;color:var(--primary-dark);font-size:13px;font-weight:700}
+h2{margin:8px 0 0;font-family:'Bricolage Grotesque',system-ui,sans-serif;font-weight:700;font-size:30px;line-height:1.15;letter-spacing:-.02em}
+.map{background:#fff;border-radius:22px;padding:16px;box-shadow:0 8px 24px rgba(69,83,232,.10)}
+.map svg{display:block;width:100%;height:auto}
+figure{margin:0;display:flex;gap:14px;align-items:flex-start;background:#fff;border-radius:18px;padding:18px 20px}
+figcaption{font-size:15px;line-height:1.6;color:#374151}
+footer.wrap{font-size:13px;line-height:1.6;color:var(--muted);text-align:center}
+button:focus-visible,input:focus-visible{outline:3px solid #14B8A6;outline-offset:2px}
+
+/* route map animation */
+@keyframes ll-march{to{stroke-dashoffset:-22}}
+@keyframes ll-ring1{0%{r:17;opacity:.55}12%{r:34;opacity:0}13%,100%{r:17;opacity:0}}
+@keyframes ll-ring2{0%,30%{r:17;opacity:0}31%{opacity:.55}43%{r:34;opacity:0}44%,100%{r:17;opacity:0}}
+@keyframes ll-ring3{0%,57%{r:17;opacity:0}58%{opacity:.55}70%{r:34;opacity:0}71%,100%{r:17;opacity:0}}
+@keyframes ll-ring4{0%,89%{r:17;opacity:0}90%{opacity:.55}100%{r:36;opacity:0}}
+@keyframes ll-pill2{0%,29%{opacity:.18;transform:translateY(6px)}35%,96%{opacity:1;transform:translateY(0)}100%{opacity:.18;transform:translateY(6px)}}
+@keyframes ll-pill3{0%,56%{opacity:.18;transform:translateY(6px)}62%,96%{opacity:1;transform:translateY(0)}100%{opacity:.18;transform:translateY(6px)}}
+@keyframes ll-pill4{0%,88%{opacity:.18;transform:translateY(6px)}94%,97%{opacity:1;transform:translateY(0)}100%{opacity:.18;transform:translateY(6px)}}
+@keyframes ll-float{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}
+.ll-route{stroke-dasharray:2 9;animation:ll-march 1.2s linear infinite}
+.ll-ring{fill:#4553E8;opacity:0;animation-duration:9s;animation-iteration-count:infinite;animation-timing-function:ease-out}
+.ll-ring1{animation-name:ll-ring1}.ll-ring2{animation-name:ll-ring2}.ll-ring3{animation-name:ll-ring3}
+.ll-ring4{fill:#D97706;animation-name:ll-ring4}
+.ll-pill{animation-duration:9s;animation-iteration-count:infinite;animation-timing-function:ease-out}
+.ll-pill2{animation-name:ll-pill2}.ll-pill3{animation-name:ll-pill3}.ll-pill4{animation-name:ll-pill4}
+.ll-card{animation:ll-float 6s ease-in-out infinite}
+@media (prefers-reduced-motion: reduce){
+.ll-route,.ll-ring,.ll-pill,.ll-card{animation:none !important}
+.ll-pill{opacity:1 !important;transform:none !important}
+.ll-walker{display:none}
+}
+@media (max-width:640px){
+.page{padding:20px 16px 24px}
+.card{padding:28px 22px;border-radius:22px}
+h1{font-size:34px}
+aside{padding:24px 18px;border-radius:22px}
+h2{font-size:24px}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="wrap">
+<div class="brand">
+<svg width="40" height="40" viewBox="0 0 40 40" role="img" aria-label="LociLoom logo">
+<rect width="40" height="40" rx="12" fill="#4553E8"/>
+<path d="M11 28 C11 20 18 22 20 17 C22 12 29 14 29 12" fill="none" stroke="#FFFFFF" stroke-width="2.5" stroke-linecap="round" stroke-dasharray="1 5"/>
+<circle cx="11" cy="28" r="3.5" fill="#FFFFFF"/>
+<circle cx="29" cy="12" r="3.5" fill="#FBBF24"/>
+</svg>
+<span>LociLoom</span>
+</div>
+<div class="lang" role="group" aria-label="Language">
+<button type="button" aria-pressed="true">English</button>
+<button type="button" aria-pressed="false" style="font-family:'Noto Sans Devanagari',sans-serif">हिन्दी</button>
+<button type="button" aria-pressed="false" style="font-family:'Noto Sans Kannada',sans-serif">ಕನ್ನಡ</button>
+</div>
+</header>
+
+<main class="wrap">
+
+<section class="card">
+<div>
+<h1>Walk back into your palace.</h1>
+<p class="sub">Sign in with your anonymous Loci ID. No name, no email, just your notes turned into places you can remember.</p>
+</div>
+
+<div class="tabs">
+<button type="button" id="tabReturn" aria-pressed="true">I have a Loci ID</button>
+<button type="button" id="tabNew" aria-pressed="false">I'm new here</button>
+</div>
+
+<form id="formReturn">
+<div class="f">
+<label class="t" for="lociId">Loci ID</label>
+<input id="lociId" class="field" type="text" autocomplete="username" placeholder="LOCI-7K2Q-M9" style="letter-spacing:.04em">
+</div>
+<div class="f">
+<label class="t" for="pin">Passcode <small>(4 to 6 digits)</small></label>
+<div class="pinbox">
+<input id="pin" class="field" type="password" inputmode="numeric" autocomplete="current-password" placeholder="••••">
+<button type="button" id="pinToggle" aria-label="Show or hide passcode">Show</button>
+</div>
+</div>
+<label class="check"><input type="checkbox" checked> Remember me on this device</label>
+<button type="submit" class="btn-primary">Enter my palace
+<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+</button>
+</form>
+
+<form id="formNew" hidden>
+<div class="f">
+<span class="t" style="font-size:14px;font-weight:600">Your new Loci ID</span>
+<div class="idbox"><b id="newId">LOCI-7K2Q-M9</b><button type="button" id="copyId">Copy</button></div>
+<p class="note">Save this ID somewhere safe. We don't collect an email, so we can't recover it for you.</p>
+</div>
+<div class="f">
+<label class="t" for="newPin">Choose a passcode <small>(4 to 6 digits)</small></label>
+<input id="newPin" class="field" type="password" inputmode="numeric" autocomplete="new-password" placeholder="••••" style="letter-spacing:.12em">
+</div>
+<label class="check" style="align-items:flex-start;line-height:1.5"><input type="checkbox" style="margin-top:2px"> I agree to my study activity being stored on this device to personalise my revision plan.</label>
+<button type="submit" class="btn-primary">Create my palace key</button>
+</form>
+
+<div>
+<div class="or"><i></i>or<i></i></div>
+<button type="button" class="btn-ghost">Try a sample palace as guest</button>
+</div>
+
+<p class="privacy">
+<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#0B8F84" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3l8 3v6c0 4.5-3.4 8-8 9-4.6-1-8-4.5-8-9V6l8-3z"/><path d="M9 12l2 2 4-4"/></svg>
+<span>Private by design. Only an anonymous ID is used, and your data stays in a local database on your device.</span>
+</p>
+</section>
+
+<aside>
+<div>
+<span class="chip">Sample palace · Photosynthesis</span>
+<h2>Notes become a route you can walk in your mind.</h2>
+</div>
+
+<div class="map">
+<svg viewBox="0 0 520 400" role="img" aria-label="Floor plan of a memory palace with four numbered stops: front gate, living room, kitchen and garden">
+<rect x="0" y="0" width="520" height="400" rx="14" fill="#FBFCFF"/>
+<rect x="28" y="236" width="146" height="140" rx="14" fill="#FEF3C7"/>
+<rect x="180" y="236" width="172" height="140" rx="14" fill="#E0E7FF"/>
+<rect x="180" y="92" width="172" height="138" rx="14" fill="#DBEAFE"/>
+<rect x="358" y="92" width="134" height="284" rx="14" fill="#CCFBEF"/>
+<g font-family="Plus Jakarta Sans, sans-serif" font-size="11" font-weight="700" fill="#374151" letter-spacing="0.08em">
+<text x="42" y="260">FRONT GATE</text>
+<text x="194" y="260">LIVING ROOM</text>
+<text x="194" y="116">KITCHEN</text>
+<text x="372" y="116">GARDEN</text>
+</g>
+<path class="ll-route" d="M100 304 L266 304 L266 164 L425 230" fill="none" stroke="#4553E8" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+<circle class="ll-ring ll-ring1" cx="100" cy="304" r="17"/>
+<circle class="ll-ring ll-ring2" cx="266" cy="304" r="17"/>
+<circle class="ll-ring ll-ring3" cx="266" cy="164" r="17"/>
+<circle class="ll-ring ll-ring4" cx="425" cy="230" r="17"/>
+<g font-family="Plus Jakarta Sans, sans-serif" font-size="12" font-weight="600" fill="#1F2937" text-anchor="middle">
+<g><rect x="34" y="332" width="132" height="28" rx="14" fill="#FFFFFF"/><text x="100" y="351">Sunlight · sunglasses</text></g>
+<g class="ll-pill ll-pill2"><rect x="196" y="332" width="140" height="28" rx="14" fill="#FFFFFF"/><text x="266" y="351">Water · bottle</text></g>
+<g class="ll-pill ll-pill3"><rect x="196" y="186" width="140" height="28" rx="14" fill="#FFFFFF"/><text x="266" y="205">CO₂ · balloon</text></g>
+<g class="ll-pill ll-pill4"><rect x="364" y="256" width="122" height="28" rx="14" fill="#FFFFFF"/><text x="425" y="275">Glucose · sugar</text></g>
+</g>
+<g font-family="Bricolage Grotesque, sans-serif" font-size="15" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+<circle cx="100" cy="304" r="17" fill="#4553E8"/><text x="100" y="310">1</text>
+<circle cx="266" cy="304" r="17" fill="#4553E8"/><text x="266" y="310">2</text>
+<circle cx="266" cy="164" r="17" fill="#4553E8"/><text x="266" y="170">3</text>
+<circle cx="425" cy="230" r="17" fill="#D97706"/><text x="425" y="236">4</text>
+</g>
+<g class="ll-walker">
+<circle r="11" fill="#FBBF24" stroke="#FFFFFF" stroke-width="3"/>
+<circle r="3.5" fill="#92400E"/>
+<animateMotion dur="9s" repeatCount="indefinite" path="M100 304 L266 304 L266 164 L425 230" keyPoints="0;1;1" keyTimes="0;0.9;1" calcMode="linear"/>
+</g>
+</svg>
+</div>
+
+<figure class="ll-card">
+<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#4553E8" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="flex:none;margin-top:2px"><path d="M4 5h16v11H9l-5 4V5z"/></svg>
+<figcaption><strong>The story:</strong> At the front gate, a plant in sunglasses waves at a water bottle. In the kitchen, a balloon floats in, and the garden fills with sugar cubes.</figcaption>
+</figure>
+</aside>
+</main>
+
+<footer class="wrap">
+LociLoom is a study aid, not a guaranteed memory treatment. It works best alongside retrieval practice and spaced repetition.
+</footer>
+</div>
+
+<script>
+(function () {
+  var tabReturn = document.getElementById('tabReturn');
+  var tabNew = document.getElementById('tabNew');
+  var formReturn = document.getElementById('formReturn');
+  var formNew = document.getElementById('formNew');
+  function show(which) {
+    var isNew = which === 'new';
+    formReturn.hidden = isNew;
+    formNew.hidden = !isNew;
+    tabReturn.setAttribute('aria-pressed', String(!isNew));
+    tabNew.setAttribute('aria-pressed', String(isNew));
+  }
+  tabReturn.addEventListener('click', function () { show('return'); });
+  tabNew.addEventListener('click', function () { show('new'); });
+
+  var pin = document.getElementById('pin');
+  var toggle = document.getElementById('pinToggle');
+  toggle.addEventListener('click', function () {
+    var hidden = pin.type === 'password';
+    pin.type = hidden ? 'text' : 'password';
+    toggle.textContent = hidden ? 'Hide' : 'Show';
+  });
+
+  document.getElementById('copyId').addEventListener('click', function () {
+    var btn = this;
+    var id = document.getElementById('newId').textContent;
+    if (navigator.clipboard) { navigator.clipboard.writeText(id).catch(function () {}); }
+    btn.textContent = 'Copied';
+    setTimeout(function () { btn.textContent = 'Copy'; }, 1500);
+  });
+
+  // Demo only: the real login is handled by the app.
+  formReturn.addEventListener('submit', function (e) { e.preventDefault(); });
+  formNew.addEventListener('submit', function (e) { e.preventDefault(); });
+})();
+</script>
+</body>
+</html>
