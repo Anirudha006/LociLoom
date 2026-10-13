@@ -1,7 +1,8 @@
 """
 LociLoom Google Gemini Client (core/gemini_client.py)
-Provides zero-dependency HTTP integration with Google Gemini 1.5 Flash
+Provides resilient HTTP integration with Google Gemini Flash models
 for generating vivid Method of Loci associative memory palace narratives.
+Dynamically resolves available active models to prevent 404 deprecation errors.
 """
 import os
 import logging
@@ -10,7 +11,15 @@ import requests
 
 logger = logging.getLogger(__name__)
 
-GEMINI_API_URL = "https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent"
+CANDIDATE_MODELS = [
+    "gemini-2.5-flash",
+    "gemini-2.0-flash",
+    "gemini-2.0-flash-exp",
+    "gemini-1.5-flash-latest",
+    "gemini-1.5-flash-002",
+    "gemini-1.5-flash",
+    "gemini-pro"
+]
 
 
 def get_gemini_api_key() -> str:
@@ -41,42 +50,84 @@ def get_gemini_api_key() -> str:
     return ""
 
 
+def resolve_working_model(api_key: str) -> str:
+    """
+    Dynamically discovers active models for the user's API key.
+    Queries /v1beta/models or selects the latest available flash model.
+    """
+    key = api_key.strip()
+    if not key:
+        return CANDIDATE_MODELS[0]
+
+    try:
+        models_url = f"https://generativelanguage.googleapis.com/v1beta/models?key={key}"
+        resp = requests.get(models_url, timeout=5)
+        if resp.status_code == 200:
+            data = resp.json()
+            models_list = data.get("models", [])
+            supported = [
+                m.get("name", "").replace("models/", "")
+                for m in models_list
+                if "generateContent" in m.get("supportedGenerationMethods", [])
+            ]
+            for cand in CANDIDATE_MODELS:
+                if cand in supported:
+                    return cand
+            for s in supported:
+                if "flash" in s:
+                    return s
+            if supported:
+                return supported[0]
+    except Exception:
+        pass
+
+    return CANDIDATE_MODELS[0]
+
+
 def test_gemini_connection(api_key: Optional[str] = None) -> Tuple[bool, str]:
     """
-    Tests connectivity to Google Gemini API with a minimal ping prompt.
-    Returns (True, message) on success, or (False, error_description) on failure.
+    Tests connectivity to Google Gemini API.
+    Attempts model resolution and fallback across candidates to find a working model.
     """
     key = (api_key or get_gemini_api_key()).strip()
     if not key:
         return False, "No API key provided. Please paste your Google Gemini API key."
 
-    url = f"{GEMINI_API_URL}?key={key}"
-    payload = {
-        "contents": [{
-            "parts": [{"text": "Reply with 'OK' only."}]
-        }],
-        "generationConfig": {
-            "maxOutputTokens": 10,
-            "temperature": 0.1
-        }
-    }
+    # First attempt dynamic discovery
+    target_model = resolve_working_model(key)
+    models_to_try = [target_model] + [m for m in CANDIDATE_MODELS if m != target_model]
 
-    try:
-        resp = requests.post(url, json=payload, timeout=8)
-        if resp.status_code == 200:
-            return True, "Connection successful! Google Gemini 1.5 Flash is ready."
-        elif resp.status_code == 400:
-            return False, "Invalid API request (400). Please check your API key format."
-        elif resp.status_code in (401, 403):
-            return False, "Invalid or unauthorized API key (403). Please verify your Google AI Studio key."
-        elif resp.status_code == 429:
-            return False, "Rate limit reached (429). Please wait a moment and try again."
-        else:
-            return False, f"Gemini API returned status code {resp.status_code}: {resp.text[:120]}"
-    except requests.exceptions.Timeout:
-        return False, "Connection timed out. Please check your internet connection."
-    except Exception as e:
-        return False, f"Network error connecting to Gemini API: {str(e)}"
+    last_error = ""
+    for model in models_to_try:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
+        payload = {
+            "contents": [{"parts": [{"text": "Reply with 'OK' only."}]}],
+            "generationConfig": {"maxOutputTokens": 10, "temperature": 0.1}
+        }
+        try:
+            resp = requests.post(url, json=payload, timeout=8)
+            if resp.status_code == 200:
+                try:
+                    import streamlit as st
+                    st.session_state["gemini_active_model"] = model
+                except Exception:
+                    pass
+                return True, f"Connection successful! Connected to Google {model}."
+            elif resp.status_code in (401, 403):
+                return False, "Invalid or unauthorized API key (403). Please verify your Google AI Studio key."
+            elif resp.status_code == 404:
+                last_error = f"Model {model} not found (404), checking alternatives..."
+                continue
+            elif resp.status_code == 429:
+                return False, "Rate limit reached (429). Please wait a moment and try again."
+            else:
+                last_error = f"Gemini API returned status code {resp.status_code}: {resp.text[:120]}"
+        except requests.exceptions.Timeout:
+            return False, "Connection timed out. Please check your internet connection."
+        except Exception as e:
+            return False, f"Network error connecting to Gemini API: {str(e)}"
+
+    return False, last_error or "Could not find a supported Gemini model for this API key."
 
 
 def build_story_prompt(assigned_concepts: List[Dict[str, Any]], style: str = "Normal") -> str:
@@ -117,7 +168,7 @@ def generate_gemini_palace_story(assigned_concepts: List[Dict[str, Any]],
                                  style: str = "Normal",
                                  api_key: Optional[str] = None) -> Optional[str]:
     """
-    Calls Google Gemini 1.5 Flash to generate a vivid associative memory palace story.
+    Calls Google Gemini Flash to generate a vivid associative memory palace story.
     Returns the generated story string, or None if the request fails (enabling fallback).
     """
     if not assigned_concepts:
@@ -129,33 +180,45 @@ def generate_gemini_palace_story(assigned_concepts: List[Dict[str, Any]],
         return None
 
     prompt = build_story_prompt(assigned_concepts, style=style)
-    url = f"{GEMINI_API_URL}?key={key}"
     payload = {
-        "contents": [{
-            "parts": [{"text": prompt}]
-        }],
-        "generationConfig": {
-            "temperature": 0.75,
-            "maxOutputTokens": 600
-        }
+        "contents": [{"parts": [{"text": prompt}]}],
+        "generationConfig": {"temperature": 0.75, "maxOutputTokens": 600}
     }
 
+    # Determine which model to target
+    active_model = None
     try:
-        resp = requests.post(url, json=payload, timeout=14)
-        if resp.status_code == 200:
-            data = resp.json()
-            candidates = data.get("candidates", [])
-            if candidates:
-                parts = candidates[0].get("content", {}).get("parts", [])
-                if parts:
-                    story = parts[0].get("text", "").strip()
-                    if story:
-                        return story
-            logger.warning(f"Gemini response did not contain text parts: {data}")
+        import streamlit as st
+        active_model = st.session_state.get("gemini_active_model")
+    except Exception:
+        pass
+
+    if not active_model:
+        active_model = resolve_working_model(key)
+
+    models_to_try = [active_model] + [m for m in CANDIDATE_MODELS if m != active_model]
+
+    for model in models_to_try:
+        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
+        try:
+            resp = requests.post(url, json=payload, timeout=14)
+            if resp.status_code == 200:
+                data = resp.json()
+                candidates = data.get("candidates", [])
+                if candidates:
+                    parts = candidates[0].get("content", {}).get("parts", [])
+                    if parts:
+                        story = parts[0].get("text", "").strip()
+                        if story:
+                            return story
+                return None
+            elif resp.status_code == 404:
+                continue
+            else:
+                logger.warning(f"Gemini error {resp.status_code}: {resp.text[:150]}")
+                return None
+        except Exception as e:
+            logger.warning(f"Gemini call exception with {model}: {e}")
             return None
-        else:
-            logger.warning(f"Gemini API error {resp.status_code}: {resp.text[:200]}")
-            return None
-    except Exception as e:
-        logger.warning(f"Gemini call exception: {e}")
-        return None
+
+    return None

@@ -180,17 +180,25 @@ if llm_opt_in:
         with st.spinner("Connecting to Google Gemini API..."):
             ok, msg = test_gemini_connection(active_key)
             if ok:
-                st.success(f"✅ {msg}")
+                st.session_state["gemini_status_tested"] = True
+                st.session_state["gemini_status_msg"] = msg
             else:
-                st.error(f"❌ {msg}")
+                st.session_state["gemini_status_tested"] = False
+                st.session_state["gemini_status_msg"] = msg
 
     if active_key:
-        env_note = " (Detected via Render / environment variable)" if (has_env_key and not st.session_state.get("gemini_api_key")) else ""
-        st.success(
-            f"✅ **Google Gemini 1.5 Flash Connected & Active{env_note}!** "
-            "Memory palaces will now be woven with rich, context-aware AI narratives. "
-            "Offline deterministic templates will automatically serve as a seamless fallback if the network is ever unavailable."
-        )
+        if st.session_state.get("gemini_status_tested") is True:
+            model_name = st.session_state.get("gemini_active_model", "Gemini Flash")
+            env_note = " (via Render environment variable)" if (has_env_key and not st.session_state.get("gemini_api_key")) else ""
+            st.success(
+                f"✅ **Google {model_name} Connected & Active{env_note}!** "
+                "Memory palaces will now be woven with rich, context-aware AI narratives. "
+                "Offline deterministic templates remain as a zero-cost backup."
+            )
+        elif st.session_state.get("gemini_status_tested") is False:
+            st.error(f"❌ {st.session_state.get('gemini_status_msg')}")
+        else:
+            st.info("🔑 Gemini API key configured. Click **🧪 Test API Key** above to verify connection.")
     else:
         st.info(
             "💡 **How to activate real AI story generation:**\n\n"
