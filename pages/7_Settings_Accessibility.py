@@ -11,10 +11,12 @@ Provides comprehensive accessibility accommodations and personalization:
 - Optional, disabled-by-default LLM setting
 - Complete local database reset with confirmation
 """
+import os
 import streamlit as st
 from core.ui_helper import setup_page, render_disclaimer, sign_out_user
 from core.db import reset_all_data, update_user_settings
 from core.i18n import t
+from core.gemini_client import test_gemini_connection, get_gemini_api_key
 
 setup_page(title="Settings & Accessibility", icon="⚙️")
 anon_id = st.session_state.get("anon_id", "LL-GUEST")
@@ -152,7 +154,50 @@ llm_opt_in = st.checkbox(
 st.session_state["use_llm"] = llm_opt_in
 
 if llm_opt_in:
-    st.warning("⚠️ LLM Mode is currently set to experimental simulation. The deterministic rule-based generator remains active.")
+    current_key = get_gemini_api_key()
+    has_env_key = bool(os.environ.get("GEMINI_API_KEY"))
+
+    col_k1, col_k2 = st.columns([2.4, 1.0])
+    with col_k1:
+        gemini_input = st.text_input(
+            "🔑 Google Gemini API Key",
+            value=st.session_state.get("gemini_api_key", ""),
+            type="password",
+            placeholder="AIzaSy... (leave empty if set via GEMINI_API_KEY on Render)",
+            help="Free API key from Google AI Studio (https://aistudio.google.com/app/apikey). No credit card required."
+        )
+        if gemini_input != st.session_state.get("gemini_api_key", ""):
+            st.session_state["gemini_api_key"] = gemini_input.strip()
+            st.rerun()
+
+    with col_k2:
+        st.markdown("<div style='height: 28px;'></div>", unsafe_allow_html=True)
+        test_btn = st.button("🧪 Test API Key", use_container_width=True)
+
+    active_key = get_gemini_api_key()
+
+    if test_btn:
+        with st.spinner("Connecting to Google Gemini API..."):
+            ok, msg = test_gemini_connection(active_key)
+            if ok:
+                st.success(f"✅ {msg}")
+            else:
+                st.error(f"❌ {msg}")
+
+    if active_key:
+        env_note = " (Detected via Render / environment variable)" if (has_env_key and not st.session_state.get("gemini_api_key")) else ""
+        st.success(
+            f"✅ **Google Gemini 1.5 Flash Connected & Active{env_note}!** "
+            "Memory palaces will now be woven with rich, context-aware AI narratives. "
+            "Offline deterministic templates will automatically serve as a seamless fallback if the network is ever unavailable."
+        )
+    else:
+        st.info(
+            "💡 **How to activate real AI story generation:**\n\n"
+            "1. Get your free API key at **[Google AI Studio ↗](https://aistudio.google.com/app/apikey)** (no credit card needed).\n"
+            "2. Paste it in the box above, OR add `GEMINI_API_KEY` under *Environment Variables* in your Render Dashboard.\n"
+            "3. Until a key is provided, LociLoom continues to use its zero-cost offline rule-based generator."
+        )
 
 # --- DATA PRIVACY & RESET BUTTON ---
 st.markdown("---")

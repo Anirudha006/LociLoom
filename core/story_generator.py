@@ -55,10 +55,15 @@ def generate_palace_story(assigned_concepts: List[Dict[str, Any]],
     if not assigned_concepts:
         return "No concepts found to weave a story."
 
-    # If user explicitly opted into LLM mode and provided key, note disabled state or execute
+    # If user explicitly opted into LLM mode, attempt Google Gemini generation first
     if use_llm:
-        # LLM integration is disabled by default as per offline requirements
-        pass
+        try:
+            from core.gemini_client import generate_gemini_palace_story
+            gemini_story = generate_gemini_palace_story(assigned_concepts, style=style, api_key=llm_api_key)
+            if gemini_story:
+                return gemini_story
+        except Exception:
+            pass
 
     style_clean = style.lower().strip()
     if style_clean == "funny":

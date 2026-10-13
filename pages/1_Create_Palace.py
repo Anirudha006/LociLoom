@@ -282,11 +282,15 @@ if generate_btn:
             )
 
             # 5. Vivid Narrative Generation
-            st.write("📖 Writing associative story across route...")
+            if st.session_state.get("use_llm", False):
+                st.write("🤖 Synthesizing associative story with Google Gemini AI...")
+            else:
+                st.write("📖 Writing associative story across route...")
             story = generate_palace_story(
                 assigned_route,
                 style=story_style,
-                use_llm=st.session_state.get("use_llm", False)
+                use_llm=st.session_state.get("use_llm", False),
+                llm_api_key=st.session_state.get("gemini_api_key")
             )
 
             # Store in session state for editing and saving
