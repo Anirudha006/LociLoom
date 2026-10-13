@@ -12,14 +12,21 @@ import requests
 logger = logging.getLogger(__name__)
 
 CANDIDATE_MODELS = [
+    "gemini-3-flash-preview",
+    "gemini-3.8-flash",
+    "gemini-3.1-flash-lite",
+    "gemini-3.5-flash",
+    "gemini-flash-latest",
     "gemini-2.5-flash",
-    "gemini-2.0-flash",
-    "gemini-2.0-flash-exp",
-    "gemini-1.5-flash-latest",
-    "gemini-1.5-flash-002",
-    "gemini-1.5-flash",
-    "gemini-pro"
 ]
+
+
+def get_headers(api_key: str) -> Dict[str, str]:
+    """Builds required HTTP headers including x-goog-api-key for standard and AQ authorization keys."""
+    return {
+        "x-goog-api-key": api_key.strip(),
+        "Content-Type": "application/json"
+    }
 
 
 def get_gemini_api_key() -> str:
@@ -53,7 +60,7 @@ def get_gemini_api_key() -> str:
 def resolve_working_model(api_key: str) -> str:
     """
     Dynamically discovers active models for the user's API key.
-    Queries /v1beta/models or selects the latest available flash model.
+    Queries /v1beta/models and prioritizes active, non-deprecated flash models.
     """
     key = api_key.strip()
     if not key:
@@ -61,7 +68,7 @@ def resolve_working_model(api_key: str) -> str:
 
     try:
         models_url = f"https://generativelanguage.googleapis.com/v1beta/models?key={key}"
-        resp = requests.get(models_url, timeout=5)
+        resp = requests.get(models_url, headers=get_headers(key), timeout=6)
         if resp.status_code == 200:
             data = resp.json()
             models_list = data.get("models", [])
@@ -70,14 +77,20 @@ def resolve_working_model(api_key: str) -> str:
                 for m in models_list
                 if "generateContent" in m.get("supportedGenerationMethods", [])
             ]
+            # Exclude known-deprecated models
+            deprecated_prefixes = ("gemini-1.5", "gemini-2.0", "gemini-pro")
+            active_supported = [
+                s for s in supported
+                if not any(s.startswith(p) for p in deprecated_prefixes)
+            ]
             for cand in CANDIDATE_MODELS:
-                if cand in supported:
+                if cand in active_supported:
                     return cand
-            for s in supported:
+            for s in active_supported:
                 if "flash" in s:
                     return s
-            if supported:
-                return supported[0]
+            if active_supported:
+                return active_supported[0]
     except Exception:
         pass
 
@@ -87,25 +100,30 @@ def resolve_working_model(api_key: str) -> str:
 def test_gemini_connection(api_key: Optional[str] = None) -> Tuple[bool, str]:
     """
     Tests connectivity to Google Gemini API.
-    Attempts model resolution and fallback across candidates to find a working model.
+    Attempts model resolution and resilient fallback across active candidate models.
     """
     key = (api_key or get_gemini_api_key()).strip()
     if not key:
         return False, "No API key provided. Please paste your Google Gemini API key."
 
-    # First attempt dynamic discovery
     target_model = resolve_working_model(key)
     models_to_try = [target_model] + [m for m in CANDIDATE_MODELS if m != target_model]
+
+    headers = get_headers(key)
+    payload = {
+        "contents": [{"parts": [{"text": "Reply with 'OK' only."}]}],
+        "generationConfig": {
+            "maxOutputTokens": 100,
+            "temperature": 0.1,
+            "thinkingConfig": {"thinkingBudget": 0}
+        }
+    }
 
     last_error = ""
     for model in models_to_try:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
-        payload = {
-            "contents": [{"parts": [{"text": "Reply with 'OK' only."}]}],
-            "generationConfig": {"maxOutputTokens": 10, "temperature": 0.1}
-        }
         try:
-            resp = requests.post(url, json=payload, timeout=8)
+            resp = requests.post(url, headers=headers, json=payload, timeout=12)
             if resp.status_code == 200:
                 try:
                     import streamlit as st
@@ -116,16 +134,21 @@ def test_gemini_connection(api_key: Optional[str] = None) -> Tuple[bool, str]:
             elif resp.status_code in (401, 403):
                 return False, "Invalid or unauthorized API key (403). Please verify your Google AI Studio key."
             elif resp.status_code == 404:
-                last_error = f"Model {model} not found (404), checking alternatives..."
+                last_error = f"Model {model} is not available (404), checking alternatives..."
+                continue
+            elif resp.status_code == 503:
+                last_error = f"Model {model} is experiencing temporary high demand (503), checking alternatives..."
                 continue
             elif resp.status_code == 429:
-                return False, "Rate limit reached (429). Please wait a moment and try again."
+                last_error = f"Rate limit reached on {model} (429), checking alternatives..."
+                continue
             else:
                 last_error = f"Gemini API returned status code {resp.status_code}: {resp.text[:120]}"
         except requests.exceptions.Timeout:
-            return False, "Connection timed out. Please check your internet connection."
+            last_error = f"Timeout connecting to {model}, checking alternatives..."
+            continue
         except Exception as e:
-            return False, f"Network error connecting to Gemini API: {str(e)}"
+            last_error = f"Network error connecting to Gemini API: {str(e)}"
 
     return False, last_error or "Could not find a supported Gemini model for this API key."
 
@@ -168,7 +191,7 @@ def generate_gemini_palace_story(assigned_concepts: List[Dict[str, Any]],
                                  style: str = "Normal",
                                  api_key: Optional[str] = None) -> Optional[str]:
     """
-    Calls Google Gemini Flash to generate a vivid associative memory palace story.
+    Calls Google Gemini to generate a vivid associative memory palace story.
     Returns the generated story string, or None if the request fails (enabling fallback).
     """
     if not assigned_concepts:
@@ -182,8 +205,14 @@ def generate_gemini_palace_story(assigned_concepts: List[Dict[str, Any]],
     prompt = build_story_prompt(assigned_concepts, style=style)
     payload = {
         "contents": [{"parts": [{"text": prompt}]}],
-        "generationConfig": {"temperature": 0.75, "maxOutputTokens": 600}
+        "generationConfig": {
+            "temperature": 0.75,
+            "maxOutputTokens": 800,
+            "thinkingConfig": {"thinkingBudget": 0}
+        }
     }
+
+    headers = get_headers(key)
 
     # Determine which model to target
     active_model = None
@@ -201,7 +230,7 @@ def generate_gemini_palace_story(assigned_concepts: List[Dict[str, Any]],
     for model in models_to_try:
         url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={key}"
         try:
-            resp = requests.post(url, json=payload, timeout=14)
+            resp = requests.post(url, headers=headers, json=payload, timeout=20)
             if resp.status_code == 200:
                 data = resp.json()
                 candidates = data.get("candidates", [])
@@ -211,14 +240,15 @@ def generate_gemini_palace_story(assigned_concepts: List[Dict[str, Any]],
                         story = parts[0].get("text", "").strip()
                         if story:
                             return story
-                return None
-            elif resp.status_code == 404:
+                continue
+            elif resp.status_code in (404, 503, 429):
+                logger.info(f"Model {model} returned status {resp.status_code}, trying next candidate...")
                 continue
             else:
                 logger.warning(f"Gemini error {resp.status_code}: {resp.text[:150]}")
-                return None
+                continue
         except Exception as e:
             logger.warning(f"Gemini call exception with {model}: {e}")
-            return None
+            continue
 
     return None

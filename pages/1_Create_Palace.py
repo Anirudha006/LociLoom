@@ -20,6 +20,7 @@ from core.palace_builder import (
     format_palace_summary_text, create_palace_mindmap_figure
 )
 from core.story_generator import generate_palace_story
+from core.gemini_client import get_gemini_api_key
 from core.tts import generate_speech_audio, get_browser_speech_html
 from core.db import save_palace, get_palace_by_id
 from core.i18n import t
@@ -220,6 +221,15 @@ with col_opts:
         help="Recommended: 5 to 9 concepts per palace for optimal working memory chunking."
     )
 
+    active_gemini_key = get_gemini_api_key()
+    if active_gemini_key:
+        llm_toggle = st.checkbox(
+            "🤖 Weave Story with Google Gemini AI",
+            value=st.session_state.get("use_llm", True),
+            help="Generates dynamic, rich second-person memory palace narratives via Google Gemini."
+        )
+        st.session_state["use_llm"] = llm_toggle
+
 # --- GENERATION PIPELINE ---
 generate_btn = st.button("🚀 Generate Memory Palace & 2D Storyboard", type="primary", use_container_width=True)
 
@@ -290,7 +300,7 @@ if generate_btn:
                 assigned_route,
                 style=story_style,
                 use_llm=st.session_state.get("use_llm", False),
-                llm_api_key=st.session_state.get("gemini_api_key")
+                llm_api_key=active_gemini_key or get_gemini_api_key()
             )
 
             # Store in session state for editing and saving

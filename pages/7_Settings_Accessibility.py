@@ -147,9 +147,9 @@ st.markdown("""
 """, unsafe_allow_html=True)
 
 llm_opt_in = st.checkbox(
-    "Opt-in: Enable Experimental LLM Generation Hook (Disabled by default)",
-    value=st.session_state.get("use_llm", False),
-    help="Default is unchecked. Keeps all processing offline and deterministic."
+    "Opt-in: Enable Experimental LLM Generation Hook",
+    value=st.session_state.get("use_llm", bool(get_gemini_api_key())),
+    help="When enabled, calls Google Gemini for vivid narratives with zero-cost offline rule templates as backup."
 )
 st.session_state["use_llm"] = llm_opt_in
 
@@ -163,7 +163,7 @@ if llm_opt_in:
             "🔑 Google Gemini API Key",
             value=st.session_state.get("gemini_api_key", ""),
             type="password",
-            placeholder="AIzaSy... (leave empty if set via GEMINI_API_KEY on Render)",
+            placeholder="AIzaSy... or AQ... (leave empty if set via GEMINI_API_KEY on Render)",
             help="Free API key from Google AI Studio (https://aistudio.google.com/app/apikey). No credit card required."
         )
         if gemini_input != st.session_state.get("gemini_api_key", ""):
@@ -182,6 +182,7 @@ if llm_opt_in:
             if ok:
                 st.session_state["gemini_status_tested"] = True
                 st.session_state["gemini_status_msg"] = msg
+                st.session_state["use_llm"] = True
             else:
                 st.session_state["gemini_status_tested"] = False
                 st.session_state["gemini_status_msg"] = msg
