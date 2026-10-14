@@ -259,6 +259,84 @@ def get_card_font(size: int, bold: bool = False):
         return ImageFont.load_default()
 
 
+def draw_mnemonic_illustration(draw: ImageDraw.ImageDraw, cx: int, cy: int, concept: str, visual_object: str):
+    """
+    Draws recognizable, colorful cartoon-style vector illustrations for memory palace anchors.
+    Replaces generic placeholders with vivid visual scenes.
+    """
+    text = (concept + " " + visual_object).lower()
+
+    if any(k in text for k in ["laptop", "code", "program", "python", "sql", "comput", "software", "screen", "digital lab", "data science"]):
+        # 💻 Modern Laptop Workstation with Glowing Code
+        draw.rounded_rectangle([cx - 75, cy - 60, cx + 75, cy + 25], radius=8, fill="#0F172A", outline="#38BDF8", width=2)
+        draw.line([(cx - 60, cy - 40), (cx - 15, cy - 40)], fill="#22C55E", width=4)
+        draw.line([(cx - 60, cy - 25), (cx + 35, cy - 25)], fill="#38BDF8", width=4)
+        draw.line([(cx - 40, cy - 10), (cx + 10, cy - 10)], fill="#FBBF24", width=4)
+        draw.line([(cx - 60, cy + 5), (cx - 5, cy + 5)], fill="#A855F7", width=4)
+        draw.polygon([(cx - 95, cy + 40), (cx + 95, cy + 40), (cx + 75, cy + 25), (cx - 75, cy + 25)], fill="#CBD5E1", outline="#94A3B8")
+        draw.rounded_rectangle([cx - 20, cy + 28, cx + 20, cy + 36], radius=2, fill="#94A3B8")
+    elif any(k in text for k in ["puzzle", "pattern", "jigsaw", "match", "cluster"]):
+        # 🧩 Snapping Colorful Puzzle Pieces
+        draw.rounded_rectangle([cx - 48, cy - 48, cx - 6, cy - 6], radius=6, fill="#EF4444")
+        draw.rounded_rectangle([cx + 6, cy - 48, cx + 48, cy - 6], radius=6, fill="#3B82F6")
+        draw.rounded_rectangle([cx - 48, cy + 6, cx - 6, cy + 48], radius=6, fill="#10B981")
+        draw.rounded_rectangle([cx + 6, cy + 6, cx + 48, cy + 48], radius=6, fill="#F59E0B")
+        draw.ellipse([cx - 14, cy - 14, cx + 14, cy + 14], fill="#FFFFFF", outline="#CBD5E1", width=2)
+        draw.ellipse([cx - 6, cy - 6, cx + 6, cy + 6], fill="#4553E8")
+    elif any(k in text for k in ["chart", "graph", "visual", "plot", "statistic", "analy", "metric", "trend"]):
+        # 📊 Vibrant 3D Rising Bar Chart with Growth Arrow
+        draw.rectangle([cx - 60, cy + 32, cx + 60, cy + 36], fill="#94A3B8")
+        draw.rectangle([cx - 50, cy + 8, cx - 28, cy + 32], fill="#6366F1")
+        draw.rectangle([cx - 20, cy - 15, cx + 2, cy + 32], fill="#14B8A6")
+        draw.rectangle([cx + 10, cy - 35, cx + 32, cy + 32], fill="#F59E0B")
+        draw.rectangle([cx + 40, cy - 58, cx + 62, cy + 32], fill="#10B981")
+        draw.line([(cx - 40, cy + 8), (cx - 9, cy - 15), (cx + 21, cy - 35), (cx + 51, cy - 68)], fill="#EF4444", width=4)
+        draw.polygon([(cx + 51, cy - 75), (cx + 43, cy - 64), (cx + 59, cy - 66)], fill="#EF4444")
+    elif any(k in text for k in ["box", "crate", "raw data", "data", "datum", "record", "document"]):
+        # 📦 3D Delivery Crate with popping documents
+        draw.polygon([(cx, cy - 50), (cx + 50, cy - 25), (cx, cy), (cx - 50, cy - 25)], fill="#FBBF24", outline="#D97706", width=2)
+        draw.polygon([(cx - 50, cy - 25), (cx, cy), (cx, cy + 45), (cx - 50, cy + 20)], fill="#D97706", outline="#B45309", width=2)
+        draw.polygon([(cx, cy), (cx + 50, cy - 25), (cx + 50, cy + 20), (cx, cy + 45)], fill="#B45309", outline="#92400E", width=2)
+        draw.rectangle([cx - 22, cy - 48, cx + 22, cy - 15], fill="#FFFFFF", outline="#CBD5E1")
+        draw.line([(cx - 14, cy - 38), (cx + 14, cy - 38)], fill="#64748B", width=2)
+        draw.line([(cx - 14, cy - 30), (cx + 10, cy - 30)], fill="#64748B", width=2)
+    elif any(k in text for k in ["sign", "decision", "choice", "road", "path", "solution"]):
+        # 🧭 Crossroads Directional Signpost
+        draw.rectangle([cx - 8, cy - 65, cx + 8, cy + 50], fill="#78350F")
+        draw.polygon([(cx - 80, cy - 50), (cx + 15, cy - 50), (cx + 25, cy - 30), (cx + 15, cy - 10), (cx - 80, cy - 10), (cx - 90, cy - 30)], fill="#22C55E", outline="#15803D", width=2)
+        draw.polygon([(cx - 15, cy - 10), (cx + 80, cy - 10), (cx + 90, cy + 10), (cx + 80, cy + 30), (cx - 15, cy + 30), (cx - 25, cy + 10)], fill="#3B82F6", outline="#1D4ED8", width=2)
+    elif any(k in text for k in ["crystal", "future", "predict", "ball", "forecast", "orb"]):
+        # 🔮 Mystical Glowing Crystal Ball
+        draw.ellipse([cx - 45, cy - 55, cx + 45, cy + 35], fill="#818CF8", outline="#4338CA", width=3)
+        draw.ellipse([cx - 28, cy - 38, cx + 8, cy], fill="#C7D2FE")
+        draw.polygon([(cx - 35, cy + 48), (cx + 35, cy + 48), (cx + 20, cy + 32), (cx - 20, cy + 32)], fill="#F59E0B", outline="#B45309", width=2)
+        draw.ellipse([cx - 25, cy + 28, cx + 25, cy + 38], fill="#FCD34D")
+    elif any(k in text for k in ["robot", "machine learning", "ai", "neural", "autom"]):
+        # 🤖 Friendly Modern Robot Head
+        draw.line([(cx, cy - 45), (cx, cy - 65)], fill="#64748B", width=3)
+        draw.ellipse([cx - 6, cy - 75, cx + 6, cy - 63], fill="#EF4444")
+        draw.rounded_rectangle([cx - 45, cy - 45, cx + 45, cy + 25], radius=10, fill="#E2E8F0", outline="#64748B", width=2)
+        draw.rounded_rectangle([cx - 35, cy - 35, cx + 35, cy + 5], radius=6, fill="#0F172A")
+        draw.ellipse([cx - 25, cy - 25, cx - 10, cy - 10], fill="#38BDF8")
+        draw.ellipse([cx + 10, cy - 25, cx + 25, cy - 10], fill="#38BDF8")
+        draw.line([(cx - 15, cy + 15), (cx + 15, cy + 15)], fill="#10B981", width=3)
+    elif any(k in text for k in ["science", "method", "experiment", "flask", "lab", "beaker", "chemist"]):
+        # 🧪 Laboratory Conical Flask with Bubbles
+        draw.polygon([(cx - 12, cy - 55), (cx + 12, cy - 55), (cx + 12, cy - 25), (cx + 45, cy + 35), (cx - 45, cy + 35), (cx - 12, cy - 25)], fill="#06B6D4", outline="#0E7490", width=2)
+        draw.polygon([(cx - 8, cy - 55), (cx + 8, cy - 55), (cx + 8, cy - 25), (cx - 8, cy - 25)], fill="#FFFFFF", outline="#0E7490")
+        draw.ellipse([cx - 12, cy + 5, cx - 4, cy + 13], fill="#FFFFFF")
+        draw.ellipse([cx + 14, cy - 5, cx + 20, cy + 1], fill="#FFFFFF")
+        draw.ellipse([cx - 4, cy - 15, cx + 4, cy - 7], fill="#FFFFFF")
+    else:
+        # 💡 Radiant Glowing Lightbulb with Energy Rays
+        draw.ellipse([cx - 35, cy - 55, cx + 35, cy + 10], fill="#FBBF24", outline="#F59E0B", width=2)
+        draw.rectangle([cx - 18, cy + 8, cx + 18, cy + 28], fill="#94A3B8", outline="#64748B")
+        draw.ellipse([cx - 12, cy + 24, cx + 12, cy + 34], fill="#64748B")
+        draw.line([(cx - 50, cy - 22), (cx - 65, cy - 22)], fill="#F59E0B", width=3)
+        draw.line([(cx + 50, cy - 22), (cx + 65, cy - 22)], fill="#F59E0B", width=3)
+        draw.line([(cx, cy - 65), (cx, cy - 80)], fill="#F59E0B", width=3)
+
+
 def generate_mnemonic_photo_card(concept: str, visual_object: str, emoji: str, location: str, topic: str, difficulty: str = "Medium", reason: str = "") -> bytes:
     """
     Generates a standalone, high-res illustrated visual mnemonic photo card (1000x650) in PNG format.
@@ -294,9 +372,11 @@ def generate_mnemonic_photo_card(concept: str, visual_object: str, emoji: str, l
     # 3. Central Focal Frame
     draw.rounded_rectangle([40, 135, width - 40, 480], radius=18, fill="#FFFFFF", outline="#E2E8F0", width=2)
 
-    # Spotlight badge
-    draw.ellipse([width // 2 - 80, 160, width // 2 + 80, 320], fill="#EEF2FF", outline="#4553E8", width=3)
-    draw.text((width // 2, 235), "★", fill="#4553E8", font=get_card_font(60, bold=True), anchor="mm")
+    # Decorative spotlight background
+    draw.ellipse([width // 2 - 110, 145, width // 2 + 110, 335], fill="#F8FAFC", outline="#E2E8F0", width=2)
+
+    # Themed Vector Illustration (Replaces generic star placeholder)
+    draw_mnemonic_illustration(draw, width // 2, 240, concept, visual_object)
 
     # Concept Title (Large, clear, prominent)
     clean_concept = str(concept).strip()[:35]
