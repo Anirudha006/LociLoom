@@ -42,13 +42,23 @@ PRESETS = {
         "Inside the thylakoid membrane, light reactions produce ATP and oxygen as a byproduct. "
         "The Calvin cycle then utilizes carbon dioxide and ATP to synthesize energy-rich glucose sugar."
     ),
+    "Data Science": (
+        "Data Science begins our journey into discovering actionable knowledge from data. "
+        "Through the scientific method, experiments test clues and prove facts with controlled tests. "
+        "Algorithms uncover each useful pattern by connecting clues together like solving a jigsaw puzzle. "
+        "Smart leaders formulate a well decision by choosing the smartest path using real facts. "
+        "Forecasting models discover every future trend by analyzing historical cycles. "
+        "Analysts utilize data visualization to turn complicated numbers into simple colorful pictures. "
+        "Teams collect raw data as uncleaned, messy facts gathered from the real world."
+    ),
     "Machine Learning": (
-        "Machine Learning is a branch of artificial intelligence that enables computers to learn from data and make decisions without explicit programming. "
-        "In the classroom, algorithms identify patterns in existing data and use them to solve new problems and make predictions. "
-        "Three foundational paradigms exist: Supervised Learning from labeled examples, Unsupervised Learning finding hidden clusters, and Reinforcement Learning driven by reward feedback. "
-        "Common algorithms include Linear Regression, Decision Trees, K-Nearest Neighbors, Support Vector Machines, and Neural Networks. "
-        "Applications span recommendation systems, spam detection, image recognition, fraud detection, and self-driving vehicles. "
-        "The standard process follows systematic steps: collect data, preprocess features, train a model, test and evaluate, and make predictions."
+        "Machine Learning enables smart computers to learn from data patterns without explicit programming. "
+        "Supervised Learning trains models using labeled training data and clear teacher answer keys. "
+        "Unsupervised Learning discovers hidden clusters and natural groupings across unlabeled datasets. "
+        "Reinforcement Learning trains autonomous agents through rewards and penalty scores. "
+        "Decision Trees split features into simple if-then branch rules to make choices. "
+        "Neural Networks interconnect artificial neurons across layers to identify deep patterns. "
+        "Model Evaluation tests overall prediction accuracy before deployment."
     ),
     "Water Cycle": (
         "The water cycle describes the continuous movement of water on, above, and below the surface of the Earth. "
@@ -75,7 +85,7 @@ PRESETS = {
 
 # Example buttons bar
 st.markdown("**Try a verified curriculum example:**")
-ex_col1, ex_col2, ex_col3, ex_col4, ex_col5 = st.columns(5)
+ex_col1, ex_col2, ex_col3, ex_col4, ex_col5, ex_col6 = st.columns(6)
 default_text = ""
 
 def load_preset(name: str):
@@ -95,18 +105,22 @@ with ex_col1:
         load_preset("Photosynthesis")
 
 with ex_col2:
+    if st.button("🔬 Data Science", use_container_width=True):
+        load_preset("Data Science")
+
+with ex_col3:
     if st.button("🤖 Machine Learning", use_container_width=True):
         load_preset("Machine Learning")
 
-with ex_col3:
+with ex_col4:
     if st.button("🌧️ Water Cycle", use_container_width=True):
         load_preset("Water Cycle")
 
-with ex_col4:
+with ex_col5:
     if st.button("🌐 TCP/IP Model", use_container_width=True):
         load_preset("TCP/IP Model")
 
-with ex_col5:
+with ex_col6:
     if st.button("🍎 Newton's Laws", use_container_width=True):
         load_preset("Newton's Laws")
 

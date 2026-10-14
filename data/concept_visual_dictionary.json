@@ -925,9 +925,9 @@
   },
   "neural network": {
     "emoji": "🧠",
-    "object": "Lattice of interconnected LED bulbs blinking together",
+    "object": "Glowing fiber-optic brain web with sparkling connection nodes",
     "topic": "Computer Science",
-    "reason": "Layered computational model inspired by biological nervous systems"
+    "reason": "Interconnected neuron layers recognizing complex real-world patterns."
   },
   "big o notation": {
     "emoji": "⏱️",
@@ -1720,5 +1720,47 @@
     "object": "A plate of sweet sugar cubes and fruits on the table",
     "topic": "Biology",
     "reason": "Finally, we get Glucose (food for the plant) and breathe out Oxygen (O2) as a gift!"
+  },
+  "supervised learning": {
+    "emoji": "🏷️",
+    "object": "A friendly teacher labeling flashcards with golden stickers",
+    "topic": "Computer Science",
+    "reason": "Learning with labeled answer keys and clear teacher guidance."
+  },
+  "unsupervised learning": {
+    "emoji": "🔍",
+    "object": "A curious magnifying glass grouping scattered colorful marbles into secret clusters",
+    "topic": "Computer Science",
+    "reason": "Discovering hidden groups and natural patterns without any teacher labels."
+  },
+  "reinforcement learning": {
+    "emoji": "🎮",
+    "object": "A shiny video game controller collecting glowing coins and high scores",
+    "topic": "Computer Science",
+    "reason": "Learning by trial and error to earn rewards and maximize score."
+  },
+  "decision tree": {
+    "emoji": "🌳",
+    "object": "A blooming green tree with branching wooden paths and road signs",
+    "topic": "Computer Science",
+    "reason": "Splitting data step-by-step along branches to reach clear choices."
+  },
+  "decision trees": {
+    "emoji": "🌳",
+    "object": "A blooming green tree with branching wooden paths and road signs",
+    "topic": "Computer Science",
+    "reason": "Splitting data step-by-step along branches to reach clear choices."
+  },
+  "neural networks": {
+    "emoji": "🧠",
+    "object": "Glowing fiber-optic brain web with sparkling connection nodes",
+    "topic": "Computer Science",
+    "reason": "Interconnected neuron layers recognizing complex real-world patterns."
+  },
+  "model evaluation": {
+    "emoji": "📋",
+    "object": "A gold-stamped student report card with straight A grades",
+    "topic": "Computer Science",
+    "reason": "Testing model accuracy with test data before real-world release."
   }
 }

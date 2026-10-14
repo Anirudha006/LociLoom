@@ -5,8 +5,10 @@ Uses spaCy (noun chunks, named entities, dependency parsing) + TF-IDF ranking,
 with an automatic regex/NLTK fallback when spaCy is unavailable.
 Maintains logical chronological order for coherent narrative journeying.
 """
+import os
 import re
 import math
+import json
 from typing import List, Dict, Any, Optional
 
 # Try loading spaCy model gracefully
@@ -47,8 +49,30 @@ COMMON_STOP_WORDS = {
     "many", "various", "several", "different", "multiple", "field", "fields",
     "type", "types", "way", "ways", "thing", "things", "aspect", "aspects",
     "lociloom", "palace", "palaces", "station", "stations", "locus", "loci",
-    "mnemonic", "mnemonics", "narrative", "associative", "discipline", "architecture", "summary"
+    "mnemonic", "mnemonics", "narrative", "associative", "discipline", "architecture", "summary",
+    "fact", "facts", "real", "world", "observation", "observations", "finding", "findings",
+    "clue", "clues", "ingredient", "ingredients", "exist", "exists", "existing",
+    "foundational", "paradigm", "paradigms", "common", "include", "includes", "branch", "branches",
+    "each", "every", "all", "some", "any", "across", "start", "starting", "overall"
 }
+
+_KNOWN_CONCEPTS_CACHE = None
+
+def _get_known_concepts():
+    """Lazily loads known curated concepts from dictionary to boost concept extraction precision."""
+    global _KNOWN_CONCEPTS_CACHE
+    if _KNOWN_CONCEPTS_CACHE is None:
+        try:
+            import json
+            dict_path = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "data", "concept_visual_dictionary.json")
+            if os.path.exists(dict_path):
+                with open(dict_path, "r", encoding="utf-8") as f:
+                    _KNOWN_CONCEPTS_CACHE = set(json.load(f).keys())
+            else:
+                _KNOWN_CONCEPTS_CACHE = set()
+        except Exception:
+            _KNOWN_CONCEPTS_CACHE = set()
+    return _KNOWN_CONCEPTS_CACHE
 
 def sanitize_text(text: str, max_chars: int = 5000) -> str:
     """Sanitizes and caps input text to ensure memory bounds, stripping metadata banners and markdown headers."""
@@ -101,6 +125,8 @@ def extract_concepts_spacy(text: str, max_concepts: int = 8) -> List[Dict[str, A
 
     candidate_spans = []
 
+    known_concepts = _get_known_concepts()
+
     # 1. Noun chunks
     for chunk in doc.noun_chunks:
         raw_words = chunk.text.lower().strip().split()
@@ -112,11 +138,21 @@ def extract_concepts_spacy(text: str, max_concepts: int = 8) -> List[Dict[str, A
                 words.append(target)
         if words and len(words) <= 4:
             cand = " ".join(words)
+            raw_cand = " ".join([rw for rw in raw_words if rw not in COMMON_STOP_WORDS and len(rw) > 2])
             # Find the sentence containing this chunk
             supporting_sent = chunk.sent.text.strip()
             start_pos = chunk.start_char
             # Score based on frequency and token positions
             score = sum(word_freq.get(w, 1) for w in words) * (1.2 if len(words) > 1 else 1.0)
+            
+            # Substantially prioritize concepts recognized in verified curriculum dictionary
+            if known_concepts:
+                if cand in known_concepts:
+                    score += 40.0
+                elif raw_cand in known_concepts:
+                    cand = raw_cand
+                    score += 40.0
+
             candidate_spans.append({
                 "concept": cand,
                 "start_char": start_pos,
