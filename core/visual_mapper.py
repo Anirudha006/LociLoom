@@ -11,6 +11,7 @@ import os
 import io
 import re
 import json
+import textwrap
 from typing import Dict, Any, Optional, Tuple, List
 import numpy as np
 from sklearn.feature_extraction.text import TfidfVectorizer
@@ -339,10 +340,11 @@ def draw_mnemonic_illustration(draw: ImageDraw.ImageDraw, cx: int, cy: int, conc
 
 def generate_mnemonic_photo_card(concept: str, visual_object: str, emoji: str, location: str, topic: str, difficulty: str = "Medium", reason: str = "") -> bytes:
     """
-    Generates a standalone, high-res illustrated visual mnemonic photo card (1000x650) in PNG format.
+    Generates a standalone, high-res illustrated visual mnemonic photo card (1000x680) in PNG format.
     Works 100% offline with zero external dependencies, providing vivid spatial cards.
+    Fully wraps all anchor descriptions and memory explanations so no sentences are truncated.
     """
-    width, height = 1000, 650
+    width, height = 1000, 680
     img = Image.new("RGB", (width, height), color="#FFFFFF")
     draw = ImageDraw.Draw(img)
 
@@ -359,46 +361,51 @@ def generate_mnemonic_photo_card(concept: str, visual_object: str, emoji: str, l
     # Fonts
     f_header = get_card_font(26, bold=True)
     f_subhead = get_card_font(20, bold=False)
-    f_concept = get_card_font(38, bold=True)
-    f_object = get_card_font(24, bold=True)
-    f_reason = get_card_font(20, bold=False)
-    f_footer = get_card_font(18, bold=False)
+    f_concept = get_card_font(36, bold=True)
+    f_object = get_card_font(22, bold=True)
+    f_reason = get_card_font(19, bold=False)
+    f_footer = get_card_font(17, bold=False)
 
-    # 2. Top Location Banner
-    draw.rounded_rectangle([40, 40, width - 40, 115], radius=16, fill="#4553E8")
-    draw.text((65, 58), f"📍 LOCUS STATION: {location.upper()}", fill="#FFFFFF", font=f_header)
-    draw.text((width - 280, 62), f"DISCIPLINE: {topic.upper()}", fill="#E0E7FF", font=f_subhead)
+    # 2. Top Location Banner (Clean text header, no missing emoji glyph box)
+    draw.rounded_rectangle([40, 36, width - 40, 110], radius=16, fill="#4553E8")
+    draw.text((65, 54), f"LOCUS STATION: {location.upper()}", fill="#FFFFFF", font=f_header)
+    draw.text((width - 65, 73), f"DISCIPLINE: {topic.upper()}", fill="#E0E7FF", font=f_subhead, anchor="rm")
 
     # 3. Central Focal Frame
-    draw.rounded_rectangle([40, 135, width - 40, 480], radius=18, fill="#FFFFFF", outline="#E2E8F0", width=2)
+    draw.rounded_rectangle([40, 126, width - 40, 545], radius=18, fill="#FFFFFF", outline="#E2E8F0", width=2)
 
     # Decorative spotlight background
-    draw.ellipse([width // 2 - 110, 145, width // 2 + 110, 335], fill="#F8FAFC", outline="#E2E8F0", width=2)
+    draw.ellipse([width // 2 - 110, 138, width // 2 + 110, 328], fill="#F8FAFC", outline="#E2E8F0", width=2)
 
-    # Themed Vector Illustration (Replaces generic star placeholder)
-    draw_mnemonic_illustration(draw, width // 2, 240, concept, visual_object)
+    # Themed Vector Illustration
+    draw_mnemonic_illustration(draw, width // 2, 233, concept, visual_object)
 
     # Concept Title (Large, clear, prominent)
-    clean_concept = str(concept).strip()[:35]
-    draw.text((width // 2, 360), clean_concept, fill="#1F2937", font=f_concept, anchor="mm")
+    clean_concept = str(concept).strip()
+    draw.text((width // 2, 352), clean_concept, fill="#1F2937", font=f_concept, anchor="mm")
 
-    # Visual Anchor Token
+    # Visual Anchor Token - Multi-line wrap so nothing is truncated
     clean_obj = f"Anchor: {visual_object}"
-    if len(clean_obj) > 48:
-        clean_obj = clean_obj[:46] + "..."
-    draw.text((width // 2, 415), clean_obj, fill="#0D9488", font=f_object, anchor="mm")
+    obj_lines = textwrap.wrap(clean_obj, width=50) or [clean_obj]
+    cur_y = 388
+    for line in obj_lines:
+        draw.text((width // 2, cur_y), line, fill="#0D9488", font=f_object, anchor="mm")
+        cur_y += 28
 
-    # Meaning / Explanation
+    # Meaning / Explanation - Multi-line wrap so complete sentence is preserved
     display_reason = reason.strip() if reason else f"Mental landmark to fix {clean_concept} in memory."
-    if len(display_reason) > 65:
-        display_reason = display_reason[:62] + "..."
-    draw.text((width // 2, 450), f'"{display_reason}"', fill="#6B7280", font=f_reason, anchor="mm")
+    quote_text = f'"{display_reason}"'
+    reason_lines = textwrap.wrap(quote_text, width=58) or [quote_text]
+    cur_y += 6
+    for line in reason_lines:
+        draw.text((width // 2, cur_y), line, fill="#4B5563", font=f_reason, anchor="mm")
+        cur_y += 25
 
     # 4. Bottom Concept Details
-    draw.rounded_rectangle([40, 505, width - 40, 605], radius=16, fill="#F8FAFC", outline="#E2E8F0", width=1)
+    draw.rounded_rectangle([40, 565, width - 40, 650], radius=16, fill="#F8FAFC", outline="#E2E8F0", width=1)
     diff_color = "#DC2626" if difficulty == "Hard" else ("#D97706" if difficulty == "Medium" else "#16A34A")
-    draw.text((70, 528), f"Cognitive Difficulty: {difficulty}", fill=diff_color, font=f_footer)
-    draw.text((70, 560), "Method of Loci (Memory Palace) Associative Anchor", fill="#4B5563", font=f_footer)
+    draw.text((70, 584), f"Cognitive Difficulty: {difficulty}", fill=diff_color, font=f_footer)
+    draw.text((70, 614), "Method of Loci (Memory Palace) Associative Anchor", fill="#4B5563", font=f_footer)
 
     buffer = io.BytesIO()
     img.save(buffer, format="PNG")
