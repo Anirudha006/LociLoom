@@ -6,28 +6,28 @@
     "reason": "Plants absorbing radiant sunlight to make nourishment"
   },
   "sunlight": {
-    "emoji": "🕶️",
-    "object": "Neon glowing sunglasses",
+    "emoji": "☀️",
+    "object": "A bright yellow sun shining through the window",
     "topic": "Biology",
-    "reason": "Direct radiant light driving the solar reaction"
+    "reason": "This natural energy provides the power needed to drive the reaction."
   },
   "water": {
     "emoji": "💧",
-    "object": "Crystalline water bottle",
+    "object": "A watering can pouring water onto roots",
     "topic": "Biology",
-    "reason": "Essential fluid absorbed by root xylem"
+    "reason": "Water enters through the roots and travels up to the leaves."
   },
   "carbon dioxide": {
-    "emoji": "🎈",
-    "object": "Heavy grey gas balloon",
+    "emoji": "💨",
+    "object": "A bubbly breeze of gas being sucked in by the leaves",
     "topic": "Biology",
-    "reason": "Floating ambient gas taken in through open stomata"
+    "reason": "Carbon Dioxide is taken from the air through tiny leaf pores called stomata."
   },
   "glucose": {
-    "emoji": "🍬",
-    "object": "Glistening sugar cubes",
+    "emoji": "🍪",
+    "object": "A plate of sweet sugar cubes and fruits on the table",
     "topic": "Biology",
-    "reason": "Sweet energy-rich hexose fuel created by the plant"
+    "reason": "Finally, we get Glucose (food for the plant) and breathe out Oxygen (O2) as a gift!"
   },
   "oxygen": {
     "emoji": "🫧",
@@ -1618,5 +1618,107 @@
     "object": "A big glowing calculator checking odds and averages",
     "topic": "Mathematics",
     "reason": "Using numbers and math to measure certainty and avoid being fooled by luck."
+  },
+  "green plant": {
+    "emoji": "🌱",
+    "object": "A vibrant leafy potted plant soak in the entryway",
+    "topic": "Biology",
+    "reason": "This is our starting spot, where the leaf gets ready to use natural sunlight."
+  },
+  "green plants": {
+    "emoji": "🌱",
+    "object": "A vibrant leafy potted plant soak in the entryway",
+    "topic": "Biology",
+    "reason": "This is our starting spot, where the leaf gets ready to use natural sunlight."
+  },
+  "plant": {
+    "emoji": "🌱",
+    "object": "A vibrant leafy potted plant soak in the entryway",
+    "topic": "Biology",
+    "reason": "This is our starting spot, where the leaf gets ready to use natural sunlight."
+  },
+  "water h2o": {
+    "emoji": "💧",
+    "object": "A watering can pouring water onto roots",
+    "topic": "Biology",
+    "reason": "Water enters through the roots and travels up to the leaves."
+  },
+  "light energy": {
+    "emoji": "💡",
+    "object": "A stream of golden sunbeams streaming across the floor",
+    "topic": "Biology",
+    "reason": "Natural light energy from the sun enters the leaf to start the process."
+  },
+  "chemical energy": {
+    "emoji": "🔋",
+    "object": "A rotating mechanical wheel busy mixing ingredients on the fridge door",
+    "topic": "Biology",
+    "reason": "Energy helps to combine CO2 to start building the ultimate fuel."
+  },
+  "radiant sunlight": {
+    "emoji": "☀️",
+    "object": "A bright yellow sun shining through the window",
+    "topic": "Biology",
+    "reason": "This natural energy provides the power needed to drive the reaction."
+  },
+  "carbon dioxide co2": {
+    "emoji": "💨",
+    "object": "A bubbly breeze of gas being sucked in by the leaves",
+    "topic": "Biology",
+    "reason": "Carbon Dioxide is taken from the air through tiny leaf pores called stomata."
+  },
+  "light reaction": {
+    "emoji": "🔋",
+    "object": "A glowing battery being charged by a solar panel on the counter",
+    "topic": "Biology",
+    "reason": "Using light and water, the leaf makes chemical energy (ATP/NADPH) & releases Oxygen (O2)!"
+  },
+  "light reactions": {
+    "emoji": "🔋",
+    "object": "A glowing battery being charged by a solar panel on the counter",
+    "topic": "Biology",
+    "reason": "Using light and water, the leaf makes chemical energy (ATP/NADPH) & releases Oxygen (O2)!"
+  },
+  "light reaction energy conversion": {
+    "emoji": "🔋",
+    "object": "A glowing battery being charged by a solar panel on the counter",
+    "topic": "Biology",
+    "reason": "Using light and water, the leaf makes chemical energy (ATP/NADPH) & releases Oxygen (O2)!"
+  },
+  "calvin cycle": {
+    "emoji": "🔄",
+    "object": "A rotating mechanical wheel busy mixing ingredients on the fridge door",
+    "topic": "Biology",
+    "reason": "Energy helps to combine CO2 to start building the ultimate fuel."
+  },
+  "calvin cycle dark reaction": {
+    "emoji": "🔄",
+    "object": "A rotating mechanical wheel busy mixing ingredients on the fridge door",
+    "topic": "Biology",
+    "reason": "Energy helps to combine CO2 to start building the ultimate fuel."
+  },
+  "energy-rich glucose sugar": {
+    "emoji": "🍪",
+    "object": "A plate of sweet sugar cubes and fruits on the table",
+    "topic": "Biology",
+    "reason": "Finally, we get Glucose (food for the plant) and breathe out Oxygen (O2) as a gift!"
+  },
+  "energy rich glucose sugar": {
+    "emoji": "🍪",
+    "object": "A plate of sweet sugar cubes and fruits on the table",
+    "topic": "Biology",
+    "reason": "Finally, we get Glucose (food for the plant) and breathe out Oxygen (O2) as a gift!"
+  },
+  "energy rich glucose": {
+    "emoji": "🍪",
+    "object": "A plate of sweet sugar cubes and fruits on the table",
+    "topic": "Biology",
+    "reason": "Finally, we get Glucose (food for the plant) and breathe out Oxygen (O2) as a gift!"
+  },
+  "glucose sugar": {
+    "emoji": "🍪",
+    "object": "A plate of sweet sugar cubes and fruits on the table",
+    "topic": "Biology",
+    "reason": "Finally, we get Glucose (food for the plant) and breathe out Oxygen (O2) as a gift!"
   }
 }

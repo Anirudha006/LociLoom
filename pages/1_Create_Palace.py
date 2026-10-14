@@ -6,6 +6,7 @@ Input Notes -> NLP Extraction -> Topic Classification -> Difficulty Prediction
 -> 2D Interactive Animated Map -> Editable Preview -> SQLite Persistence
 """
 import re
+import time
 import streamlit as st
 from core.ui_helper import setup_page, render_disclaimer
 from core.nlp_extract import extract_key_concepts, sanitize_text
@@ -77,33 +78,37 @@ st.markdown("**Try a verified curriculum example:**")
 ex_col1, ex_col2, ex_col3, ex_col4, ex_col5 = st.columns(5)
 default_text = ""
 
+def load_preset(name: str):
+    st.session_state["input_notes_text"] = PRESETS[name]
+    for k in list(st.session_state.keys()):
+        if k.startswith(("loc_edit_", "obj_edit_", "reas_edit_")):
+            del st.session_state[k]
+    if "current_palace" in st.session_state:
+        del st.session_state["current_palace"]
+    st.rerun()
+
 if "input_notes_text" not in st.session_state:
     st.session_state["input_notes_text"] = PRESETS["Photosynthesis"]
 
 with ex_col1:
     if st.button("🌱 Photosynthesis", use_container_width=True):
-        st.session_state["input_notes_text"] = PRESETS["Photosynthesis"]
-        st.rerun()
+        load_preset("Photosynthesis")
 
 with ex_col2:
     if st.button("🤖 Machine Learning", use_container_width=True):
-        st.session_state["input_notes_text"] = PRESETS["Machine Learning"]
-        st.rerun()
+        load_preset("Machine Learning")
 
 with ex_col3:
     if st.button("🌧️ Water Cycle", use_container_width=True):
-        st.session_state["input_notes_text"] = PRESETS["Water Cycle"]
-        st.rerun()
+        load_preset("Water Cycle")
 
 with ex_col4:
     if st.button("🌐 TCP/IP Model", use_container_width=True):
-        st.session_state["input_notes_text"] = PRESETS["TCP/IP Model"]
-        st.rerun()
+        load_preset("TCP/IP Model")
 
 with ex_col5:
     if st.button("🍎 Newton's Laws", use_container_width=True):
-        st.session_state["input_notes_text"] = PRESETS["Newton's Laws"]
-        st.rerun()
+        load_preset("Newton's Laws")
 
 # --- INPUT AREA ---
 col_in, col_opts = st.columns([1.6, 1.0])
@@ -234,6 +239,11 @@ with col_opts:
 generate_btn = st.button("🚀 Generate Memory Palace & 2D Storyboard", type="primary", use_container_width=True)
 
 if generate_btn:
+    # Clear any stale station edit keys from previous palaces to prevent pollution
+    for k in list(st.session_state.keys()):
+        if k.startswith(("loc_edit_", "obj_edit_", "reas_edit_")):
+            del st.session_state[k]
+
     combined_raw = notes_input.strip()
     if extra_paragraph and extra_paragraph.strip():
         combined_raw = f"{combined_raw}\n\n{extra_paragraph.strip()}".strip()
@@ -307,9 +317,9 @@ if generate_btn:
             first_c = extracted[0]['concept'] if extracted else 'Notes'
             clean_first = re.sub(r'(?i)\s+palace.*$', '', first_c).strip()
             clean_first = re.sub(r'(?i)^[a-z]+:\s*', '', clean_first).strip()
-            palace_title = f"{topic_pred}: {clean_first} Palace"
-
+            palace_token = f"p_{int(time.time() * 1000)}"
             st.session_state["current_palace"] = {
+                "token": palace_token,
                 "title": palace_title,
                 "topic": topic_pred,
                 "topic_confidence": topic_conf,
@@ -325,6 +335,7 @@ if generate_btn:
 if "current_palace" in st.session_state and st.session_state["current_palace"]:
     palace = st.session_state["current_palace"]
     concepts = palace["concepts"]
+    p_token = palace.get("token", "p_init")
 
     st.markdown("---")
     st.markdown(f"### 🏰 {palace['title']}")
@@ -345,11 +356,11 @@ if "current_palace" in st.session_state and st.session_state["current_palace"]:
         for idx, c in enumerate(concepts):
             c1, c2, c3 = st.columns([1.2, 1.6, 2.0])
             with c1:
-                new_loc = st.text_input(f"Stop #{idx+1} Locus", value=c["location_name"], key=f"loc_edit_{idx}")
+                new_loc = st.text_input(f"Stop #{idx+1} Locus", value=c["location_name"], key=f"loc_edit_{p_token}_{idx}")
             with c2:
-                new_obj = st.text_input(f"Visual Object", value=c["visual_object"], key=f"obj_edit_{idx}")
+                new_obj = st.text_input(f"Visual Object", value=c["visual_object"], key=f"obj_edit_{p_token}_{idx}")
             with c3:
-                new_reason = st.text_input(f"Associative Meaning", value=c["visual_reason"], key=f"reas_edit_{idx}")
+                new_reason = st.text_input(f"Associative Meaning", value=c["visual_reason"], key=f"reas_edit_{p_token}_{idx}")
             
             # Apply edits
             if new_loc != c["location_name"] or new_obj != c["visual_object"] or new_reason != c["visual_reason"]:

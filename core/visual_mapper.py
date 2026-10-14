@@ -94,9 +94,10 @@ def load_dictionary() -> Dict[str, Any]:
     return _DICT_CACHE
 
 def normalize_concept_key(concept: str) -> str:
-    """Normalizes concept string by lowercasing, stripping punctuation, and basic stemming."""
-    clean = re.sub(r'[^a-zA-Z0-9\s]', '', concept.lower()).strip()
-    return clean
+    """Normalizes concept string by lowercasing, converting hyphens to spaces, and stripping punctuation."""
+    c = re.sub(r'[-_]', ' ', concept.lower())
+    clean = re.sub(r'[^a-zA-Z0-9\s]', '', c).strip()
+    return re.sub(r'\s+', ' ', clean)
 
 def map_concept_to_visual(concept: str, topic: Optional[str] = None) -> Dict[str, Any]:
     """
@@ -106,50 +107,60 @@ def map_concept_to_visual(concept: str, topic: Optional[str] = None) -> Dict[str
     {
         "concept": concept,
         "emoji": "🌱",
-        "visual_object": "Solar-powered emerald plant",
-        "visual_reason": "Plants absorbing radiant sunlight to make nourishment",
-        "match_tier": "Exact Dictionary" | "Semantic Similarity" | "Phonetic / Rule Fallback",
+        "visual_object": "A vibrant leafy potted plant in the entryway",
+        "visual_reason": "This is our starting spot, where the leaf gets ready to use natural sunlight.",
+        "match_tier": "Curated Dictionary Match",
         "auto_suggested": bool
     }
     """
     dictionary = load_dictionary()
     clean_key = normalize_concept_key(concept)
+    
+    # Strip parenthetical annotations: e.g. "Water (H2O)" -> "Water", "Calvin Cycle (Dark Reaction)" -> "Calvin Cycle"
+    base_concept = re.sub(r'\s*\([^)]*\)', '', concept).strip()
+    clean_base = normalize_concept_key(base_concept) if base_concept != concept else clean_key
+
+    # Check clean_key, clean_base, and hyphen-free variants
+    candidate_keys = [clean_key]
+    if clean_base != clean_key:
+        candidate_keys.append(clean_base)
 
     # -------------------------------------------------------------
     # TIER 1: Exact Dictionary Match
     # -------------------------------------------------------------
-    if clean_key in dictionary:
-        item = dictionary[clean_key]
-        return {
-            "concept": concept,
-            "emoji": item["emoji"],
-            "visual_object": item["object"],
-            "visual_reason": item["reason"],
-            "match_tier": "Curated Dictionary Match",
-            "auto_suggested": False
-        }
+    for ck in candidate_keys:
+        if ck in dictionary:
+            item = dictionary[ck]
+            return {
+                "concept": concept,
+                "emoji": item["emoji"],
+                "visual_object": item["object"],
+                "visual_reason": item["reason"],
+                "match_tier": "Curated Dictionary Match",
+                "auto_suggested": False
+            }
 
-    # Try singular/plural inflection check (e.g. "plants" -> "plant", "enzymes" -> "enzyme")
-    if clean_key.endswith("s") and clean_key[:-1] in dictionary:
-        item = dictionary[clean_key[:-1]]
-        return {
-            "concept": concept,
-            "emoji": item["emoji"],
-            "visual_object": item["object"],
-            "visual_reason": item["reason"],
-            "match_tier": "Curated Dictionary Match (Inflected)",
-            "auto_suggested": False
-        }
-    if clean_key.endswith("es") and clean_key[:-2] in dictionary:
-        item = dictionary[clean_key[:-2]]
-        return {
-            "concept": concept,
-            "emoji": item["emoji"],
-            "visual_object": item["object"],
-            "visual_reason": item["reason"],
-            "match_tier": "Curated Dictionary Match (Inflected)",
-            "auto_suggested": False
-        }
+        # Try singular/plural inflection check (e.g. "plants" -> "plant", "enzymes" -> "enzyme")
+        if ck.endswith("s") and ck[:-1] in dictionary:
+            item = dictionary[ck[:-1]]
+            return {
+                "concept": concept,
+                "emoji": item["emoji"],
+                "visual_object": item["object"],
+                "visual_reason": item["reason"],
+                "match_tier": "Curated Dictionary Match (Inflected)",
+                "auto_suggested": False
+            }
+        if ck.endswith("es") and ck[:-2] in dictionary:
+            item = dictionary[ck[:-2]]
+            return {
+                "concept": concept,
+                "emoji": item["emoji"],
+                "visual_object": item["object"],
+                "visual_reason": item["reason"],
+                "match_tier": "Curated Dictionary Match (Inflected)",
+                "auto_suggested": False
+            }
 
     # -------------------------------------------------------------
     # TIER 2: Semantic / Substring TF-IDF Similarity
@@ -328,6 +339,68 @@ def draw_mnemonic_illustration(draw: ImageDraw.ImageDraw, cx: int, cy: int, conc
         draw.ellipse([cx - 12, cy + 5, cx - 4, cy + 13], fill="#FFFFFF")
         draw.ellipse([cx + 14, cy - 5, cx + 20, cy + 1], fill="#FFFFFF")
         draw.ellipse([cx - 4, cy - 15, cx + 4, cy - 7], fill="#FFFFFF")
+    elif any(k in text for k in ["plant", "leaf", "leaves", "tree", "flora", "botan", "chlorophyll", "chloroplast"]):
+        # 🌱 Potted Green Plant with Sprouting Emerald Leaves
+        draw.polygon([(cx - 30, cy + 10), (cx + 30, cy + 10), (cx + 22, cy + 45), (cx - 22, cy + 45)], fill="#EA580C", outline="#C2410C", width=2)
+        draw.rectangle([cx - 34, cy + 6, cx + 34, cy + 14], fill="#F97316", outline="#C2410C")
+        draw.line([(cx, cy + 10), (cx, cy - 30)], fill="#15803D", width=4)
+        draw.chord([cx - 40, cy - 25, cx, cy], 90, 270, fill="#22C55E", outline="#16A34A")
+        draw.chord([cx, cy - 40, cx + 45, cy - 15], 270, 90, fill="#4ADE80", outline="#16A34A")
+        draw.ellipse([cx - 12, cy - 55, cx + 12, cy - 28], fill="#22C55E", outline="#15803D", width=2)
+    elif any(k in text for k in ["water", "can", "fluid", "droplet", "rain", "aqua", "h2o", "ocean"]):
+        # 💧 Blue Watering Can with Water Droplets
+        draw.rounded_rectangle([cx - 32, cy - 15, cx + 22, cy + 35], radius=6, fill="#0284C7", outline="#0369A1", width=2)
+        draw.line([(cx + 18, cy + 10), (cx + 52, cy - 18)], fill="#0284C7", width=6)
+        draw.polygon([(cx + 46, cy - 26), (cx + 60, cy - 16), (cx + 52, cy - 10)], fill="#38BDF8")
+        draw.arc([cx - 50, cy - 15, cx - 15, cy + 25], 90, 270, fill="#0369A1", width=4)
+        draw.ellipse([cx + 58, cy, cx + 64, cy + 8], fill="#38BDF8")
+        draw.ellipse([cx + 48, cy + 16, cx + 54, cy + 24], fill="#38BDF8")
+        draw.ellipse([cx + 66, cy + 24, cx + 72, cy + 32], fill="#38BDF8")
+    elif any(k in text for k in ["sun", "sunlight", "solar", "radiant", "beam"]):
+        # ☀️ Radiant Golden Sun with Geometric Solar Rays
+        draw.ellipse([cx - 32, cy - 32, cx + 32, cy + 32], fill="#FBBF24", outline="#F59E0B", width=3)
+        draw.line([(cx, cy - 38), (cx, cy - 58)], fill="#F59E0B", width=4)
+        draw.line([(cx, cy + 38), (cx, cy + 58)], fill="#F59E0B", width=4)
+        draw.line([(cx - 38, cy), (cx - 58, cy)], fill="#F59E0B", width=4)
+        draw.line([(cx + 38, cy), (cx + 58, cy)], fill="#F59E0B", width=4)
+        draw.line([(cx - 26, cy - 26), (cx - 42, cy - 42)], fill="#FBBF24", width=3)
+        draw.line([(cx + 26, cy - 26), (cx + 42, cy - 42)], fill="#FBBF24", width=3)
+        draw.line([(cx - 26, cy + 26), (cx - 42, cy + 42)], fill="#FBBF24", width=3)
+        draw.line([(cx + 26, cy + 26), (cx + 42, cy + 42)], fill="#FBBF24", width=3)
+    elif any(k in text for k in ["battery", "chemical energy", "light reaction", "charge", "storing", "energy conversion"]):
+        # 🔋 Glowing Battery with Energy Level & Lightning Bolt
+        draw.rounded_rectangle([cx - 28, cy - 45, cx + 28, cy + 35], radius=6, fill="#1E293B", outline="#475569", width=2)
+        draw.rectangle([cx - 10, cy - 53, cx + 10, cy - 45], fill="#94A3B8")
+        draw.rounded_rectangle([cx - 22, cy + 12, cx + 22, cy + 28], radius=2, fill="#10B981")
+        draw.rounded_rectangle([cx - 22, cy - 8, cx + 22, cy + 8], radius=2, fill="#10B981")
+        draw.rounded_rectangle([cx - 22, cy - 28, cx + 22, cy - 12], radius=2, fill="#10B981")
+        draw.polygon([(cx + 2, cy - 20), (cx - 8, cy - 2), (cx - 1, cy - 2), (cx - 4, cy + 16), (cx + 8, cy), (cx + 1, cy)], fill="#FBBF24")
+    elif any(k in text for k in ["sugar", "glucose", "cube", "plate", "food", "fruit"]):
+        # 🍪 Glistening Sugar Cubes on a Porcelain Plate
+        draw.ellipse([cx - 65, cy + 15, cx + 65, cy + 45], fill="#E2E8F0", outline="#CBD5E1", width=2)
+        draw.ellipse([cx - 50, cy + 20, cx + 50, cy + 40], fill="#FFFFFF")
+        draw.rectangle([cx - 35, cy - 15, cx - 5, cy + 15], fill="#F8FAFC", outline="#94A3B8", width=2)
+        draw.line([(cx - 35, cy - 15), (cx - 20, cy - 25), (cx + 10, cy - 25), (cx - 5, cy - 15)], fill="#94A3B8")
+        draw.rectangle([cx - 5, cy - 5, cx + 25, cy + 25], fill="#FFFFFF", outline="#94A3B8", width=2)
+        draw.rectangle([cx - 20, cy - 35, cx + 10, cy - 5], fill="#F1F5F9", outline="#64748B", width=2)
+        draw.ellipse([cx + 30, cy - 30, cx + 34, cy - 26], fill="#F59E0B")
+        draw.ellipse([cx - 40, cy - 35, cx - 36, cy - 31], fill="#38BDF8")
+    elif any(k in text for k in ["wheel", "cycle", "calvin", "rotate", "gear", "mixing"]):
+        # 🔄 Rotating Circular Cycle & Mechanical Wheel
+        draw.ellipse([cx - 42, cy - 42, cx + 42, cy + 42], outline="#6366F1", width=5)
+        draw.ellipse([cx - 12, cy - 12, cx + 12, cy + 12], fill="#4338CA", outline="#312E81")
+        draw.line([(cx - 42, cy), (cx + 42, cy)], fill="#818CF8", width=3)
+        draw.line([(cx, cy - 42), (cx, cy + 42)], fill="#818CF8", width=3)
+        draw.polygon([(cx + 42, cy - 5), (cx + 49, cy + 10), (cx + 35, cy + 8)], fill="#6366F1")
+        draw.polygon([(cx - 42, cy + 5), (cx - 49, cy - 10), (cx - 35, cy - 8)], fill="#6366F1")
+    elif any(k in text for k in ["gas", "breeze", "air", "carbon", "dioxide", "co2", "stomata", "bubble"]):
+        # 💨 Bubbly Breeze of Gas Particles
+        draw.arc([cx - 55, cy - 30, cx + 15, cy + 10], 180, 360, fill="#38BDF8", width=4)
+        draw.arc([cx - 35, cy - 5, cx + 45, cy + 30], 0, 180, fill="#0284C7", width=4)
+        draw.ellipse([cx - 35, cy - 42, cx - 25, cy - 32], fill="#E0F2FE", outline="#38BDF8")
+        draw.ellipse([cx + 25, cy - 25, cx + 40, cy - 10], fill="#BAE6FD", outline="#0284C7")
+        draw.ellipse([cx - 15, cy + 15, cx - 2, cy + 28], fill="#E0F2FE", outline="#38BDF8")
+        draw.ellipse([cx + 45, cy + 5, cx + 55, cy + 15], fill="#BAE6FD")
     else:
         # 💡 Radiant Glowing Lightbulb with Energy Rays
         draw.ellipse([cx - 35, cy - 55, cx + 35, cy + 10], fill="#FBBF24", outline="#F59E0B", width=2)
