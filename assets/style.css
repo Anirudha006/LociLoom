@@ -1,5 +1,5 @@
 /* LociLoom Global Light Theme Stylesheet */
-@import url('https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,600;12..96,700&family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Noto+Sans+Devanagari:wght@500;600;700&family=Noto+Sans+Kannada:wght@500;600;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Merriweather:ital,wght@0,300;0,400;0,700;1,300;1,400&family=Noto+Sans+Devanagari:wght@500;600;700&family=Noto+Sans+Kannada:wght@500;600;700&display=swap');
 
 :root {
     --primary: #4553E8;
@@ -23,24 +23,61 @@
     --card-shadow-hover: 0 8px 24px rgba(69, 83, 232, 0.12), 0 2px 6px rgba(0, 0, 0, 0.08);
 }
 
-/* Force light background and clean body typography */
+/* Base typography: Modern and clean with Inter for UI structure */
 html, body, [data-testid="stAppViewContainer"], .main {
     background-color: var(--bg-white) !important;
     color: var(--text-main) !important;
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
 }
 
-h1, h2, h3, h4, .login-title, [data-testid="stHeadingWithActionElements"] h1, [data-testid="stHeadingWithActionElements"] h2 {
-    font-family: 'Bricolage Grotesque', system-ui, -apple-system, sans-serif !important;
-    letter-spacing: -0.025em;
+/* Headings: Clean, modern, high-clarity Inter */
+h1, h2, h3, h4, h5, h6,
+.login-title,
+[data-testid="stHeadingWithActionElements"] h1,
+[data-testid="stHeadingWithActionElements"] h2,
+[data-testid="stHeadingWithActionElements"] h3 {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+    letter-spacing: -0.02em;
+    font-weight: 700 !important;
 }
 
-p, label, input, textarea, select, button, .login-subtitle, .field, [data-testid="stMarkdownContainer"] p, [data-testid="stTab"] {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif !important;
+/* Menus, buttons, navigation, inputs, and controls: Inter */
+button,
+.stButton button,
+[data-testid="stSidebar"],
+[data-testid="stSidebar"] span,
+[data-testid="stTab"],
+nav,
+label,
+input,
+textarea,
+select,
+.login-subtitle,
+.field {
+    font-family: 'Inter', system-ui, -apple-system, sans-serif !important;
+}
+
+/* Elegant, comfortable reading experience with Merriweather for main paragraph text */
+p,
+.lociloom-card p,
+.lociloom-card-highlight p,
+[data-testid="stMarkdownContainer"] p,
+.reading-text {
+    font-family: 'Merriweather', Georgia, 'Times New Roman', serif !important;
+    font-size: 18px !important;
+    line-height: 1.75 !important;
+    color: #2D3748 !important;
+}
+
+/* Optimal reading width for comfortable scanning (max-width ~700px) */
+.lociloom-card-highlight,
+.reading-container,
+.lociloom-card-highlight p {
+    max-width: 700px;
 }
 
 span:not([data-testid*="Icon"]):not([data-testid*="icon"]):not([class*="material"]):not([class*="symbol"]):not([data-testid="stExpanderIcon"]):not([data-testid="stIconMaterial"]):not([data-testid="stExpanderToggleIcon"]) {
-    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
 }
 
 /* Explicitly restore and enforce Streamlit Material Symbols / ligature icons */

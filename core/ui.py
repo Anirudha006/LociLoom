@@ -206,7 +206,7 @@ def render_sidebar():
                 <circle cx="29" cy="12" r="3.5" fill="#FBBF24"/>
             </svg>
             <div style="display: flex; flex-direction: column;">
-                <span style="font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-weight: 700; font-size: 22px; letter-spacing: -0.02em; line-height: 1.1; color: #1F2937;">LociLoom</span>
+                <span style="font-family: 'Inter', system-ui, sans-serif; font-weight: 800; font-size: 22px; letter-spacing: -0.03em; line-height: 1.1; color: #1F2937;">LociLoom</span>
                 <span style="font-size: 12px; color: #4B5563;">Adaptive Memory Palace Generator</span>
             </div>
         </div>
@@ -233,7 +233,7 @@ def render_sidebar():
                 <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #0B5F57;">{portal_label}</span>
                 <span style="font-size: 11px; color: #0D9488; font-weight: 600;">Active</span>
             </div>
-            <span style="font-family: 'Bricolage Grotesque', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: 0.04em; color: #1F2937;">{display_user}</span>
+            <span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: #1F2937;">{display_user}</span>
             <span style="font-size: 12px; color: #4B5563;">ID: {clean_id}</span>
         </div>
         """, unsafe_allow_html=True)

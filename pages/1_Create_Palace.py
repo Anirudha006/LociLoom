@@ -461,9 +461,10 @@ if "current_palace" in st.session_state and st.session_state["current_palace"]:
                         emoji=c['emoji'],
                         location=c['location_name'],
                         topic=palace['topic'],
-                        difficulty=c.get('difficulty', 'Medium')
+                        difficulty=c.get('difficulty', 'Medium'),
+                        reason=c.get('visual_reason', '')
                     )
-                    st.image(card_png, use_column_width=True)
+                    st.image(card_png, use_container_width=True)
                     st.download_button(
                         label=f"📥 Download Station #{idx+1} Photo Card",
                         data=card_png,

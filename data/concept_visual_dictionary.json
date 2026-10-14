@@ -787,9 +787,9 @@
   },
   "sql": {
     "emoji": "🗄️",
-    "object": "Metallic cylindrical database server drum with slide-out search drawers",
+    "object": "A tall steel cabinet with slide-out digital drawers",
     "topic": "Computer Science",
-    "reason": "Structured Query Language for organizing, querying, and managing relational databases"
+    "reason": "A safe, organized digital filing cabinet where all records are stored."
   },
   "stack": {
     "emoji": "🥞",
@@ -919,9 +919,9 @@
   },
   "machine learning": {
     "emoji": "🤖",
-    "object": "Intelligent friendly desktop robot sketching neural network branches on a whiteboard",
+    "object": "A friendly robot practicing puzzle solving on a screen",
     "topic": "Computer Science",
-    "reason": "Computational algorithms that learn patterns from training data to make predictions"
+    "reason": "A smart helper that learns patterns from examples without being explicitly programmed."
   },
   "neural network": {
     "emoji": "🧠",
@@ -997,9 +997,9 @@
   },
   "statistics": {
     "emoji": "🧮",
-    "object": "Giant digital calculator displaying bell curves and probability distributions",
+    "object": "A big glowing calculator checking odds and averages",
     "topic": "Mathematics",
-    "reason": "Mathematical discipline analyzing quantitative sample distributions and variance"
+    "reason": "Using numbers and math to measure certainty and avoid being fooled by luck."
   },
   "prime number": {
     "emoji": "💎",
@@ -1471,21 +1471,21 @@
   },
   "data science": {
     "emoji": "🔬",
-    "object": "Modern scientific research desk with dual screens and glowing diagrams",
+    "object": "A high-tech digital lab desk with glowing screens",
     "topic": "Computer Science",
-    "reason": "Multidisciplinary field extracting actionable knowledge and insights from data"
+    "reason": "This is where our journey into data begins."
   },
   "data": {
     "emoji": "📦",
-    "object": "Overflowing wooden carton box filled with neat folders, records, and pictures",
+    "object": "A delivery box packed with unorganized papers and photos",
     "topic": "Computer Science",
-    "reason": "Raw, unprocessed facts, numbers, and observations collected from diverse sources"
+    "reason": "We start with uncleaned, messy facts collected from the real world."
   },
   "raw data": {
     "emoji": "📦",
-    "object": "Unsorted stack of delivery crates packed with documents and sensor tapes",
+    "object": "A delivery box packed with unorganized papers and photos",
     "topic": "Computer Science",
-    "reason": "Primary information directly collected before cleaning, filtering, or transformation"
+    "reason": "We start with uncleaned, messy facts collected from the real world."
   },
   "mathematics": {
     "emoji": "📐",
@@ -1495,15 +1495,15 @@
   },
   "programming": {
     "emoji": "💻",
-    "object": "Sleek metallic laptop executing lines of glowing emerald code",
+    "object": "A sleek laptop typing instructions in green code",
     "topic": "Computer Science",
-    "reason": "Writing software instructions and algorithms to automate data pipelines"
+    "reason": "Writing simple instructions that tell the computer how to do the heavy lifting."
   },
   "python": {
     "emoji": "🐍",
-    "object": "Friendly golden-eyed Python serpent wrapped around a glowing code keyboard",
+    "object": "A gentle green Python coiled around a keyboard",
     "topic": "Computer Science",
-    "reason": "Versatile programming language widely favored for data analysis, automation, and AI"
+    "reason": "A friendly, powerful computer language used to automate work and analyze data."
   },
   "analysis": {
     "emoji": "🔍",
@@ -1519,15 +1519,15 @@
   },
   "decision making": {
     "emoji": "🧭",
-    "object": "Polished crossroads signpost pointing firmly towards Better Choice and Solution",
+    "object": "A road sign pointing to Better Choice and Solution",
     "topic": "Computer Science",
-    "reason": "Using data-driven evidence and predictive confidence to choose optimal actions"
+    "reason": "We choose the smartest path using real facts."
   },
   "data visualization": {
     "emoji": "📊",
-    "object": "Vibrant 3D holographic bar chart with glowing upward trend arrows",
+    "object": "Brightly glowing colorful bar and pie charts",
     "topic": "Computer Science",
-    "reason": "Visual graphical representation of quantitative findings to convey insights intuitively"
+    "reason": "We turn complicated numbers into simple, colorful pictures anyone can understand."
   },
   "tools": {
     "emoji": "🧰",
@@ -1543,20 +1543,80 @@
   },
   "scientific method": {
     "emoji": "🧪",
-    "object": "Glass laboratory beaker bubbling gently beneath an analytical notebook",
+    "object": "A lab coat and magnifying glass examining clues",
     "topic": "General",
-    "reason": "Empirical procedure of observation, hypothesis formulation, experimentation, and validation"
+    "reason": "We test clues and prove facts with experiments instead of guessing."
   },
   "datum": {
     "emoji": "📦",
-    "object": "Overflowing wooden carton box filled with neat folders, records, and pictures",
+    "object": "A delivery box packed with unorganized papers and photos",
     "topic": "Computer Science",
-    "reason": "Raw, unprocessed facts, numbers, and observations collected from diverse sources"
+    "reason": "We start with uncleaned, messy facts collected from the real world."
   },
   "meaningful information": {
     "emoji": "💡",
     "object": "Gleaming golden bullion bars forged from processed data",
     "topic": "Computer Science",
     "reason": "High-value actionable knowledge distilled from raw facts"
+  },
+  "useful pattern": {
+    "emoji": "🧩",
+    "object": "A colorful jigsaw puzzle snapping perfectly together",
+    "topic": "Computer Science",
+    "reason": "We connect scattered clues together like solving a jigsaw puzzle."
+  },
+  "pattern": {
+    "emoji": "🧩",
+    "object": "A colorful jigsaw puzzle snapping perfectly together",
+    "topic": "Computer Science",
+    "reason": "We connect scattered clues together like solving a jigsaw puzzle."
+  },
+  "patterns": {
+    "emoji": "🧩",
+    "object": "A colorful jigsaw puzzle snapping perfectly together",
+    "topic": "Computer Science",
+    "reason": "We connect scattered clues together like solving a jigsaw puzzle."
+  },
+  "decision": {
+    "emoji": "🧭",
+    "object": "A road sign pointing to Better Choice and Solution",
+    "topic": "Computer Science",
+    "reason": "We choose the smartest path using real facts."
+  },
+  "well decision": {
+    "emoji": "🧭",
+    "object": "A road sign pointing to Better Choice and Solution",
+    "topic": "Computer Science",
+    "reason": "We choose the smartest path using real facts."
+  },
+  "future trend": {
+    "emoji": "🔮",
+    "object": "A glowing crystal ball showing tomorrow weather",
+    "topic": "Computer Science",
+    "reason": "We predict what will happen tomorrow by looking at patterns from yesterday."
+  },
+  "trend": {
+    "emoji": "📈",
+    "object": "A bright neon arrow curving upward",
+    "topic": "Computer Science",
+    "reason": "We predict what will happen tomorrow by looking at patterns from yesterday."
+  },
+  "trends": {
+    "emoji": "📈",
+    "object": "A bright neon arrow curving upward",
+    "topic": "Computer Science",
+    "reason": "We predict what will happen tomorrow by looking at patterns from yesterday."
+  },
+  "visualization": {
+    "emoji": "📊",
+    "object": "Brightly glowing colorful bar and pie charts",
+    "topic": "Computer Science",
+    "reason": "We turn complicated numbers into simple, colorful pictures anyone can understand."
+  },
+  "statistic": {
+    "emoji": "🧮",
+    "object": "A big glowing calculator checking odds and averages",
+    "topic": "Mathematics",
+    "reason": "Using numbers and math to measure certainty and avoid being fooled by luck."
   }
 }

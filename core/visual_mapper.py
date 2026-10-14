@@ -239,19 +239,37 @@ def generate_ai_photo_prompt(concept: str, visual_object: str, location: str, st
     )
 
 
-def generate_mnemonic_photo_card(concept: str, visual_object: str, emoji: str, location: str, topic: str, difficulty: str = "Medium") -> bytes:
+def get_card_font(size: int, bold: bool = False):
+    """Safely loads TrueType fonts for high-res PNG card rendering across Windows and Linux."""
+    candidates = [
+        "arialbd.ttf" if bold else "arial.ttf",
+        "DejaVuSans-Bold.ttf" if bold else "DejaVuSans.ttf",
+        "segoeuib.ttf" if bold else "segoeui.ttf",
+        "calibrib.ttf" if bold else "calibri.ttf",
+        "/usr/share/fonts/truetype/dejavu/DejaVuSans-Bold.ttf" if bold else "/usr/share/fonts/truetype/dejavu/DejaVuSans.ttf"
+    ]
+    for c in candidates:
+        try:
+            return ImageFont.truetype(c, size)
+        except Exception:
+            continue
+    try:
+        return ImageFont.load_default(size=size)
+    except Exception:
+        return ImageFont.load_default()
+
+
+def generate_mnemonic_photo_card(concept: str, visual_object: str, emoji: str, location: str, topic: str, difficulty: str = "Medium", reason: str = "") -> bytes:
     """
     Generates a standalone, high-res illustrated visual mnemonic photo card (1000x650) in PNG format.
     Works 100% offline with zero external dependencies, providing vivid spatial cards.
     """
     width, height = 1000, 650
-    # Clean gradient background
     img = Image.new("RGB", (width, height), color="#FFFFFF")
     draw = ImageDraw.Draw(img)
 
     # 1. Subtle Background Gradient & Border
     for y in range(height):
-        # Soft Indigo-tinted gradient from #F8FAFC down to #EEF2FF
         r = int(248 - (y / height) * 10)
         g = int(250 - (y / height) * 8)
         b = int(252 + (y / height) * 3)
@@ -260,27 +278,48 @@ def generate_mnemonic_photo_card(concept: str, visual_object: str, emoji: str, l
     # Outer decorative card border
     draw.rounded_rectangle([15, 15, width - 15, height - 15], radius=24, outline="#CBD5E1", width=3)
 
+    # Fonts
+    f_header = get_card_font(26, bold=True)
+    f_subhead = get_card_font(20, bold=False)
+    f_concept = get_card_font(38, bold=True)
+    f_object = get_card_font(24, bold=True)
+    f_reason = get_card_font(20, bold=False)
+    f_footer = get_card_font(18, bold=False)
+
     # 2. Top Location Banner
-    draw.rounded_rectangle([40, 40, width - 40, 110], radius=16, fill="#5B6CFF")
-    draw.text((65, 58), f"📍 LOCUS STATION: {location.upper()}", fill="#FFFFFF")
-    draw.text((width - 240, 58), f"DISCIPLINE: {topic.upper()}", fill="#E0E7FF")
+    draw.rounded_rectangle([40, 40, width - 40, 115], radius=16, fill="#4553E8")
+    draw.text((65, 58), f"📍 LOCUS STATION: {location.upper()}", fill="#FFFFFF", font=f_header)
+    draw.text((width - 280, 62), f"DISCIPLINE: {topic.upper()}", fill="#E0E7FF", font=f_subhead)
 
     # 3. Central Focal Frame
-    draw.rounded_rectangle([40, 130, width - 40, 480], radius=18, fill="#FFFFFF", outline="#E2E8F0", width=2)
+    draw.rounded_rectangle([40, 135, width - 40, 480], radius=18, fill="#FFFFFF", outline="#E2E8F0", width=2)
 
-    # Inner decorative spotlight circle
-    draw.ellipse([width // 2 - 120, 160, width // 2 + 120, 400], fill="#F4F6FB", outline="#5B6CFF", width=3)
+    # Spotlight badge
+    draw.ellipse([width // 2 - 80, 160, width // 2 + 80, 320], fill="#EEF2FF", outline="#4553E8", width=3)
+    draw.text((width // 2, 235), "★", fill="#4553E8", font=get_card_font(60, bold=True), anchor="mm")
 
-    # Visual Mnemonic Title in Center
-    draw.text((width // 2, 280), f"[{emoji}]", fill="#1F2937", anchor="mm")
-    draw.text((width // 2, 435), f"{visual_object}", fill="#1E1B4B", anchor="mm")
+    # Concept Title (Large, clear, prominent)
+    clean_concept = str(concept).strip()[:35]
+    draw.text((width // 2, 360), clean_concept, fill="#1F2937", font=f_concept, anchor="mm")
+
+    # Visual Anchor Token
+    clean_obj = f"Anchor: {visual_object}"
+    if len(clean_obj) > 48:
+        clean_obj = clean_obj[:46] + "..."
+    draw.text((width // 2, 415), clean_obj, fill="#0D9488", font=f_object, anchor="mm")
+
+    # Meaning / Explanation
+    display_reason = reason.strip() if reason else f"Mental landmark to fix {clean_concept} in memory."
+    if len(display_reason) > 65:
+        display_reason = display_reason[:62] + "..."
+    draw.text((width // 2, 450), f'"{display_reason}"', fill="#6B7280", font=f_reason, anchor="mm")
 
     # 4. Bottom Concept Details
-    draw.rounded_rectangle([40, 500, width - 40, 605], radius=16, fill="#F8FAFC", outline="#E2E8F0", width=1)
-    draw.text((70, 525), f"Target Concept Anchor: {concept}", fill="#111827")
-    draw.text((70, 560), f"Cognitive Difficulty: {difficulty}  |  Method of Loci Spatial Anchor", fill="#64748B")
+    draw.rounded_rectangle([40, 505, width - 40, 605], radius=16, fill="#F8FAFC", outline="#E2E8F0", width=1)
+    diff_color = "#DC2626" if difficulty == "Hard" else ("#D97706" if difficulty == "Medium" else "#16A34A")
+    draw.text((70, 528), f"Cognitive Difficulty: {difficulty}", fill=diff_color, font=f_footer)
+    draw.text((70, 560), "Method of Loci (Memory Palace) Associative Anchor", fill="#4B5563", font=f_footer)
 
-    # Save to memory buffer
     buffer = io.BytesIO()
     img.save(buffer, format="PNG")
     return buffer.getvalue()
