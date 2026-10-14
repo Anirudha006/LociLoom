@@ -44,6 +44,8 @@ COMMON_STOP_WORDS = {
     "wouldn't", "you", "you'd", "you'll", "you're", "you've", "your", "yours",
     "step", "steps", "called", "known", "process", "system", "uses", "used",
     "first", "second", "third", "next", "finally", "last", "furthermore", "moreover",
+    "many", "various", "several", "different", "multiple", "field", "fields",
+    "type", "types", "way", "ways", "thing", "things", "aspect", "aspects",
     "lociloom", "palace", "palaces", "station", "stations", "locus", "loci",
     "mnemonic", "mnemonics", "narrative", "associative", "discipline", "architecture", "summary"
 }
@@ -101,9 +103,13 @@ def extract_concepts_spacy(text: str, max_concepts: int = 8) -> List[Dict[str, A
 
     # 1. Noun chunks
     for chunk in doc.noun_chunks:
-        clean = chunk.lemma_.lower().strip()
-        # Drop leading determiners/pronouns
-        words = [w for w in clean.split() if w not in COMMON_STOP_WORDS and len(w) > 2]
+        raw_words = chunk.text.lower().strip().split()
+        lemma_words = chunk.lemma_.lower().strip().split()
+        words = []
+        for rw, lw in zip(raw_words, lemma_words):
+            target = "data" if rw in ("data", "datum") else lw
+            if target not in COMMON_STOP_WORDS and len(target) > 2:
+                words.append(target)
         if words and len(words) <= 4:
             cand = " ".join(words)
             # Find the sentence containing this chunk

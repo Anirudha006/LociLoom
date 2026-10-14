@@ -780,16 +780,16 @@
     "reason": "Ultra-fast tiny memory holding frequently needed data"
   },
   "database": {
-    "emoji": "🗃️",
-    "object": "Steel archive filing cabinet with electronic locks",
+    "emoji": "🗄️",
+    "object": "Row of secure fireproof steel storage vaults with digital index locks",
     "topic": "Computer Science",
-    "reason": "Structured collection of indexed and queryable information"
+    "reason": "Systematic collection of organized, structured data stored electronically"
   },
   "sql": {
-    "emoji": "🔍",
-    "object": "Magnifying glass pointing at tabular spreadsheets",
+    "emoji": "🗄️",
+    "object": "Metallic cylindrical database server drum with slide-out search drawers",
     "topic": "Computer Science",
-    "reason": "Standard declarative query language for relational data"
+    "reason": "Structured Query Language for organizing, querying, and managing relational databases"
   },
   "stack": {
     "emoji": "🥞",
@@ -919,9 +919,9 @@
   },
   "machine learning": {
     "emoji": "🤖",
-    "object": "Robot studying textbooks and getting smarter",
+    "object": "Intelligent friendly desktop robot sketching neural network branches on a whiteboard",
     "topic": "Computer Science",
-    "reason": "Algorithms improving performance through empirical data experience"
+    "reason": "Computational algorithms that learn patterns from training data to make predictions"
   },
   "neural network": {
     "emoji": "🧠",
@@ -996,10 +996,10 @@
     "reason": "Numerical measure of likelihood that an event will occur"
   },
   "statistics": {
-    "emoji": "📊",
-    "object": "Barbell bell curve diagram on a whiteboard",
-    "topic": "Maths",
-    "reason": "Science of collecting, analyzing, and interpreting sample data"
+    "emoji": "🧮",
+    "object": "Giant digital calculator displaying bell curves and probability distributions",
+    "topic": "Mathematics",
+    "reason": "Mathematical discipline analyzing quantitative sample distributions and variance"
   },
   "prime number": {
     "emoji": "💎",
@@ -1468,5 +1468,95 @@
     "object": "Bento lunchbox dividing scattered food into neat compartments",
     "topic": "General",
     "reason": "Grouping individual bits of information into meaningful, manageable units"
+  },
+  "data science": {
+    "emoji": "🔬",
+    "object": "Modern scientific research desk with dual screens and glowing diagrams",
+    "topic": "Computer Science",
+    "reason": "Multidisciplinary field extracting actionable knowledge and insights from data"
+  },
+  "data": {
+    "emoji": "📦",
+    "object": "Overflowing wooden carton box filled with neat folders, records, and pictures",
+    "topic": "Computer Science",
+    "reason": "Raw, unprocessed facts, numbers, and observations collected from diverse sources"
+  },
+  "raw data": {
+    "emoji": "📦",
+    "object": "Unsorted stack of delivery crates packed with documents and sensor tapes",
+    "topic": "Computer Science",
+    "reason": "Primary information directly collected before cleaning, filtering, or transformation"
+  },
+  "mathematics": {
+    "emoji": "📐",
+    "object": "Golden draftsman triangle ruler and chalk blackboard filled with geometric proofs",
+    "topic": "Mathematics",
+    "reason": "Theoretical foundation for quantitative modeling, calculus, and linear algebra"
+  },
+  "programming": {
+    "emoji": "💻",
+    "object": "Sleek metallic laptop executing lines of glowing emerald code",
+    "topic": "Computer Science",
+    "reason": "Writing software instructions and algorithms to automate data pipelines"
+  },
+  "python": {
+    "emoji": "🐍",
+    "object": "Friendly golden-eyed Python serpent wrapped around a glowing code keyboard",
+    "topic": "Computer Science",
+    "reason": "Versatile programming language widely favored for data analysis, automation, and AI"
+  },
+  "analysis": {
+    "emoji": "🔍",
+    "object": "High-magnification golden magnifying glass focusing on glowing trend charts",
+    "topic": "Computer Science",
+    "reason": "Deconstructing complex datasets into components to uncover underlying patterns"
+  },
+  "interpretation": {
+    "emoji": "💡",
+    "object": "Brightly shining tungsten incandescent lightbulb projecting clear meaning",
+    "topic": "Computer Science",
+    "reason": "Translating analytical statistical outputs into clear human understanding"
+  },
+  "decision making": {
+    "emoji": "🧭",
+    "object": "Polished crossroads signpost pointing firmly towards Better Choice and Solution",
+    "topic": "Computer Science",
+    "reason": "Using data-driven evidence and predictive confidence to choose optimal actions"
+  },
+  "data visualization": {
+    "emoji": "📊",
+    "object": "Vibrant 3D holographic bar chart with glowing upward trend arrows",
+    "topic": "Computer Science",
+    "reason": "Visual graphical representation of quantitative findings to convey insights intuitively"
+  },
+  "tools": {
+    "emoji": "🧰",
+    "object": "Sturdy leather craftsman toolbox stocked with digital calipers and software keys",
+    "topic": "Computer Science",
+    "reason": "Specialized software libraries, frameworks, and utilities utilized across the data lifecycle"
+  },
+  "applications": {
+    "emoji": "🏥",
+    "object": "Miniature illuminated city skyline showcasing a hospital, school, bank, and corporate tower",
+    "topic": "Computer Science",
+    "reason": "Practical deployment of analytical models across healthcare, education, and finance"
+  },
+  "scientific method": {
+    "emoji": "🧪",
+    "object": "Glass laboratory beaker bubbling gently beneath an analytical notebook",
+    "topic": "General",
+    "reason": "Empirical procedure of observation, hypothesis formulation, experimentation, and validation"
+  },
+  "datum": {
+    "emoji": "📦",
+    "object": "Overflowing wooden carton box filled with neat folders, records, and pictures",
+    "topic": "Computer Science",
+    "reason": "Raw, unprocessed facts, numbers, and observations collected from diverse sources"
+  },
+  "meaningful information": {
+    "emoji": "💡",
+    "object": "Gleaming golden bullion bars forged from processed data",
+    "topic": "Computer Science",
+    "reason": "High-value actionable knowledge distilled from raw facts"
   }
 }
