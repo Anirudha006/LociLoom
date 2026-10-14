@@ -284,6 +284,13 @@ def render_sidebar():
         if st.button("🚪 Sign out", key="sb_signout_btn", use_container_width=True):
             sign_out_user()
 
+        st.markdown(
+            "<div style='text-align: center; margin-top: 14px; font-size: 11px; color: #9CA3AF;'>"
+            "🚀 <strong>LociLoom v1.2</strong> • Gemini 3.x Flash"
+            "</div>",
+            unsafe_allow_html=True
+        )
+
 
 def get_animated_sample_map_html(reduced_motion: bool = False) -> str:
     """
