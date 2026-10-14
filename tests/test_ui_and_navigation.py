@@ -143,12 +143,12 @@ def test_sidebar_includes_dedicated_admin_section(monkeypatch):
     monkeypatch.setattr(st, "button", lambda *args, **kwargs: False)
     monkeypatch.setattr(st, "selectbox", lambda *args, **kwargs: "en")
 
-    # When student is logged in
+    # When student is logged in: admin portal is NOT shown to regular students
     st.session_state["auth_user"] = {"user_id": "LL-STUDENT-01", "username": "student", "role": "student"}
     render_sidebar()
-    assert "pages/9_Admin_Portal.py" in page_links
+    assert "pages/9_Admin_Portal.py" not in page_links
 
-    # When admin is logged in
+    # When admin is logged in: admin portal is included in nav items
     page_links.clear()
     st.session_state["auth_user"] = {"user_id": "LL-ADMIN-001", "username": "admin", "role": "admin"}
     render_sidebar()

@@ -273,14 +273,11 @@ def render_sidebar():
             ("pages/7_Settings_Accessibility.py", "Settings & Accessibility", "⚙️"),
             ("pages/8_About_and_Help.py", "About & Help", "ℹ️"),
         ]
+        if is_admin:
+            nav_items.append(("pages/9_Admin_Portal.py", "Admin Portal", "🛡️"))
 
         for page_path, label, icon in nav_items:
             st.page_link(page_path, label=label, icon=icon)
-
-        # Dedicated Administration Section
-        st.markdown("<div style='margin: 14px 0 6px 0; border-top: 1px dashed #D1D5DB;'></div>", unsafe_allow_html=True)
-        st.markdown("<div style='font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: #4338CA; margin-bottom: 6px;'>ADMINISTRATION</div>", unsafe_allow_html=True)
-        st.page_link("pages/9_Admin_Portal.py", label="Admin Portal", icon="🛡️")
         st.markdown("</nav>", unsafe_allow_html=True)
 
         # 4. Bottom Controls: Language selector + Info note + Bottom Sign out
