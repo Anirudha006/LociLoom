@@ -317,6 +317,7 @@ if generate_btn:
             first_c = extracted[0]['concept'] if extracted else 'Notes'
             clean_first = re.sub(r'(?i)\s+palace.*$', '', first_c).strip()
             clean_first = re.sub(r'(?i)^[a-z]+:\s*', '', clean_first).strip()
+            palace_title = f"{topic_pred}: {clean_first} Palace"
             palace_token = f"p_{int(time.time() * 1000)}"
             st.session_state["current_palace"] = {
                 "token": palace_token,
