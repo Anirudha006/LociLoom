@@ -7,7 +7,7 @@ Restricted to users with the 'admin' role.
 import io
 import pandas as pd
 import streamlit as st
-from core.ui_helper import setup_page, render_disclaimer
+from core.ui_helper import setup_page, render_disclaimer, sign_out_user
 from core.db import (
     authenticate_user, register_account, get_all_users_admin,
     get_all_palaces_admin, get_admin_dashboard_metrics, delete_palace,
@@ -21,44 +21,72 @@ auth_user = st.session_state.get("auth_user")
 is_admin = (auth_user is not None and auth_user.get("role") == "admin")
 
 if not is_admin:
-    st.markdown("## 🛡️ Administrative Portal Gate")
-    st.warning("⚠️ Restricted Access: You must be logged in as an Administrator to view this portal.")
+    st.markdown("""
+    <div style="margin-bottom: 20px;">
+        <div style="display: flex; align-items: center; gap: 10px; margin-bottom: 6px;">
+            <span style="font-size: 32px;">🛡️</span>
+            <div>
+                <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 30px; font-weight: 700; color: #1F2937;">
+                    Administrator Portal
+                </h1>
+                <span style="font-size: 13.5px; color: #6B7280; font-weight: 500;">
+                    Dedicated management environment for system auditing, user governance, and ML model diagnostics.
+                </span>
+            </div>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
 
-    col1, col2 = st.columns([1.2, 1.0])
+    st.warning("⚠️ Restricted Access: You must sign in with Administrator credentials to access this portal.")
+
+    col1, col2 = st.columns([1.2, 1.0], gap="large")
     with col1:
         st.markdown("""
-        <div style="background: #F4F6FB; border: 1.5px solid #CBD5E1; border-radius: 12px; padding: 24px; margin-top: 10px;">
-            <h4 style="margin: 0 0 12px 0; color: #1F2937;">Admin Sign In</h4>
-            <p style="color: #6B7280; font-size: 0.9rem;">
-                Enter your administrative credentials to access user directories, global palaces, and ML model performance metrics.
+        <div style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: 14px; padding: 22px; margin-bottom: 14px;">
+            <h4 style="margin: 0 0 6px 0; color: #1E293B;">Administrator Sign In</h4>
+            <p style="color: #64748B; font-size: 0.88rem; margin: 0; line-height: 1.5;">
+                Enter your administrative credentials below to inspect global user accounts, review synthesized memory palaces, evaluate ML telemetry, and download database backups.
             </p>
         </div>
         """, unsafe_allow_html=True)
         
         adm_u = st.text_input("Admin Username", key="admin_gate_u", placeholder="admin")
-        adm_p = st.text_input("Admin Password", type="password", key="admin_gate_p")
+        adm_p = st.text_input("Admin Password", type="password", key="admin_gate_p", placeholder="••••••••")
         
-        if st.button("🔓 Sign In to Admin Portal", type="primary", use_container_width=True):
-            acc = authenticate_user(adm_u, adm_p)
-            if acc and acc.get("role") == "admin":
-                st.session_state["auth_user"] = acc
-                st.session_state["anon_id"] = acc["user_id"]
-                st.success("Authenticated as Administrator!")
+        c_btn_a, c_btn_b = st.columns([1.3, 1.0])
+        with c_btn_a:
+            if st.button("🔓 Sign In to Admin Portal", type="primary", use_container_width=True, key="adm_gate_submit"):
+                acc = authenticate_user(adm_u, adm_p)
+                if acc and acc.get("role") == "admin":
+                    st.session_state["auth_user"] = acc
+                    st.session_state["anon_id"] = acc["user_id"]
+                    st.success("Authenticated as Administrator! Loading dashboard...")
+                    st.rerun()
+                elif acc:
+                    st.error("Account does not have administrative privileges.")
+                else:
+                    st.error("Invalid admin credentials.")
+        with c_btn_b:
+            if st.button("🔑 Demo Fill", use_container_width=True, key="adm_gate_autofill", help="Autofill default admin credentials"):
+                st.session_state["admin_gate_u"] = "admin"
+                st.session_state["admin_gate_p"] = "adminpassword123"
                 st.rerun()
-            elif acc:
-                st.error("Account does not have administrative privileges.")
-            else:
-                st.error("Invalid admin credentials.")
 
         st.info("💡 **Default Demo Admin Credentials:** Username: `admin` | Password: `adminpassword123`")
 
+        st.markdown("<div style='margin-top: 14px; border-top: 1px solid #E5E7EB; padding-top: 12px;'></div>", unsafe_allow_html=True)
+        if st.button("← Return to Student Portal", use_container_width=True, key="adm_return_student_btn"):
+            st.switch_page("app.py")
+
     with col2:
         st.markdown("""
-        <div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 12px; padding: 20px; margin-top: 10px;">
-            <h4 style="margin: 0 0 8px 0; color: #5B6CFF;">🛡️ Admin Capabilities</h4>
-            <ul style="font-size: 0.88rem; color: #4B5563; line-height: 1.7; padding-left: 20px;">
+        <div style="background: #FFFFFF; border: 1px solid #E5E7EB; border-radius: 14px; padding: 22px; box-shadow: 0 1px 3px rgba(0,0,0,0.05);">
+            <h4 style="margin: 0 0 10px 0; color: #4338CA; display: flex; align-items: center; gap: 6px;">
+                <span>🛡️</span> Administrative Capabilities
+            </h4>
+            <ul style="font-size: 0.88rem; color: #4B5563; line-height: 1.7; padding-left: 20px; margin: 0;">
                 <li><strong>User Management:</strong> Audit student registrations and portal access logs.</li>
-                <li><strong>Palace Oversight:</strong> Inspect and manage palaces synthesized across all accounts.</li>
+                <li><strong>Palace Oversight:</strong> Inspect, search, and moderate memory palaces generated across all accounts.</li>
                 <li><strong>ML Diagnostics:</strong> View topic classifier accuracy, difficulty scoring weights, and SM-2 retention logs.</li>
                 <li><strong>Data Export:</strong> Download sanitized database tables in CSV format for research reports.</li>
             </ul>
@@ -69,8 +97,38 @@ if not is_admin:
     st.stop()
 
 # --- AUTHENTICATED ADMIN DASHBOARD ---
-st.markdown("## 🛡️ Administrative Portal")
-st.caption(f"Welcome, **{auth_user['username']}** | System Administrator | Session ID: `{auth_user['user_id']}`")
+hdr_left, hdr_right = st.columns([2.5, 1.5])
+with hdr_left:
+    st.markdown("""
+    <div style="display: flex; align-items: center; gap: 12px;">
+        <span style="font-size: 32px;">🛡️</span>
+        <div>
+            <h1 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 28px; font-weight: 700; color: #1F2937;">
+                Administrator Portal
+            </h1>
+            <span style="font-size: 13px; color: #6B7280;">System Auditing · User Governance · ML Diagnostics · Database Backups</span>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+with hdr_right:
+    c_sw1, c_sw2 = st.columns(2)
+    with c_sw1:
+        if st.button("🔄 Student View", help="Switch to student learning dashboard", use_container_width=True):
+            st.switch_page("app.py")
+    with c_sw2:
+        if st.button("🚪 Sign out", key="adm_top_signout", use_container_width=True):
+            sign_out_user()
+
+st.markdown(f"""
+<div style="background: #F5F3FF; border: 1px solid #DDD6FE; border-radius: 12px; padding: 10px 16px; margin: 12px 0 18px 0; display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 8px;">
+    <span style="font-size: 13px; color: #5B21B6; font-weight: 600;">
+        👤 Signed in as <strong>{auth_user['username']}</strong> (System Administrator) · Session ID: <code>{auth_user['user_id']}</code>
+    </span>
+    <span style="font-size: 11px; background: #7C3AED; color: #FFFFFF; font-weight: 700; padding: 3px 10px; border-radius: 999px;">
+        SEPARATE ADMIN MODE
+    </span>
+</div>
+""", unsafe_allow_html=True)
 
 # 1. KPI Metrics
 metrics = get_admin_dashboard_metrics()

@@ -113,3 +113,44 @@ def test_sign_out_user(monkeypatch):
     assert st.session_state["anon_id"].startswith("LL-GUEST-")
     assert redirected == ["app.py"]
 
+
+def test_admin_portal_authentication():
+    """Verify that the seeded administrator account authenticates and returns admin role."""
+    from core.db import authenticate_user
+    admin_acc = authenticate_user("admin", "adminpassword123")
+    assert admin_acc is not None
+    assert admin_acc["role"] == "admin"
+    assert admin_acc["username"] == "admin"
+    assert "LL-ADMIN" in admin_acc["user_id"]
+
+
+def test_sidebar_includes_dedicated_admin_section(monkeypatch):
+    """Verify that render_sidebar renders the dedicated administration link to pages/9_Admin_Portal.py."""
+    import streamlit as st
+    from core.ui import render_sidebar
+
+    page_links = []
+    monkeypatch.setattr(st, "page_link", lambda page, **kwargs: page_links.append(page))
+
+    class DummyContext:
+        def __enter__(self):
+            return self
+        def __exit__(self, exc_type, exc_val, exc_tb):
+            pass
+
+    monkeypatch.setattr(st, "sidebar", DummyContext())
+    monkeypatch.setattr(st, "markdown", lambda *args, **kwargs: None)
+    monkeypatch.setattr(st, "button", lambda *args, **kwargs: False)
+    monkeypatch.setattr(st, "selectbox", lambda *args, **kwargs: "en")
+
+    # When student is logged in
+    st.session_state["auth_user"] = {"user_id": "LL-STUDENT-01", "username": "student", "role": "student"}
+    render_sidebar()
+    assert "pages/9_Admin_Portal.py" in page_links
+
+    # When admin is logged in
+    page_links.clear()
+    st.session_state["auth_user"] = {"user_id": "LL-ADMIN-001", "username": "admin", "role": "admin"}
+    render_sidebar()
+    assert "pages/9_Admin_Portal.py" in page_links
+

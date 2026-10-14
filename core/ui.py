@@ -212,10 +212,9 @@ def render_sidebar():
         </div>
         """, unsafe_allow_html=True)
 
-        # 2. Green-tinted STUDENT PORTAL card
+        # 2. STUDENT / ADMIN PORTAL card
         auth_user = st.session_state.get("auth_user")
         is_admin = bool(auth_user and auth_user.get("role") == "admin")
-        portal_label = "ADMINISTRATOR PORTAL" if is_admin else "STUDENT PORTAL"
 
         if auth_user:
             display_user = auth_user.get("username", "Student")
@@ -227,20 +226,39 @@ def render_sidebar():
 
         clean_id = format_loci_id(raw_id)
 
-        st.markdown(f"""
-        <div style="background: #ECFDF9; border: 1.5px solid #99E6D8; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px;">
-            <div style="display: flex; justify-content: space-between; align-items: center;">
-                <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #0B5F57;">{portal_label}</span>
-                <span style="font-size: 11px; color: #0D9488; font-weight: 600;">Active</span>
+        if is_admin:
+            st.markdown(f"""
+            <div style="background: #F5F3FF; border: 1.5px solid #C4B5FD; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 11px; font-weight: 800; letter-spacing: 0.08em; color: #5B21B6;">🛡️ ADMIN PORTAL</span>
+                    <span style="font-size: 10.5px; color: #7C3AED; font-weight: 700; background: #EDE9FE; padding: 2px 7px; border-radius: 999px;">Admin</span>
+                </div>
+                <span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: #1F2937;">{display_user}</span>
+                <span style="font-size: 12px; color: #4B5563;">Admin ID: {clean_id}</span>
             </div>
-            <span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: #1F2937;">{display_user}</span>
-            <span style="font-size: 12px; color: #4B5563;">ID: {clean_id}</span>
-        </div>
-        """, unsafe_allow_html=True)
+            """, unsafe_allow_html=True)
 
-        # Prominent Top Sign Out Button (always visible without scrolling)
-        if st.button("🚪 Sign out", key="sb_top_signout_btn", use_container_width=True):
-            sign_out_user()
+            c_sb1, c_sb2 = st.columns(2)
+            with c_sb1:
+                if st.button("🔄 Student View", key="sb_switch_to_student", use_container_width=True, help="Switch to student view"):
+                    st.switch_page("app.py")
+            with c_sb2:
+                if st.button("🚪 Sign out", key="sb_top_signout_btn", use_container_width=True):
+                    sign_out_user()
+        else:
+            st.markdown(f"""
+            <div style="background: #ECFDF9; border: 1.5px solid #99E6D8; border-radius: 16px; padding: 14px 16px; display: flex; flex-direction: column; gap: 4px; margin-bottom: 8px;">
+                <div style="display: flex; justify-content: space-between; align-items: center;">
+                    <span style="font-size: 11px; font-weight: 700; letter-spacing: 0.1em; color: #0B5F57;">STUDENT PORTAL</span>
+                    <span style="font-size: 11px; color: #0D9488; font-weight: 600;">Active</span>
+                </div>
+                <span style="font-family: 'Inter', sans-serif; font-weight: 700; font-size: 20px; letter-spacing: -0.01em; color: #1F2937;">{display_user}</span>
+                <span style="font-size: 12px; color: #4B5563;">ID: {clean_id}</span>
+            </div>
+            """, unsafe_allow_html=True)
+
+            if st.button("🚪 Sign out", key="sb_top_signout_btn", use_container_width=True):
+                sign_out_user()
 
         # 3. Navigation List using st.page_link
         st.markdown("<nav aria-label='Main navigation' style='margin-top: 10px;'>", unsafe_allow_html=True)
@@ -255,11 +273,14 @@ def render_sidebar():
             ("pages/7_Settings_Accessibility.py", "Settings & Accessibility", "⚙️"),
             ("pages/8_About_and_Help.py", "About & Help", "ℹ️"),
         ]
-        if is_admin:
-            nav_items.append(("pages/9_Admin_Portal.py", "Admin Portal", "🛡️"))
 
         for page_path, label, icon in nav_items:
             st.page_link(page_path, label=label, icon=icon)
+
+        # Dedicated Administration Section
+        st.markdown("<div style='margin: 14px 0 6px 0; border-top: 1px dashed #D1D5DB;'></div>", unsafe_allow_html=True)
+        st.markdown("<div style='font-size: 11px; font-weight: 700; letter-spacing: 0.08em; color: #4338CA; margin-bottom: 6px;'>ADMINISTRATION</div>", unsafe_allow_html=True)
+        st.page_link("pages/9_Admin_Portal.py", label="Admin Portal", icon="🛡️")
         st.markdown("</nav>", unsafe_allow_html=True)
 
         # 4. Bottom Controls: Language selector + Info note + Bottom Sign out

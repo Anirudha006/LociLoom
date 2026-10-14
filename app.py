@@ -68,13 +68,15 @@ if not is_logged_in:
         """, unsafe_allow_html=True)
 
     with hdr_col2:
-        c_sub, c_lang = st.columns([1.6, 1.2])
+        c_sub, c_adm, c_lang = st.columns([1.3, 1.0, 1.1])
         with c_sub:
             st.markdown("""
-            <div style="display: flex; justify-content: flex-end; align-items: center; height: 100%; padding-top: 2px;">
+            <div style="display: flex; justify-content: flex-end; align-items: center; height: 100%; padding-top: 4px;">
                 <span style="font-size: 12.5px; color: #6B7280; font-weight: 600;">Method of Loci · Adaptive Retrieval</span>
             </div>
             """, unsafe_allow_html=True)
+        with c_adm:
+            st.page_link("pages/9_Admin_Portal.py", label="Admin Portal", icon="🛡️")
         with c_lang:
             lang_options = {"en": "English", "hi": "Hindi (हिंदी)", "kn": "Kannada (ಕನ್ನಡ)"}
             curr_l = st.session_state.get("language", "en")
@@ -104,7 +106,7 @@ if not is_logged_in:
             </div>
             """, unsafe_allow_html=True)
 
-            tab_return, tab_new = st.tabs(["I have a Loci ID", "I'm new here"])
+            tab_return, tab_new, tab_admin = st.tabs(["I have a Loci ID", "I'm new here", "🛡️ Admin Portal"])
 
             with tab_return:
                 st.markdown("<div style='margin-top: 6px;'></div>", unsafe_allow_html=True)
@@ -192,6 +194,70 @@ if not is_logged_in:
                         else:
                             st.error(msg)
 
+            with tab_admin:
+                st.markdown("<div style='margin-top: 6px;'></div>", unsafe_allow_html=True)
+                st.markdown("""
+                <div style="background: #F8FAFC; border: 1.5px solid #CBD5E1; border-radius: 14px; padding: 14px 16px; margin-bottom: 12px;">
+                    <div style="display: flex; align-items: center; justify-content: space-between;">
+                        <div style="display: flex; align-items: center; gap: 8px;">
+                            <span style="font-size: 18px;">🛡️</span>
+                            <span style="font-weight: 700; font-size: 13.5px; color: #1E293B;">Administrator Gateway</span>
+                        </div>
+                        <span style="font-size: 11px; font-weight: 700; color: #475569; background: #E2E8F0; padding: 2px 8px; border-radius: 999px;">Staff & Faculty</span>
+                    </div>
+                    <p style="margin: 6px 0 0 0; font-size: 12px; color: #64748B; line-height: 1.45;">
+                        Dedicated management portal for student directories, global palaces auditing, and cognitive ML diagnostics.
+                    </p>
+                </div>
+                """, unsafe_allow_html=True)
+
+                adm_login_u = st.text_input(
+                    "Admin Username",
+                    placeholder="admin",
+                    key="app_adm_user",
+                    help="Administrator account username."
+                )
+                adm_login_p = st.text_input(
+                    "Admin Password",
+                    type="password",
+                    placeholder="••••••••",
+                    key="app_adm_pass",
+                    help="Administrator account password."
+                )
+
+                adm_btn_c1, adm_btn_c2 = st.columns([1.3, 1.0])
+                with adm_btn_c1:
+                    adm_enter_btn = st.button("🛡️ Enter Admin Portal ➔", type="primary", use_container_width=True, key="app_adm_enter_btn")
+                with adm_btn_c2:
+                    if st.button("🔑 Demo Fill", use_container_width=True, key="app_adm_autofill_btn", help="Autofill default admin credentials"):
+                        st.session_state["app_adm_user"] = "admin"
+                        st.session_state["app_adm_pass"] = "adminpassword123"
+                        st.rerun()
+
+                if adm_enter_btn:
+                    if not adm_login_u or not adm_login_p:
+                        st.warning("Please enter administrator username and password.")
+                    else:
+                        acc = authenticate_user(adm_login_u, adm_login_p)
+                        if acc and acc.get("role") == "admin":
+                            st.session_state["auth_user"] = acc
+                            st.session_state["anon_id"] = acc["user_id"]
+                            st.success("Authenticated as Administrator! Directing to Admin Portal...")
+                            st.switch_page("pages/9_Admin_Portal.py")
+                        elif acc:
+                            st.error("Account does not have administrative privileges.")
+                        else:
+                            st.error("Invalid administrator credentials. Default: admin / adminpassword123")
+
+                st.markdown("""
+                <div style="margin-top: 10px; font-size: 11.5px; color: #64748B; background: #F1F5F9; border-radius: 8px; padding: 8px 12px;">
+                    💡 <strong>Default Demo Credentials:</strong> Username: <code>admin</code> · Password: <code>adminpassword123</code>
+                </div>
+                """, unsafe_allow_html=True)
+
+                st.markdown("<div style='margin-top: 8px;'></div>", unsafe_allow_html=True)
+                st.page_link("pages/9_Admin_Portal.py", label="Open Standalone Admin Portal Page ➔", icon="🛡️")
+
             st.markdown('<div class="or-divider">or</div>', unsafe_allow_html=True)
             if st.button("Try a sample palace as guest", use_container_width=True, key="guest_btn"):
                 st.session_state["anon_id"] = f"LL-GUEST-{uuid.uuid4().hex[:4].upper()}"
@@ -252,6 +318,26 @@ else:
         </div>
     </section>
     """, unsafe_allow_html=True)
+
+    if is_admin:
+        st.markdown("""
+        <div style="background: linear-gradient(135deg, #1E1B4B 0%, #312E81 100%); border-radius: 20px; padding: 20px 24px; color: #FFFFFF; margin-bottom: 24px; box-shadow: 0 8px 24px rgba(30, 27, 75, 0.22); display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 16px;">
+            <div style="flex: 1 1 360px;">
+                <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
+                    <span style="background: #FBBF24; color: #1E1B4B; font-weight: 800; font-size: 11px; padding: 3px 8px; border-radius: 6px; letter-spacing: 0.05em;">ADMINISTRATOR MODE</span>
+                    <span style="font-size: 13px; color: #C7D2FE;">Privileged System Access</span>
+                </div>
+                <h3 style="margin: 0; font-family: 'Bricolage Grotesque', system-ui, sans-serif; font-size: 22px; font-weight: 700; color: #FFFFFF;">Separate Admin Portal Active</h3>
+                <p style="margin: 4px 0 0 0; font-size: 13.5px; color: #E0E7FF; max-width: 620px; line-height: 1.45;">
+                    Audit registered student accounts, inspect global memory palaces, monitor ML accuracy models, and download sanitized database backups.
+                </p>
+            </div>
+        </div>
+        """, unsafe_allow_html=True)
+        adm_top_c1, adm_top_c2 = st.columns([1.6, 3.4])
+        with adm_top_c1:
+            st.page_link("pages/9_Admin_Portal.py", label="🛡️ Launch Administrator Portal ➔", use_container_width=True)
+        st.markdown("<div style='margin-bottom: 18px;'></div>", unsafe_allow_html=True)
 
     # --- 2. PALACE MAP NAVIGATION (12-Column Grid) ---
     st.markdown("""
@@ -461,6 +547,28 @@ else:
             </div>
             """, unsafe_allow_html=True)
             st.page_link("pages/8_About_and_Help.py", label="Learn more ➔", use_container_width=True)
+
+    if is_admin:
+        st.markdown("<div style='margin-top: 14px;'></div>", unsafe_allow_html=True)
+        with st.container(key="tile_admin"):
+            st.markdown("""
+            <div class="hm-tile" style="min-height: 130px; background: #EEF2FF; border: 1.5px solid #C7D2FE;">
+                <div class="hm-top">
+                    <span class="hm-ic" style="background: #4338CA;">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#FFFFFF" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/>
+                        </svg>
+                    </span>
+                    <span class="hm-no" style="color: #4338CA;">9</span>
+                </div>
+                <div class="hm-txt">
+                    <span class="hm-lab" style="color: #4338CA;">THE COMMAND BRIDGE</span>
+                    <span class="hm-ti">Admin Portal</span>
+                    <span class="hm-de">User directory, global palaces, ML diagnostics, and CSV database backups.</span>
+                </div>
+            </div>
+            """, unsafe_allow_html=True)
+            st.page_link("pages/9_Admin_Portal.py", label="Launch Admin Portal ➔", use_container_width=True)
 
     # --- 3. LOWER SPLIT: STUDY PALACES & PRINCIPLE (Left) + SAMPLE PALACE MAP (Right) ---
     st.markdown("<div style='margin-top: 32px;'></div>", unsafe_allow_html=True)
